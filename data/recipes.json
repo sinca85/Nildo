@@ -3,14 +3,14 @@
     "slug": "espejitos",
     "title": "Espejitos",
     "subtitle": "Masa sable, cacao y jalea de frutilla y tomate.",
-    "image": "assets/images/espejitos-left.jpg",
+    "image": "assets/images/espejitos-full.jpg",
     "file": "recipes/espejitos.html"
   },
   {
     "slug": "espuma-arroz-con-leche",
     "title": "Espuma de arroz con leche",
     "subtitle": "Espuma en sifón con arroz con leche cremoso.",
-    "image": "assets/images/espuma-left.jpg",
+    "image": "assets/images/espuma-full.jpg",
     "file": "recipes/espuma-arroz-con-leche.html"
   }
 ]
