@@ -1,31 +1,78 @@
-const recipesGrid = document.getElementById('recipes-grid');
+const recipesFeatured = document.getElementById('recipes-featured');
+const recipesCarouselTrack = document.getElementById('recipes-carousel-track');
+const recipesCarouselViewport = document.getElementById('recipes-carousel-viewport');
+const recipesPrev = document.getElementById('recipes-prev');
+const recipesNext = document.getElementById('recipes-next');
+
 const recipeModal = document.getElementById('recipeModal');
 const recipeModalBody = document.getElementById('recipeModalBody');
+
+function bindRecipeButtons(scope = document) {
+  scope.querySelectorAll('[data-recipe-file]').forEach(button => {
+    button.addEventListener('click', () => openRecipe(button.dataset.recipeFile));
+  });
+}
+
+function renderFeaturedCard(recipe) {
+  return `
+    <article class="recipe-card recipe-card--featured">
+      <img class="recipe-card__image" src="${recipe.image}" alt="${recipe.title}" />
+      <div class="recipe-card__overlay"></div>
+      <div class="recipe-card__content">
+        <div class="recipe-card__tag">Destacada</div>
+        <h3 class="recipe-card__title">${recipe.title}</h3>
+        <p class="recipe-card__subtitle">${recipe.subtitle}</p>
+        <button class="recipe-card__button" type="button" data-recipe-file="${recipe.file}">
+          Ver receta
+        </button>
+      </div>
+    </article>
+  `;
+}
+
+function renderCompactCard(recipe) {
+  return `
+    <article class="recipe-card recipe-card--compact">
+      <img class="recipe-card__image" src="${recipe.image}" alt="${recipe.title}" />
+      <div class="recipe-card__overlay"></div>
+      <div class="recipe-card__content">
+        <h3 class="recipe-card__title">${recipe.title}</h3>
+        <p class="recipe-card__subtitle">${recipe.subtitle}</p>
+        <button class="recipe-card__button" type="button" data-recipe-file="${recipe.file}">
+          Ver receta
+        </button>
+      </div>
+    </article>
+  `;
+}
 
 async function loadRecipes() {
   try {
     const response = await fetch('./data/recipes.json');
     const recipes = await response.json();
 
-    recipesGrid.innerHTML = recipes.map(recipe => `
-      <article class="recipe-card">
-        <img class="recipe-card__image" src="${recipe.image}" alt="${recipe.title}" />
-        <div class="recipe-card__overlay"></div>
-        <div class="recipe-card__content">
-          <h3 class="recipe-card__title">${recipe.title}</h3>
-          <p class="recipe-card__subtitle">${recipe.subtitle}</p>
-          <button class="recipe-card__button" type="button" data-recipe-file="${recipe.file}">
-            Ver receta
-          </button>
-        </div>
-      </article>
-    `).join('');
+    const featured = recipes.filter(recipe => recipe.featured).slice(0, 2);
+    const carousel = recipes.filter(recipe => !recipe.featured);
 
-    recipesGrid.querySelectorAll('[data-recipe-file]').forEach(button => {
-      button.addEventListener('click', () => openRecipe(button.dataset.recipeFile));
-    });
+    recipesFeatured.innerHTML = featured.map(renderFeaturedCard).join('');
+    recipesCarouselTrack.innerHTML = carousel.map(renderCompactCard).join('');
+
+    bindRecipeButtons(recipesFeatured);
+    bindRecipeButtons(recipesCarouselTrack);
+
+    if (recipesPrev && recipesNext && recipesCarouselViewport) {
+      recipesPrev.addEventListener('click', () => {
+        recipesCarouselViewport.scrollBy({ left: -340, behavior: 'smooth' });
+      });
+
+      recipesNext.addEventListener('click', () => {
+        recipesCarouselViewport.scrollBy({ left: 340, behavior: 'smooth' });
+      });
+    }
   } catch (error) {
-    recipesGrid.innerHTML = '<p class="error">No pudimos cargar las recetas.</p>';
+    if (recipesFeatured) {
+      recipesFeatured.innerHTML = '<p class="error">No pudimos cargar las recetas.</p>';
+    }
     console.error(error);
   }
 }

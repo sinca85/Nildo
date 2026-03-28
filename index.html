@@ -99,7 +99,26 @@
           <p class="section-script">Menú</p>
           <h2>Recetas</h2>
         </div>
-        <div id="recipes-grid" class="recipes-grid"></div>
+
+        <div class="recipes-featured" id="recipes-featured"></div>
+
+        <div class="recipes-carousel-block">
+          <div class="recipes-carousel-head">
+            <div>
+              <p class="section-script">Más recetas</p>
+              <h3 class="recipes-subtitle">Seguí explorando</h3>
+            </div>
+
+            <div class="recipes-carousel-nav">
+              <button type="button" class="carousel-btn" id="recipes-prev" aria-label="Anterior">‹</button>
+              <button type="button" class="carousel-btn" id="recipes-next" aria-label="Siguiente">›</button>
+            </div>
+          </div>
+
+          <div class="recipes-carousel-viewport" id="recipes-carousel-viewport">
+            <div class="recipes-carousel-track" id="recipes-carousel-track"></div>
+          </div>
+        </div>
       </section>
 
       <section class="info-block info-block--stream" id="en-vivo">
