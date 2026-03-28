@@ -1,161 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Soy Nildo | Cocina</title>
-    <meta
-      name="description"
-      content="Sitio de cocina de Soy Nildo con recetas, estética artesanal y acceso directo a cada preparación."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Permanent+Marker&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="site-shell">
-      <header class="topbar">
-        <a href="#inicio" class="brand">
-          <img src="assets/logo.png" alt="Logo Soy Nildo" class="brand__logo" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soy Nildo</title>
+  <meta name="description" content="Sitio de cocina de Soy Nildo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="site-shell">
+    <header class="hero">
+      <nav class="topbar">
+        <a class="brand" href="#">
+          <img src="assets/images/logo.png" alt="Logo Soy Nildo" class="brand-logo" />
           <div>
-            <span class="brand__eyebrow">Cocina artesanal</span>
-            <strong class="brand__name">Soy Nildo</strong>
+            <div class="brand-name">Soy Nildo</div>
+            <div class="brand-note">Cocina con textura, fuego y receta</div>
           </div>
         </a>
+        <a class="hero-link" href="#recetas">Ver recetas</a>
+      </nav>
 
-        <nav class="nav">
-          <a href="#recetas">Recetas</a>
-          <a href="#estilo">Estilo</a>
-          <a href="#contacto">Contacto</a>
-        </nav>
-      </header>
+      <section class="hero-content">
+        <div class="hero-copy">
+          <p class="eyebrow">COCINA / RECETAS / POP-UP</p>
+          <h1>Una landing corta, con recetas que se abren sin recargar la página.</h1>
+          <p class="hero-text">
+            Cada plato vive en su archivo HTML y el home lo levanta con JavaScript para mostrarlo dentro de un modal.
+            Así el index queda limpio y cada receta mantiene la estética Soy Nildo.
+          </p>
+          <a class="cta" href="#recetas">Abrir menú</a>
+        </div>
 
-      <main>
-        <section class="hero" id="inicio">
-          <div class="hero__content">
-            <p class="hero__kicker">Recetas con identidad</p>
-            <h1>SOY NILDO</h1>
-            <p class="hero__text">
-              Un rincón de cocina con estética de recetario intervenido, platos con personalidad y una
-              navegación simple para encontrar rápido cada receta.
-            </p>
-
-            <div class="hero__actions">
-              <a href="#recetas" class="btn btn--primary">Ver recetas</a>
-              <a href="#contacto" class="btn btn--ghost">Sumar recetas</a>
-            </div>
-          </div>
-
-          <aside class="paper-note">
-            <span class="paper-note__pin"></span>
-            <p class="paper-note__title">Ingredientes del sitio</p>
+        <div class="hero-paper">
+          <div class="paper-card">
+            <span class="paper-kicker">INGREDIENTES</span>
+            <h2>Estética base</h2>
             <ul>
-              <li>estética negra + papel</li>
-              <li>recetas cortas y claras</li>
-              <li>fotos grandes del plato</li>
-              <li>acceso directo desde GitHub Pages</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section class="section" id="recetas">
-          <div class="section__header">
-            <p class="section__eyebrow">Menú</p>
-            <h2>Recetas destacadas</h2>
-            <p>
-              Dejé dos recetas cargadas como base visual. Después se pueden sumar todas las demás con el
-              mismo formato.
-            </p>
-          </div>
-
-          <div class="recipes-grid">
-            <article class="recipe-card recipe-card--featured">
-              <div class="recipe-card__image-wrap">
-                <img src="assets/frola.jpeg" alt="Espejitos con jalea y masa sable" class="recipe-card__image" />
-                <span class="recipe-card__tag">Dulce</span>
-              </div>
-              <div class="recipe-card__body">
-                <h3>Espejitos</h3>
-                <p>
-                  Masa sable clásica y de cacao, relleno de dulce de leche y jalea de frutilla con tomate.
-                </p>
-                <button class="recipe-card__action" data-recipe="espejitos">Ver receta</button>
-              </div>
-            </article>
-
-            <article class="recipe-card">
-              <div class="recipe-card__image-wrap">
-                <img
-                  src="assets/espuma_de_arroz_con_leche.jpeg"
-                  alt="Espuma de arroz con leche"
-                  class="recipe-card__image"
-                />
-                <span class="recipe-card__tag">Postre</span>
-              </div>
-              <div class="recipe-card__body">
-                <h3>Espuma de arroz con leche</h3>
-                <p>
-                  Versión aireada con sifón, base cremosa y presentación más moderna para postres.
-                </p>
-                <button class="recipe-card__action" data-recipe="espuma">Ver receta</button>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section class="section section--split" id="estilo">
-          <div>
-            <p class="section__eyebrow">Identidad visual</p>
-            <h2>Una landing chica, directa y con carácter</h2>
-            <p>
-              La propuesta mezcla fondo oscuro tipo pizarra, títulos contundentes, acentos manuscritos y
-              tarjetas de papel para replicar la estética de tus imágenes.
-            </p>
-            <p>
-              Para GitHub Pages está pensada como sitio estático: liviano, simple de publicar y fácil de
-              ir ampliando con nuevas recetas.
-            </p>
-          </div>
-
-          <div class="checklist-paper">
-            <h3>Lo que ya queda listo</h3>
-            <ul>
-              <li>Home con identidad visual</li>
-              <li>Menú simple de navegación</li>
-              <li>Cards de recetas</li>
-              <li>Modal para ver receta</li>
-              <li>Estructura lista para sumar más platos</li>
+              <li>textura oscura</li>
+              <li>papel beige rasgado</li>
+              <li>foto del plato a la izquierda</li>
+              <li>paso a paso a la derecha</li>
             </ul>
           </div>
-        </section>
+        </div>
+      </section>
+    </header>
 
-        <section class="section" id="contacto">
-          <div class="cta-board">
-            <div>
-              <p class="section__eyebrow">Siguiente paso</p>
-              <h2>Después me pasás el resto de las recetas</h2>
-              <p>
-                Y te dejo el mismo sitio ya poblado completo, con cada receta cargada en este formato y
-                listo para subir al repo.
-              </p>
-            </div>
-            <a class="btn btn--primary" href="mailto:hola@soynildo.com">Contacto</a>
-          </div>
-        </section>
-      </main>
+    <main>
+      <section class="recipes-section" id="recetas">
+        <div class="section-head">
+          <p class="eyebrow">MENÚ</p>
+          <h2>Recetas</h2>
+        </div>
+        <div id="recipes-grid" class="recipes-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="recipe-modal" id="recipeModal" aria-hidden="true">
+    <div class="recipe-modal__backdrop" data-close-modal></div>
+    <div class="recipe-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="recipeModalTitle">
+      <button class="recipe-modal__close" type="button" aria-label="Cerrar" data-close-modal>×</button>
+      <div id="recipeModalBody" class="recipe-modal__body"></div>
     </div>
+  </div>
 
-    <dialog class="recipe-modal" id="recipeModal">
-      <div class="recipe-modal__content">
-        <button class="recipe-modal__close" id="closeModal" aria-label="Cerrar">×</button>
-        <div id="recipeModalBody"></div>
-      </div>
-    </dialog>
-
-    <script src="script.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>
