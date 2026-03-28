@@ -1,6 +1,5 @@
 const recipesFeatured = document.getElementById('recipes-featured');
 const recipesCarouselTrack = document.getElementById('recipes-carousel-track');
-const recipesCarouselViewport = document.getElementById('recipes-carousel-viewport');
 const recipesPrev = document.getElementById('recipes-prev');
 const recipesNext = document.getElementById('recipes-next');
 
@@ -60,13 +59,24 @@ async function loadRecipes() {
     bindRecipeButtons(recipesFeatured);
     bindRecipeButtons(recipesCarouselTrack);
 
-    if (recipesPrev && recipesNext && recipesCarouselViewport) {
+    if (recipesPrev && recipesNext && recipesCarouselTrack) {
+      const getStep = () => {
+        const firstCard = recipesCarouselTrack.querySelector('.recipe-card');
+        if (!firstCard) return 340;
+
+        const cardWidth = firstCard.getBoundingClientRect().width;
+        const trackStyles = window.getComputedStyle(recipesCarouselTrack);
+        const gap = parseFloat(trackStyles.columnGap || trackStyles.gap || 0);
+
+        return cardWidth + gap;
+      };
+
       recipesPrev.addEventListener('click', () => {
-        recipesCarouselViewport.scrollBy({ left: -340, behavior: 'smooth' });
+        recipesCarouselTrack.scrollBy({ left: -getStep(), behavior: 'smooth' });
       });
 
       recipesNext.addEventListener('click', () => {
-        recipesCarouselViewport.scrollBy({ left: 340, behavior: 'smooth' });
+        recipesCarouselTrack.scrollBy({ left: getStep(), behavior: 'smooth' });
       });
     }
   } catch (error) {
