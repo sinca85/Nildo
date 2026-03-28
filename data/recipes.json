@@ -12,5 +12,19 @@
     "subtitle": "Espuma en sifón con arroz con leche cremoso.",
     "image": "assets/images/espuma-full.jpg",
     "file": "recipes/espuma-arroz-con-leche.html"
+  },
+  {
+    "slug": "pastel-de-cerdo",
+    "title": "Pastel de cerdo",
+    "subtitle": "Estofado con verduras asadas y gratinado.",
+    "image": "assets/images/pastel-de-cerdo-full.png",
+    "file": "recipes/pastel-de-cerdo.html"
+  },
+  {
+    "slug": "baozi-con-kimchi",
+    "title": "Baozi con kimchi",
+    "subtitle": "Baozi vegano con kimchi, hongos y salsa.",
+    "image": "assets/images/baozi-con-kimchi-full.jpg",
+    "file": "recipes/baozi-con-kimchi.html"
   }
 ]
