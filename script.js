@@ -1,4 +1,3 @@
-
 const recipesGrid = document.getElementById('recipes-grid');
 const recipeModal = document.getElementById('recipeModal');
 const recipeModalBody = document.getElementById('recipeModalBody');
@@ -67,7 +66,6 @@ document.addEventListener('keydown', (event) => {
 });
 
 loadRecipes();
-
 
 async function loadLiveStatus() {
   const youtubeBadge = document.getElementById("youtubeBadge");
@@ -152,12 +150,10 @@ async function loadLiveStatus() {
 loadLiveStatus();
 setInterval(loadLiveStatus, 60000);
 
-
 // =========================
 // STREAM TABS + HORARIO JSON
 // =========================
 
-// Después esto lo podés traer con fetch desde /data/stream-schedule.json
 const streamConfig = {
   timezone: "America/Montevideo",
   schedule: [
@@ -184,8 +180,16 @@ const streamConfig = {
 
   const host = window.location.hostname;
   const availablePlatforms = getAvailablePlatforms(streamConfig.platforms);
-  let activePlatform = availablePlatforms.includes("twitch") ? "twitch" : availablePlatforms[0] || null;
+
+  let activePlatform = availablePlatforms.includes("twitch")
+    ? "twitch"
+    : availablePlatforms[0] || null;
+
   let currentFrame = null;
+  let isLiveNow = false;
+  let currentSlotKey = null;
+  let currentRenderedPlatform = null;
+  let hasOfflinePlaceholder = false;
 
   buildTabs();
 
@@ -259,16 +263,15 @@ const streamConfig = {
         const start = toMinutes(slot.start);
         const end = toMinutes(slot.end);
 
-        return days.includes(day) && minutes >= start && minutes <= end;
+        return days.includes(day) && minutes >= start && minutes < end;
       }) || null
     );
   }
 
-  function clearEmbed() {
-    if (currentFrame) {
-      currentFrame.remove();
-      currentFrame = null;
-    }
+  function getSlotKey(slot) {
+    if (!slot) return null;
+    const days = Array.isArray(slot.days) ? slot.days.join(",") : "";
+    return `${days}|${slot.start}|${slot.end}|${slot.label || ""}`;
   }
 
   function setActiveTab(platform) {
@@ -277,6 +280,14 @@ const streamConfig = {
     tabs.querySelectorAll(".stream-tab").forEach((btn) => {
       btn.classList.toggle("is-active", btn.dataset.platform === platform);
     });
+  }
+
+  function clearEmbed() {
+    if (currentFrame) {
+      currentFrame.remove();
+      currentFrame = null;
+    }
+    currentRenderedPlatform = null;
   }
 
   function createTwitchEmbed() {
@@ -298,7 +309,14 @@ const streamConfig = {
     return iframe;
   }
 
-  function renderPlatform(platform) {
+  function renderPlatform(platform, force = false) {
+    if (!platform) return;
+
+    if (!force && currentRenderedPlatform === platform && currentFrame) {
+      setActiveTab(platform);
+      return;
+    }
+
     clearEmbed();
     setActiveTab(platform);
 
@@ -309,10 +327,18 @@ const streamConfig = {
 
     const frame = platform === "youtube" ? createYouTubeEmbed() : createTwitchEmbed();
     currentFrame = frame;
+    currentRenderedPlatform = platform;
+    hasOfflinePlaceholder = false;
     embedContainer.appendChild(frame);
   }
 
-  function renderOffline() {
+  function renderOffline(force = false) {
+    if (!force && !isLiveNow && hasOfflinePlaceholder) {
+      statusChip.textContent = "OFFLINE";
+      tabs.hidden = true;
+      return;
+    }
+
     clearEmbed();
     tabs.hidden = true;
     statusChip.textContent = "OFFLINE";
@@ -326,33 +352,68 @@ const streamConfig = {
         </p>
       </div>
     `;
+
+    isLiveNow = false;
+    currentSlotKey = null;
+    hasOfflinePlaceholder = true;
   }
 
-  function renderOnline(slot) {
+  function renderOnline(slot, force = false) {
     if (!availablePlatforms.length) {
-      renderOffline();
+      renderOffline(force);
       return;
     }
+
+    const nextSlotKey = getSlotKey(slot);
 
     tabs.hidden = false;
     statusChip.textContent = slot?.label ? slot.label : "EN VIVO";
 
     if (!activePlatform || !availablePlatforms.includes(activePlatform)) {
-      activePlatform = availablePlatforms.includes("twitch") ? "twitch" : availablePlatforms[0];
+      activePlatform = availablePlatforms.includes("twitch")
+        ? "twitch"
+        : availablePlatforms[0];
     }
 
-    renderPlatform(activePlatform);
+    if (!force && isLiveNow && currentSlotKey === nextSlotKey && currentRenderedPlatform === activePlatform && currentFrame) {
+      setActiveTab(activePlatform);
+      hasOfflinePlaceholder = false;
+      return;
+    }
+
+    renderPlatform(activePlatform, force);
+    isLiveNow = true;
+    currentSlotKey = nextSlotKey;
+    hasOfflinePlaceholder = false;
   }
 
   function evaluateSchedule() {
     const slot = getCurrentScheduleSlot();
+    const nextSlotKey = getSlotKey(slot);
 
     if (!slot) {
-      renderOffline();
+      if (isLiveNow || !hasOfflinePlaceholder) {
+        renderOffline(true);
+      } else {
+        statusChip.textContent = "OFFLINE";
+        tabs.hidden = true;
+      }
       return;
     }
 
-    renderOnline(slot);
+    if (!isLiveNow) {
+      renderOnline(slot, true);
+      return;
+    }
+
+    if (currentSlotKey !== nextSlotKey) {
+      renderOnline(slot, true);
+      return;
+    }
+
+    statusChip.textContent = slot?.label ? slot.label : "EN VIVO";
+    tabs.hidden = false;
+    setActiveTab(activePlatform);
   }
 
   tabs.addEventListener("click", (event) => {
@@ -362,7 +423,18 @@ const streamConfig = {
     const slot = getCurrentScheduleSlot();
     if (!slot) return;
 
-    renderPlatform(btn.dataset.platform);
+    const nextPlatform = btn.dataset.platform;
+
+    if (!nextPlatform || nextPlatform === currentRenderedPlatform) {
+      setActiveTab(activePlatform);
+      return;
+    }
+
+    renderPlatform(nextPlatform, true);
+    isLiveNow = true;
+    currentSlotKey = getSlotKey(slot);
+    statusChip.textContent = slot?.label ? slot.label : "EN VIVO";
+    tabs.hidden = false;
   });
 
   evaluateSchedule();
