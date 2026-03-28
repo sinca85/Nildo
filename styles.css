@@ -177,7 +177,7 @@ a{text-decoration:none;color:inherit}
   border-radius:22px;
   background:
     linear-gradient(rgba(255,255,255,.14), rgba(255,255,255,.03)),
-    url("assets/textures/beige-paper.jpg") center/cover no-repeat;
+    url("assets/textures/beige_texture_cropped.png") center/cover no-repeat;
   box-shadow:var(--shadow);
   transform:rotate(-1.5deg);
 }
@@ -368,7 +368,7 @@ a{text-decoration:none;color:inherit}
   color:#241d17;
   background:
     linear-gradient(rgba(255,255,255,.15), rgba(255,255,255,.05)),
-    url("assets/textures/beige-paper.jpg") center/cover no-repeat;
+    url("assets/textures/beige_texture_cropped.png") center/cover no-repeat;
   border-radius:18px;
   padding:28px 26px;
   box-shadow:0 16px 40px rgba(0,0,0,.25);
@@ -604,7 +604,7 @@ a{text-decoration:none;color:inherit}
   padding:28px;
   background:
     linear-gradient(rgba(255,255,255,.14), rgba(255,255,255,.03)),
-    url("assets/textures/beige-paper.jpg") center/cover no-repeat;
+    url("assets/textures/beige_texture_cropped.png") center/cover no-repeat;
   box-shadow:var(--shadow);
 }
 .dark-panel{
