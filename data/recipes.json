@@ -2,123 +2,123 @@
   {
     "title": "Espejitos",
     "subtitle": "Masa sable, cacao y jalea de frutilla y tomate.",
-    "image": "./assets/images/espejitos.jpg",
+    "image": "./assets/images/espejitos-full.jpg",
     "file": "recipes/espejitos.html",
     "featured": true
   },
   {
     "title": "Espuma de arroz con leche",
     "subtitle": "Espuma en sifón con arroz con leche cremoso.",
-    "image": "./assets/images/espuma-arroz-con-leche.jpg",
-    "file": "recipes/espejitos.html",
+    "image": "./assets/images/espuma-full.jpg",
+    "file": "recipes/espuma-arroz-con-leche.html",
     "featured": true
   },
   {
     "title": "Pastel de cerdo",
     "subtitle": "Estofado potente con gratinado final.",
-    "image": "./assets/images/pastel-de-cerdo.jpg",
+    "image": "./assets/images/pastel-de-cerdo-full.png",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Baozi con kimchi",
     "subtitle": "Masa al vapor con relleno sabroso.",
-    "image": "./assets/images/baozi-kimchi.jpg",
+    "image": "./assets/images/baozi-con-kimchi-full.jpg",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Espejitos edición taller",
     "subtitle": "La versión de prueba para ordenar la home.",
-    "image": "./assets/images/espejitos.jpg",
+    "image": "./assets/images/espejitos-full.jpg",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Arroz con leche en sifón",
     "subtitle": "Textura aireada y base cremosa.",
-    "image": "./assets/images/espuma-arroz-con-leche.jpg",
+    "image": "./assets/images/espuma-full.jpg",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Pastel gratinado",
     "subtitle": "Mucho horno, mucho color, mucha presencia.",
-    "image": "./assets/images/pastel-de-cerdo.jpg",
+    "image": "./assets/images/pastel-de-cerdo-full.png",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Baozi vapor",
     "subtitle": "Versión compacta para seguir poblando el slider.",
-    "image": "./assets/images/baozi-kimchi.jpg",
+    "image": "./assets/images/baozi-con-kimchi-full.jpg",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Espejitos de cacao",
     "subtitle": "Ideal para mostrar repetición controlada.",
-    "image": "./assets/images/espejitos.jpg",
+    "image": "./assets/images/espejitos-full.jpg",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Espuma cremosa",
     "subtitle": "Otra variante para test visual del carrusel.",
-    "image": "./assets/images/espuma-arroz-con-leche.jpg",
+    "image": "./assets/images/espuma-full.jpg",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Cerdo al horno",
     "subtitle": "Card de prueba para medir ritmo visual.",
-    "image": "./assets/images/pastel-de-cerdo.jpg",
+    "image": "./assets/images/pastel-de-cerdo-full.png",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Baozi principal",
     "subtitle": "Sigue llenando el carrusel sin tocar recetas reales.",
-    "image": "./assets/images/baozi-kimchi.jpg",
+    "image": "./assets/images/baozi-con-kimchi-full.jpg",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Espejitos noche",
     "subtitle": "Misma receta, otra presencia en el bloque.",
-    "image": "./assets/images/espejitos.jpg",
+    "image": "./assets/images/espejitos-full.jpg",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Arroz con leche live",
     "subtitle": "Pensada para empujar recetas de stream.",
-    "image": "./assets/images/espuma-arroz-con-leche.jpg",
+    "image": "./assets/images/espuma-full.jpg",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Pastel de cerdo crocante",
     "subtitle": "Una más para probar escala del slider.",
-    "image": "./assets/images/pastel-de-cerdo.jpg",
+    "image": "./assets/images/pastel-de-cerdo-full.png",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Baozi kimchi house",
     "subtitle": "Nombre ficticio para ver densidad visual.",
-    "image": "./assets/images/baozi-kimchi.jpg",
+    "image": "./assets/images/baozi-con-kimchi-full.jpg",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Espejitos dorados",
     "subtitle": "Seguimos cargando volumen controlado.",
-    "image": "./assets/images/espejitos.jpg",
+    "image": "./assets/images/espejitos-full.jpg",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Espuma de arroz clásica",
     "subtitle": "Misma receta, otro ítem para maqueta real.",
-    "image": "./assets/images/espuma-arroz-con-leche.jpg",
+    "image": "./assets/images/espuma-full.jpg",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Pastel completo",
     "subtitle": "Sirve para ver cómo respira el listado.",
-    "image": "./assets/images/pastel-de-cerdo.jpg",
+    "image": "./assets/images/pastel-de-cerdo-full.png",
     "file": "recipes/espejitos.html"
   },
   {
     "title": "Baozi final",
     "subtitle": "Última card de prueba del conjunto.",
-    "image": "./assets/images/baozi-kimchi.jpg",
+    "image": "./assets/images/baozi-con-kimchi-full.jpg",
     "file": "recipes/espejitos.html"
   }
 ]
