@@ -833,6 +833,32 @@ a{text-decoration:none;color:inherit}
   font-weight:700;
   color:#efe6da;
 }
+.sponsor-card--mini{
+  padding:0;
+}
+
+.sponsor-mini--stack{
+  width:100%;
+  min-height:140px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  padding:24px;
+}
+
+.sponsor-mini--stack img{
+  max-height:64px;
+  width:auto;
+  object-fit:contain;
+}
+
+.sponsor-mini--stack span{
+  font-weight:800;
+  color:#efe6da;
+  text-align:center;
+}
 @media (max-width: 900px){
   .sponsors-grid{
     grid-template-columns:1fr;
