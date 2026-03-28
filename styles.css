@@ -735,8 +735,8 @@ a{text-decoration:none;color:inherit}
 }
 
 .live-badge.is-live .live-dot {
-  background: #ff2d2d;
-  box-shadow: 0 0 0 0 rgba(255,45,45,0.7);
+  background: #2dff33;
+  box-shadow: 0 0 0 0 #2dff33;
   animation: pulseLive 1.5s infinite;
 }
 
@@ -756,6 +756,87 @@ a{text-decoration:none;color:inherit}
   0% { box-shadow: 0 0 0 0 rgba(255,45,45,0.7); }
   70% { box-shadow: 0 0 0 10px rgba(255,45,45,0); }
   100% { box-shadow: 0 0 0 0 rgba(255,45,45,0); }
+}
+
+.sponsors-section{
+  width:var(--container);
+  margin:0 auto;
+  padding:20px 0 80px;
+}
+
+.sponsors-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:24px;
+}
+
+/* Card base */
+.sponsor-card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  padding:32px;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.08);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
+    #161310;
+  box-shadow:var(--shadow);
+  transition:transform .2s ease, border-color .2s ease;
+}
+
+.sponsor-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(255,255,255,.18);
+}
+
+/* THOT grande */
+.sponsor-card--main img{
+  max-width:220px;
+  filter:brightness(1.1);
+}
+
+.sponsor-name{
+  font-weight:800;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* Duo */
+.sponsor-duo{
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+  width:100%;
+}
+
+.sponsor-mini{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:14px 18px;
+  border-radius:18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.sponsor-mini img{
+  height:46px;
+  object-fit:contain;
+}
+
+.sponsor-mini span{
+  font-weight:700;
+  color:#efe6da;
+}
+@media (max-width: 900px){
+  .sponsors-grid{
+    grid-template-columns:1fr;
+  }
 }
 @media (max-width: 1100px){
   .highlight-strip,
