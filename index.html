@@ -115,13 +115,23 @@
             <a class="hero-button hero-button--ghost" target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCmt8wj7wz8wczYFJz6v3mzA?sub_confirmation=1">Ir a YouTube</a>
           </div>
         </div>
-        <div class="status-panel">
-          <div class="status-chip">LISTO PARA MODO LIVE</div>
-          <h3>Bloque pensado para stream</h3>
-          <p>
-            Más adelante se puede conectar con Twitch para mostrar si está en vivo en tiempo real,
-            pero ya queda visualmente integrado al sitio.
-          </p>
+        <div class="status-panel live-embed-panel" id="liveEmbedPanel">
+          <div class="status-chip" id="streamStatusChip">OFFLINE</div>
+
+          <div class="stream-tabs" id="streamTabs" hidden>
+            <button class="stream-tab is-active" type="button" data-platform="twitch">Twitch</button>
+            <button class="stream-tab" type="button" data-platform="youtube">YouTube</button>
+          </div>
+
+          <div class="stream-embed" id="streamEmbed">
+            <div class="stream-placeholder" id="streamPlaceholder">
+              <h3>Bloque pensado para stream</h3>
+              <p id="streamPlaceholderText">
+                Fuera del horario en vivo se muestra este bloque. Cuando entre en horario,
+                acá aparece el player con tabs para Twitch y YouTube.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

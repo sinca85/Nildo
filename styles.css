@@ -910,6 +910,77 @@ a{text-decoration:none;color:inherit}
   border:2px solid transparent;
   background-clip:padding-box;
 }
+.live-embed-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 320px;
+}
+
+.stream-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.stream-tab {
+  appearance: none;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.08);
+  color: #f5eadf;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.stream-tab:hover {
+  background: rgba(255,255,255,0.14);
+}
+
+.stream-tab.is-active {
+  background: #f1d26a;
+  color: #17130f;
+  border-color: #f1d26a;
+}
+
+.stream-embed {
+  position: relative;
+  width: 100%;
+  min-height: 240px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.stream-placeholder {
+  padding: 24px;
+}
+
+.stream-placeholder h3 {
+  margin: 0 0 12px;
+}
+
+.stream-placeholder p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.stream-frame {
+  width: 100%;
+  height: 360px;
+  border: 0;
+  display: block;
+  background: #000;
+}
+
+@media (max-width: 720px) {
+  .stream-frame {
+    height: 220px;
+  }
+}
 @media (max-width: 1100px){
   .highlight-strip,
   .social-grid,

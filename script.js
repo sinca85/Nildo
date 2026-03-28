@@ -151,3 +151,220 @@ async function loadLiveStatus() {
 
 loadLiveStatus();
 setInterval(loadLiveStatus, 60000);
+
+
+// =========================
+// STREAM TABS + HORARIO JSON
+// =========================
+
+// Después esto lo podés traer con fetch desde /data/stream-schedule.json
+const streamConfig = {
+  timezone: "America/Montevideo",
+  schedule: [
+    {
+      days: [3, 4, 5, 6],
+      start: "17:00",
+      end: "21:00",
+      label: "Miércoles a sábado · 17:00 a 21:00"
+    }
+  ],
+  platforms: {
+    youtube: true,
+    twitch: true
+  }
+};
+
+(function initLiveEmbedBlock() {
+  const panel = document.getElementById("liveEmbedPanel");
+  const tabs = document.getElementById("streamTabs");
+  const embedContainer = document.getElementById("streamEmbed");
+  const statusChip = document.getElementById("streamStatusChip");
+
+  if (!panel || !tabs || !embedContainer || !statusChip) return;
+
+  const host = window.location.hostname;
+  const availablePlatforms = getAvailablePlatforms(streamConfig.platforms);
+  let activePlatform = availablePlatforms.includes("twitch") ? "twitch" : availablePlatforms[0] || null;
+  let currentFrame = null;
+
+  buildTabs();
+
+  function getAvailablePlatforms(platforms) {
+    return Object.entries(platforms || {})
+      .filter(([, enabled]) => Boolean(enabled))
+      .map(([name]) => name);
+  }
+
+  function buildTabs() {
+    tabs.innerHTML = "";
+
+    if (!availablePlatforms.length) {
+      tabs.hidden = true;
+      return;
+    }
+
+    availablePlatforms.forEach((platform) => {
+      const button = document.createElement("button");
+      button.className = `stream-tab${platform === activePlatform ? " is-active" : ""}`;
+      button.type = "button";
+      button.dataset.platform = platform;
+      button.textContent = platform === "youtube" ? "YouTube" : "Twitch";
+      tabs.appendChild(button);
+    });
+  }
+
+  function toMinutes(hhmm) {
+    const [h, m] = hhmm.split(":").map(Number);
+    return h * 60 + m;
+  }
+
+  function getNowInTimezone(timezone) {
+    const now = new Date();
+    const formatter = new Intl.DateTimeFormat("en-US", {
+      timeZone: timezone,
+      weekday: "short",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    });
+
+    const parts = formatter.formatToParts(now);
+    const weekday = parts.find((p) => p.type === "weekday")?.value;
+    const hour = Number(parts.find((p) => p.type === "hour")?.value || 0);
+    const minute = Number(parts.find((p) => p.type === "minute")?.value || 0);
+
+    const weekdayMap = {
+      Sun: 0,
+      Mon: 1,
+      Tue: 2,
+      Wed: 3,
+      Thu: 4,
+      Fri: 5,
+      Sat: 6
+    };
+
+    return {
+      day: weekdayMap[weekday],
+      minutes: hour * 60 + minute
+    };
+  }
+
+  function getCurrentScheduleSlot() {
+    const { day, minutes } = getNowInTimezone(streamConfig.timezone || "America/Montevideo");
+    const schedule = Array.isArray(streamConfig.schedule) ? streamConfig.schedule : [];
+
+    return (
+      schedule.find((slot) => {
+        const days = Array.isArray(slot.days) ? slot.days : [];
+        const start = toMinutes(slot.start);
+        const end = toMinutes(slot.end);
+
+        return days.includes(day) && minutes >= start && minutes <= end;
+      }) || null
+    );
+  }
+
+  function clearEmbed() {
+    if (currentFrame) {
+      currentFrame.remove();
+      currentFrame = null;
+    }
+  }
+
+  function setActiveTab(platform) {
+    activePlatform = platform;
+
+    tabs.querySelectorAll(".stream-tab").forEach((btn) => {
+      btn.classList.toggle("is-active", btn.dataset.platform === platform);
+    });
+  }
+
+  function createTwitchEmbed() {
+    const iframe = document.createElement("iframe");
+    iframe.className = "stream-frame";
+    iframe.allowFullscreen = true;
+    iframe.scrolling = "no";
+    iframe.src = `https://player.twitch.tv/?channel=soynildo&parent=${encodeURIComponent(host)}&autoplay=false`;
+    return iframe;
+  }
+
+  function createYouTubeEmbed() {
+    const iframe = document.createElement("iframe");
+    iframe.className = "stream-frame";
+    iframe.allow =
+      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.allowFullscreen = true;
+    iframe.src = "https://www.youtube.com/embed/live_stream?channel=UCmt8wj7wz8wczYFJz6v3mzA&autoplay=0";
+    return iframe;
+  }
+
+  function renderPlatform(platform) {
+    clearEmbed();
+    setActiveTab(platform);
+
+    const placeholder = embedContainer.querySelector(".stream-placeholder");
+    if (placeholder) {
+      placeholder.remove();
+    }
+
+    const frame = platform === "youtube" ? createYouTubeEmbed() : createTwitchEmbed();
+    currentFrame = frame;
+    embedContainer.appendChild(frame);
+  }
+
+  function renderOffline() {
+    clearEmbed();
+    tabs.hidden = true;
+    statusChip.textContent = "OFFLINE";
+
+    embedContainer.innerHTML = `
+      <div class="stream-placeholder">
+        <h3>Bloque pensado para stream</h3>
+        <p>
+          Ahora mismo está fuera del horario definido. Cuando entre en la franja del vivo,
+          acá se activa automáticamente el player.
+        </p>
+      </div>
+    `;
+  }
+
+  function renderOnline(slot) {
+    if (!availablePlatforms.length) {
+      renderOffline();
+      return;
+    }
+
+    tabs.hidden = false;
+    statusChip.textContent = slot?.label ? slot.label : "EN VIVO";
+
+    if (!activePlatform || !availablePlatforms.includes(activePlatform)) {
+      activePlatform = availablePlatforms.includes("twitch") ? "twitch" : availablePlatforms[0];
+    }
+
+    renderPlatform(activePlatform);
+  }
+
+  function evaluateSchedule() {
+    const slot = getCurrentScheduleSlot();
+
+    if (!slot) {
+      renderOffline();
+      return;
+    }
+
+    renderOnline(slot);
+  }
+
+  tabs.addEventListener("click", (event) => {
+    const btn = event.target.closest(".stream-tab");
+    if (!btn) return;
+
+    const slot = getCurrentScheduleSlot();
+    if (!slot) return;
+
+    renderPlatform(btn.dataset.platform);
+  });
+
+  evaluateSchedule();
+  setInterval(evaluateSchedule, 30000);
+})();
