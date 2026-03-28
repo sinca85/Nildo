@@ -741,8 +741,8 @@ a{text-decoration:none;color:inherit}
 }
 
 .live-badge.is-live {
-  border-color: rgba(255,45,45,0.4);
-  background: rgba(255,45,45,0.08);
+    border-color: rgb(92 255 45 / 40%);
+    background: rgb(53 255 45 / 8%);
 }
 
 .live-message {
