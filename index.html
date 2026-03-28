@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Soy Nildo</title>
-  <meta name="description" content="Sitio de cocina de Soy Nildo." />
+  <meta name="description" content="Cocina, stream y recetas de Soy Nildo." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
@@ -18,34 +18,40 @@
           <img src="assets/images/logo.png" alt="Logo Soy Nildo" class="brand-logo" />
           <div class="brand-copy">
             <div class="brand-name">Soy Nildo</div>
-            <div class="brand-note">Recetas simples, visuales y con personalidad</div>
+            <div class="brand-note">cocina, stream y comunidad</div>
           </div>
         </a>
 
         <div class="topbar-links">
           <a class="top-link" href="#inicio">Inicio</a>
           <a class="top-link" href="#recetas">Recetas</a>
+          <a class="top-link" href="#en-vivo">En vivo</a>
+          <a class="top-link" href="#agenda">Agenda</a>
+          <a class="top-link" href="#redes">Redes</a>
+          <a class="top-link" href="#apoya">Apoya</a>
         </div>
       </nav>
 
       <section class="hero-stage" id="inicio">
         <div class="hero-left">
-          <p class="hero-kicker">COCINA / DULCE / AUTOR</p>
+          <p class="hero-kicker">COCINA / STREAMING / COMUNIDAD</p>
           <h1 class="hero-title">Soy Nildo</h1>
           <p class="hero-lead">
-            Un menú chico y directo, con recetas que se abren en popup sin salir de la landing.
+            Influencer de cocina uruguayo. Recetas en directo, contenido para Twitch y YouTube,
+            calendario de stream y una comunidad que vive la cocina como show y como oficio.
           </p>
           <div class="hero-actions">
             <a class="hero-button hero-button--solid" href="#recetas">Ver recetas</a>
+            <a class="hero-button hero-button--ghost" href="#redes">Todas las redes</a>
           </div>
         </div>
 
         <div class="hero-right">
           <div class="hero-paper">
             <span class="hero-paper__script">Ingredientes</span>
-            <h2>La cocina como pieza visual</h2>
+            <h2>Una landing con más vida</h2>
             <p>
-              Fondo oscuro, papel rasgado, fotos protagonistas y cada receta cargada desde su propio HTML con fetch.
+              Recetas visuales, bloque de stream, agenda, sponsors, apoyo y todas las redes en un solo lugar.
             </p>
           </div>
         </div>
@@ -53,12 +59,167 @@
     </header>
 
     <main>
+      <section class="highlight-strip">
+        <article class="highlight-card">
+          <span class="highlight-label">STREAMING</span>
+          <h3>Twitch + YouTube</h3>
+          <p>Directos y resúmenes semanales de recetas hechas en vivo.</p>
+        </article>
+        <article class="highlight-card">
+          <span class="highlight-label">CALENDARIO</span>
+          <h3>Miércoles a sábado</h3>
+          <p>La agenda del canal vive en el calendario 2026 compartido.</p>
+        </article>
+        <article class="highlight-card">
+          <span class="highlight-label">COMUNIDAD</span>
+          <h3>Discord y apoyo</h3>
+          <p>Una base fuerte para seguir recetas, charlar y bancar el proyecto.</p>
+        </article>
+      </section>
+
       <section class="recipes-section" id="recetas">
         <div class="section-head">
           <p class="section-script">Menú</p>
           <h2>Recetas</h2>
         </div>
         <div id="recipes-grid" class="recipes-grid"></div>
+      </section>
+
+      <section class="info-block info-block--stream" id="en-vivo">
+        <div class="info-block__copy">
+          <p class="section-script">En vivo</p>
+          <h2>Donde mirar a Nildo</h2>
+          <p>
+            El canal principal de stream está en Twitch y también hay contenido en YouTube.
+            La landing ya queda lista para sumar después un estado automático de “en vivo / offline”.
+          </p>
+          <div class="action-row">
+            <a class="hero-button hero-button--solid" target="_blank" rel="noreferrer" href="https://www.twitch.tv/soynildo">Ir a Twitch</a>
+            <a class="hero-button hero-button--ghost" target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCmt8wj7wz8wczYFJz6v3mzA?sub_confirmation=1">Ir a YouTube</a>
+          </div>
+        </div>
+        <div class="status-panel">
+          <div class="status-chip">LISTO PARA MODO LIVE</div>
+          <h3>Bloque pensado para stream</h3>
+          <p>
+            Más adelante se puede conectar con Twitch para mostrar si está en vivo en tiempo real,
+            pero ya queda visualmente integrado al sitio.
+          </p>
+        </div>
+      </section>
+
+      <section class="info-grid-two" id="agenda">
+        <article class="paper-panel">
+          <span class="hero-paper__script">Agenda</span>
+          <h3>Calendario del canal</h3>
+          <p>
+            La agenda pública y el ritmo del canal son parte fuerte de la identidad del proyecto.
+            Se puede usar este bloque para destacar horarios, invitados, especiales y temáticas.
+          </p>
+          <a class="text-link" target="_blank" rel="noreferrer" href="https://drive.google.com/file/d/1vE-G-zK88-gK_prW6tPUg0kkcMCWF-EW/view?usp=sharing">Ver calendario 2026</a>
+        </article>
+
+        <article class="dark-panel">
+          <span class="highlight-label">ABOUT</span>
+          <h3>Food &amp; drink content creator</h3>
+          <p>
+            La bio pública del perfil lo presenta como creador de contenido de comida y bebida,
+            con foco fuerte en recetas, directos y comunidad.
+          </p>
+        </article>
+      </section>
+
+      <section class="social-section" id="redes">
+        <div class="section-head">
+          <p class="section-script">Redes</p>
+          <h2>Seguime en todos lados</h2>
+        </div>
+
+        <div class="social-grid">
+          <a class="social-card" target="_blank" rel="noreferrer" href="https://www.instagram.com/soynildo">
+            <span class="social-card__tag">Instagram</span>
+            <strong>@soynildo</strong>
+            <p>Fotos, reels, historias y presencia fuerte de marca personal.</p>
+          </a>
+
+          <a class="social-card" target="_blank" rel="noreferrer" href="https://www.tiktok.com/@soynildo">
+            <span class="social-card__tag">TikTok</span>
+            <strong>@soynildo</strong>
+            <p>Formato corto, clips y contenido rápido para descubrir el canal.</p>
+          </a>
+
+          <a class="social-card" target="_blank" rel="noreferrer" href="https://twitter.com/SoyNildo">
+            <span class="social-card__tag">X / Twitter</span>
+            <strong>@SoyNildo</strong>
+            <p>Novedades, comunidad y difusión del contenido en vivo.</p>
+          </a>
+
+          <a class="social-card" target="_blank" rel="noreferrer" href="https://www.twitch.tv/soynildo">
+            <span class="social-card__tag">Twitch</span>
+            <strong>soynildo</strong>
+            <p>Canal principal de streaming y punto más fuerte del vivo.</p>
+          </a>
+
+          <a class="social-card" target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCmt8wj7wz8wczYFJz6v3mzA?sub_confirmation=1">
+            <span class="social-card__tag">YouTube</span>
+            <strong>Canal oficial</strong>
+            <p>Resúmenes semanales de recetas hechas en directo por Twitch.</p>
+          </a>
+
+          <a class="social-card" target="_blank" rel="noreferrer" href="https://kick.com/soynildo">
+            <span class="social-card__tag">Kick</span>
+            <strong>soynildo</strong>
+            <p>Otra pata de streaming para ampliar la presencia del proyecto.</p>
+          </a>
+
+          <a class="social-card" target="_blank" rel="noreferrer" href="https://discord.gg/jrK6Jet4T2">
+            <span class="social-card__tag">Discord</span>
+            <strong>Comunidad</strong>
+            <p>Espacio para charlar, compartir cocina y sostener comunidad.</p>
+          </a>
+
+          <a class="social-card" target="_blank" rel="noreferrer" href="https://linktr.ee/soynildo">
+            <span class="social-card__tag">Linktree</span>
+            <strong>Hub completo</strong>
+            <p>Todos los accesos del ecosistema Soy Nildo reunidos en un solo lugar.</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="support-section" id="apoya">
+        <div class="section-head">
+          <p class="section-script">Apoya</p>
+          <h2>Cómo bancar el proyecto</h2>
+        </div>
+
+        <div class="support-grid">
+          <article class="support-card">
+            <h3>Suscripción en Twitch</h3>
+            <p>Una de las formas directas de apoyar el canal y sostener el contenido en vivo.</p>
+            <a class="text-link" target="_blank" rel="noreferrer" href="https://www.twitch.tv/subs/soynildo">Apoyar en Twitch</a>
+          </article>
+
+          <article class="support-card">
+            <h3>Mercado Pago</h3>
+            <p>Ideal para apoyo rápido y simple desde Uruguay o la región.</p>
+            <a class="text-link" target="_blank" rel="noreferrer" href="https://link.mercadopago.com.uy/soynildo">Ir a Mercado Pago</a>
+          </article>
+
+          <article class="support-card">
+            <h3>PayPal</h3>
+            <p>Otra vía disponible para colaboraciones y apoyo del proyecto.</p>
+            <a class="text-link" target="_blank" rel="noreferrer" href="https://www.paypal.com/soynildo">Ir a PayPal</a>
+          </article>
+
+          <article class="support-card">
+            <h3>Media kit y recomendados</h3>
+            <p>Bloque ideal para sponsors, marcas, colaboraciones y productos sugeridos.</p>
+            <div class="support-links">
+              <a class="text-link" target="_blank" rel="noreferrer" href="https://beacons.ai/soynildo">Media kit</a>
+              <a class="text-link" target="_blank" rel="noreferrer" href="https://www.amazon.com/shop/soynildo">Recomendados</a>
+            </div>
+          </article>
+        </div>
       </section>
     </main>
   </div>
