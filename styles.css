@@ -683,6 +683,75 @@ a{text-decoration:none;color:inherit}
   height: 60px;
   object-fit: contain;
 }
+.live-panel {
+  min-height: 180px;
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(10, 10, 10, 0.35);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(6px);
+  color: #f5f1e8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.live-panel__label {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d8b65c;
+  font-weight: 700;
+}
+
+.live-platforms {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  font-weight: 700;
+}
+
+.live-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #5f5f5f;
+}
+
+.live-badge.is-live .live-dot {
+  background: #ff2d2d;
+  box-shadow: 0 0 0 0 rgba(255,45,45,0.7);
+  animation: pulseLive 1.5s infinite;
+}
+
+.live-badge.is-live {
+  border-color: rgba(255,45,45,0.4);
+  background: rgba(255,45,45,0.08);
+}
+
+.live-message {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.85);
+}
+
+@keyframes pulseLive {
+  0% { box-shadow: 0 0 0 0 rgba(255,45,45,0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(255,45,45,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,45,45,0); }
+}
 @media (max-width: 1100px){
   .highlight-strip,
   .social-grid,
