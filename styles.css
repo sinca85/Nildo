@@ -333,33 +333,59 @@ a{text-decoration:none;color:inherit}
 }
 .recipe-modal__body{
   max-height:calc(100vh - 24px);
-  overflow:auto;
+  overflow:hidden;
 }
 
 /* injected recipe view */
 .recipe-view{
   display:grid;
   grid-template-columns:minmax(320px, 40%) minmax(0, 1fr);
-  min-height:min(780px, calc(100vh - 24px));
+  height:min(780px, calc(100vh - 24px));
 }
+
 .recipe-view__visual{
-  min-height:100%;
+  position:relative;
+  height:100%;
+  overflow:hidden;
   background:
     linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.22)),
     url("assets/textures/texture_clean.png") center/cover no-repeat;
-  position:relative;
 }
+
 .recipe-view__visual img{
   width:100%;
   height:100%;
   object-fit:cover;
+  object-position:center;
 }
+
 .recipe-view__content{
   position:relative;
+  height:100%;
+  overflow-y:auto;
+  overflow-x:hidden;
   padding:52px 42px 42px;
   background:
     radial-gradient(circle at top, rgba(255,255,255,.04), transparent 28%),
     #13110f;
+
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,.18) transparent;
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    black 24px,
+    black calc(100% - 24px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    black 24px,
+    black calc(100% - 24px),
+    transparent 100%
+  );
 }
 .recipe-view__title{
   margin:0 0 20px;
@@ -863,6 +889,26 @@ a{text-decoration:none;color:inherit}
   .sponsors-grid{
     grid-template-columns:1fr;
   }
+}
+.recipe-view__content::-webkit-scrollbar{
+  width:10px;
+}
+
+.recipe-view__content::-webkit-scrollbar-track{
+  background:transparent;
+}
+
+.recipe-view__content::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.16);
+  border-radius:999px;
+  border:2px solid transparent;
+  background-clip:padding-box;
+}
+
+.recipe-view__content::-webkit-scrollbar-thumb:hover{
+  background:rgba(255,255,255,.28);
+  border:2px solid transparent;
+  background-clip:padding-box;
 }
 @media (max-width: 1100px){
   .highlight-strip,
