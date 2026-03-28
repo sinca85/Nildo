@@ -14,111 +14,234 @@
     "featured": true
   },
   {
-    "title": "Pastel de cerdo",
-    "subtitle": "Estofado potente con gratinado final.",
-    "image": "./assets/images/pastel-de-cerdo-full.png",
-    "file": "recipes/espejitos.html"
+    "title": "Tarta de manzanas",
+    "subtitle": "Tarta dulce con manzanas, masa casera y terminación fresca.",
+    "image": "./assets/images/recetas/A4_Recetas (1).webp",
+    "file": "recipes/tarta-de-manzanas.html",
+    "featured": false
+  },
+  {
+    "title": "Buñuelos 3 quesos",
+    "subtitle": "Buñuelos dorados con mezcla de quesos y masa aireada.",
+    "image": "./assets/images/recetas/A4_Recetas.webp",
+    "file": "recipes/bunuelos-3-quesos.html",
+    "featured": false
+  },
+  {
+    "title": "Tortas fritas",
+    "subtitle": "Versión clásica, crocante por fuera y tierna por dentro.",
+    "image": "./assets/images/recetas/IMG_20241105_122128_188.webp",
+    "file": "recipes/tortas-fritas.html",
+    "featured": false
+  },
+  {
+    "title": "Budín de chocolate",
+    "subtitle": "Versión de budín húmedo con cacao, café y acabado intenso.",
+    "image": "./assets/images/recetas/Screenshot_20260203-114008_Instagram.webp",
+    "file": "recipes/budin-de-chocolate-instagram.html",
+    "featured": false
+  },
+  {
+    "title": "Alfajor de maicena",
+    "subtitle": "Clásico relleno, suave y bien pastelero.",
+    "image": "./assets/images/recetas/alfajor_de_maicena.webp",
+    "file": "recipes/alfajor-de-maicena.html",
+    "featured": false
   },
   {
     "title": "Baozi con kimchi",
-    "subtitle": "Masa al vapor con relleno sabroso.",
-    "image": "./assets/images/baozi-con-kimchi-full.jpg",
-    "file": "recipes/espejitos.html"
+    "subtitle": "Bollos al vapor con relleno sabroso y perfil especiado.",
+    "image": "./assets/images/recetas/baozi_kimchi.webp",
+    "file": "recipes/baozi-con-kimchi.html",
+    "featured": true
   },
   {
-    "title": "Espejitos edición taller",
-    "subtitle": "La versión de prueba para ordenar la home.",
-    "image": "./assets/images/espejitos-full.jpg",
-    "file": "recipes/espejitos.html"
+    "title": "Bombas rellenas",
+    "subtitle": "Masa frita y relleno dulce para una receta bien golosa.",
+    "image": "./assets/images/recetas/bombas_rellenas.webp",
+    "file": "recipes/bombas-rellenas.html",
+    "featured": false
   },
   {
-    "title": "Arroz con leche en sifón",
-    "subtitle": "Textura aireada y base cremosa.",
-    "image": "./assets/images/espuma-full.jpg",
-    "file": "recipes/espejitos.html"
+    "title": "Budín de chocolate",
+    "subtitle": "Budín de cacao con buena humedad y perfil profundo.",
+    "image": "./assets/images/recetas/budin_de_chocolate.webp",
+    "file": "recipes/budin-de-chocolate.html",
+    "featured": false
   },
   {
-    "title": "Pastel gratinado",
-    "subtitle": "Mucho horno, mucho color, mucha presencia.",
-    "image": "./assets/images/pastel-de-cerdo-full.png",
-    "file": "recipes/espejitos.html"
+    "title": "Cazuela de mariscos",
+    "subtitle": "Plato de olla con mariscos, caldo y mucho sabor.",
+    "image": "./assets/images/recetas/cazuela_mariscos.webp",
+    "file": "recipes/cazuela-de-mariscos.html",
+    "featured": false
   },
   {
-    "title": "Baozi vapor",
-    "subtitle": "Versión compacta para seguir poblando el slider.",
-    "image": "./assets/images/baozi-con-kimchi-full.jpg",
-    "file": "recipes/espejitos.html"
+    "title": "Cheesecake japonés",
+    "subtitle": "Textura liviana y esponjosa con perfil delicado.",
+    "image": "./assets/images/recetas/cheesecake_japones.webp",
+    "file": "recipes/cheesecake-japones.html",
+    "featured": false
   },
   {
-    "title": "Espejitos de cacao",
-    "subtitle": "Ideal para mostrar repetición controlada.",
-    "image": "./assets/images/espejitos-full.jpg",
-    "file": "recipes/espejitos.html"
+    "title": "Chocoflan",
+    "subtitle": "Postre híbrido entre torta y flan con mucho contraste.",
+    "image": "./assets/images/recetas/chocoflan.webp",
+    "file": "recipes/chocoflan.html",
+    "featured": false
   },
   {
-    "title": "Espuma cremosa",
-    "subtitle": "Otra variante para test visual del carrusel.",
-    "image": "./assets/images/espuma-full.jpg",
-    "file": "recipes/espejitos.html"
+    "title": "Cookie de chocolate y gochujang",
+    "subtitle": "Cookie intensa con cacao y un toque distinto de picor.",
+    "image": "./assets/images/recetas/cookie_de_chocolatete_gochujang.webp",
+    "file": "recipes/cookie-de-chocolate-y-gochujang.html",
+    "featured": false
   },
   {
-    "title": "Cerdo al horno",
-    "subtitle": "Card de prueba para medir ritmo visual.",
-    "image": "./assets/images/pastel-de-cerdo-full.png",
-    "file": "recipes/espejitos.html"
+    "title": "Coxinha",
+    "subtitle": "Clásico salado relleno, crocante y bien tentador.",
+    "image": "./assets/images/recetas/coxinha.webp",
+    "file": "recipes/coxinha.html",
+    "featured": false
   },
   {
-    "title": "Baozi principal",
-    "subtitle": "Sigue llenando el carrusel sin tocar recetas reales.",
-    "image": "./assets/images/baozi-con-kimchi-full.jpg",
-    "file": "recipes/espejitos.html"
+    "title": "Croqueta de boniato",
+    "subtitle": "Croqueta cremosa con boniato y terminación crujiente.",
+    "image": "./assets/images/recetas/croqueta_de_boniato.webp",
+    "file": "recipes/croqueta-de-boniato.html",
+    "featured": false
   },
   {
-    "title": "Espejitos noche",
-    "subtitle": "Misma receta, otra presencia en el bloque.",
-    "image": "./assets/images/espejitos-full.jpg",
-    "file": "recipes/espejitos.html"
+    "title": "Fideos udon",
+    "subtitle": "Udon frío con toppings y armado simple de servir.",
+    "image": "./assets/images/recetas/fideos_udon.webp",
+    "file": "recipes/fideos-udon.html",
+    "featured": false
   },
   {
-    "title": "Arroz con leche live",
-    "subtitle": "Pensada para empujar recetas de stream.",
-    "image": "./assets/images/espuma-full.jpg",
-    "file": "recipes/espejitos.html"
+    "title": "Focaccia",
+    "subtitle": "Pan alto y aireado con terminación dorada.",
+    "image": "./assets/images/recetas/focaccia.webp",
+    "file": "recipes/focaccia.html",
+    "featured": false
   },
   {
-    "title": "Pastel de cerdo crocante",
-    "subtitle": "Una más para probar escala del slider.",
-    "image": "./assets/images/pastel-de-cerdo-full.png",
-    "file": "recipes/espejitos.html"
+    "title": "Espejitos",
+    "subtitle": "Masa sable, cacao y jalea de frutilla y tomate.",
+    "image": "./assets/images/recetas/frola.webp",
+    "file": "recipes/frola.html",
+    "featured": false
   },
   {
-    "title": "Baozi kimchi house",
-    "subtitle": "Nombre ficticio para ver densidad visual.",
-    "image": "./assets/images/baozi-con-kimchi-full.jpg",
-    "file": "recipes/espejitos.html"
+    "title": "Lasagna Ozzy",
+    "subtitle": "Lasagna potente, gratinada y pensada para lucirse.",
+    "image": "./assets/images/recetas/lasagna_ozzy.webp",
+    "file": "recipes/lasagna-ozzy.html",
+    "featured": false
   },
   {
-    "title": "Espejitos dorados",
-    "subtitle": "Seguimos cargando volumen controlado.",
-    "image": "./assets/images/espejitos-full.jpg",
-    "file": "recipes/espejitos.html"
+    "title": "Lehmeyun",
+    "subtitle": "Masa fina con cobertura especiada y mucha presencia.",
+    "image": "./assets/images/recetas/lehmeyun.webp",
+    "file": "recipes/lehmeyun.html",
+    "featured": false
   },
   {
-    "title": "Espuma de arroz clásica",
-    "subtitle": "Misma receta, otro ítem para maqueta real.",
-    "image": "./assets/images/espuma-full.jpg",
-    "file": "recipes/espejitos.html"
+    "title": "Lemon pie",
+    "subtitle": "Base crocante, crema cítrica y merengue bien alto.",
+    "image": "./assets/images/recetas/lemon_pie.webp",
+    "file": "recipes/lemon-pie.html",
+    "featured": false
   },
   {
-    "title": "Pastel completo",
-    "subtitle": "Sirve para ver cómo respira el listado.",
-    "image": "./assets/images/pastel-de-cerdo-full.png",
-    "file": "recipes/espejitos.html"
+    "title": "Lentejas",
+    "subtitle": "Receta de olla, rendidora y reconfortante.",
+    "image": "./assets/images/recetas/lentejas.webp",
+    "file": "recipes/lentejas.html",
+    "featured": false
   },
   {
-    "title": "Baozi final",
-    "subtitle": "Última card de prueba del conjunto.",
-    "image": "./assets/images/baozi-con-kimchi-full.jpg",
-    "file": "recipes/espejitos.html"
+    "title": "Mantequillas",
+    "subtitle": "Bocados dulces con textura suave y terminación golosa.",
+    "image": "./assets/images/recetas/mantequillas.webp",
+    "file": "recipes/mantequillas.html",
+    "featured": false
+  },
+  {
+    "title": "Marshmallows",
+    "subtitle": "Versión casera, aireada y bien vistosa.",
+    "image": "./assets/images/recetas/marshmallows.webp",
+    "file": "recipes/marshmallows.html",
+    "featured": false
+  },
+  {
+    "title": "Ñoqui cuatro quesos",
+    "subtitle": "Pasta con salsa intensa y perfil bien cremoso.",
+    "image": "./assets/images/recetas/noqui.webp",
+    "file": "recipes/noqui-cuatro-quesos.html",
+    "featured": false
+  },
+  {
+    "title": "Ñoquis de sémola",
+    "subtitle": "Ñoquis suaves con una base distinta y muy casera.",
+    "image": "./assets/images/recetas/noquis_de_semola.webp",
+    "file": "recipes/noquis-de-semola.html",
+    "featured": false
+  },
+  {
+    "title": "Pan de Viena",
+    "subtitle": "Pan tierno, ideal para sándwiches o mesa salada.",
+    "image": "./assets/images/recetas/pan_de_viena.webp",
+    "file": "recipes/pan-de-viena.html",
+    "featured": false
+  },
+  {
+    "title": "Pastel de cerdo",
+    "subtitle": "Estofado potente con gratinado final y mucho horno.",
+    "image": "./assets/images/recetas/pastel_de_cerdo.webp",
+    "file": "recipes/pastel-de-cerdo.html",
+    "featured": true
+  },
+  {
+    "title": "Raviol espiral",
+    "subtitle": "Pasta rellena con armado original y emplatado vistoso.",
+    "image": "./assets/images/recetas/raviol_espiral.webp",
+    "file": "recipes/raviol-espiral.html",
+    "featured": false
+  },
+  {
+    "title": "Risotto de papa",
+    "subtitle": "Preparación cremosa con papa como base protagonista.",
+    "image": "./assets/images/recetas/risotto_de_papa.webp",
+    "file": "recipes/risotto-de-papa.html",
+    "featured": false
+  },
+  {
+    "title": "Rosca de chicharrón",
+    "subtitle": "Masa salada con mucho sabor y corte bien uruguayo.",
+    "image": "./assets/images/recetas/rosca_de_chicharon.webp",
+    "file": "recipes/rosca-de-chicharrón.html",
+    "featured": false
+  },
+  {
+    "title": "Sloppy Joe",
+    "subtitle": "Sándwich abundante, jugoso y bien de antojo.",
+    "image": "./assets/images/recetas/sloppy_joe.webp",
+    "file": "recipes/sloppy-joe.html",
+    "featured": false
+  },
+  {
+    "title": "Tacos",
+    "subtitle": "Armado fresco y rápido con mucha textura.",
+    "image": "./assets/images/recetas/tacos.webp",
+    "file": "recipes/tacos.html",
+    "featured": false
+  },
+  {
+    "title": "Tuile falso coral",
+    "subtitle": "Textura crocante y visual para terminaciones de plato.",
+    "image": "./assets/images/recetas/tuile_falso_coral.webp",
+    "file": "recipes/tuile-falso-coral.html",
+    "featured": false
   }
 ]
