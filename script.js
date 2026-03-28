@@ -3,6 +3,7 @@ const RECIPES = {
     title: "Espejitos",
     category: "Dulce",
     image: "assets/frola.jpeg",
+    imagePosition: "left center",
     intro:
       "Masa sable clásica y de cacao, relleno de dulce de leche y jalea de frutilla con tomate.",
     ingredients: [
@@ -22,6 +23,7 @@ const RECIPES = {
     title: "Espuma de arroz con leche",
     category: "Postre",
     image: "assets/espuma_de_arroz_con_leche.jpeg",
+    imagePosition: "left center",
     intro:
       "Base de arroz con leche licuada y pasada por sifón para lograr una textura aireada y más ligera.",
     ingredients: [
@@ -46,8 +48,10 @@ const triggers = document.querySelectorAll("[data-recipe]");
 function renderRecipe(recipe) {
   return `
     <article class="modal-recipe">
-      <div class="modal-recipe__image">
-        <img src="${recipe.image}" alt="${recipe.title}" />
+      <div class="modal-recipe__image" style="--recipe-image: url('${recipe.image}'); --recipe-image-position: ${recipe.imagePosition || "left center"};">
+        <div class="modal-recipe__image-inner">
+          <img src="${recipe.image}" alt="${recipe.title}" />
+        </div>
       </div>
       <div class="modal-recipe__paper">
         <small>${recipe.category}</small>

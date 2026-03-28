@@ -371,7 +371,8 @@ button {
   border: none;
   padding: 0;
   background: transparent;
-  max-width: min(980px, calc(100% - 24px));
+  width: min(1180px, calc(100% - 24px));
+  max-width: min(1180px, calc(100% - 24px));
 }
 
 .recipe-modal::backdrop {
@@ -381,11 +382,11 @@ button {
 
 .recipe-modal__content {
   position: relative;
-  background: #121212;
+  background: #0f0f0f;
   color: var(--text);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 28px;
-  padding: 28px;
+  padding: 18px;
   box-shadow: var(--shadow);
 }
 
@@ -401,55 +402,117 @@ button {
   color: white;
   font-size: 1.6rem;
   cursor: pointer;
+  z-index: 4;
 }
 
 .modal-recipe {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 22px;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(380px, 1.1fr);
+  gap: 0;
+  min-height: min(82vh, 840px);
+  overflow: hidden;
+  border-radius: 22px;
 }
 
 .modal-recipe__image {
-  border-radius: 22px;
-  overflow: hidden;
+  position: relative;
   min-height: 100%;
+  overflow: hidden;
+  background: #141414;
+}
+
+.modal-recipe__image::after {
+  content: "";
+  position: absolute;
+  top: -2%;
+  right: -72px;
+  width: 170px;
+  height: 104%;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,0.08), transparent 22%),
+    radial-gradient(circle at 60% 70%, rgba(255,255,255,0.05), transparent 20%),
+    linear-gradient(180deg, rgba(18,18,18,0.68), rgba(8,8,8,0.92));
+  clip-path: polygon(26% 0%, 62% 3%, 40% 10%, 70% 16%, 48% 24%, 72% 33%, 50% 42%, 74% 50%, 52% 59%, 76% 67%, 48% 76%, 70% 85%, 42% 92%, 60% 100%, 0% 100%, 0% 0%);
+  filter: drop-shadow(18px 0 18px rgba(0, 0, 0, 0.45));
+  pointer-events: none;
+  z-index: 2;
+}
+
+.modal-recipe__image-inner {
+  height: 100%;
 }
 
 .modal-recipe__image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: var(--recipe-image-position, left center);
+  transform: scale(1.02);
 }
 
 .modal-recipe__paper {
-  background: var(--paper);
-  color: #171512;
-  border-radius: 22px;
-  padding: 24px;
+  position: relative;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255,255,255,0.05), transparent 20%),
+    radial-gradient(circle at 82% 68%, rgba(255,255,255,0.04), transparent 20%),
+    linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005)),
+    #151515;
+  color: #f4efe7;
+  padding: 34px 34px 30px;
+  overflow: auto;
+}
+
+.modal-recipe__paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 2px, transparent 2px 5px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.01) 0 2px, transparent 2px 6px);
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.modal-recipe__paper > * {
+  position: relative;
+  z-index: 1;
 }
 
 .modal-recipe__paper small {
   display: block;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: #7d5d2e;
+  color: var(--accent);
   font-weight: 800;
 }
 
 .modal-recipe__paper h3 {
   margin: 8px 0 18px;
   font-family: "Bebas Neue", sans-serif;
-  font-size: 2.8rem;
-  line-height: 0.95;
+  font-size: clamp(3rem, 4vw, 4.7rem);
+  line-height: 0.92;
+  max-width: 8ch;
+}
+
+.modal-recipe__paper h4 {
+  margin: 24px 0 10px;
+  font-size: 1.22rem;
+  color: #ffffff;
 }
 
 .modal-recipe__paper p,
 .modal-recipe__paper li {
-  line-height: 1.7;
+  line-height: 1.72;
+  color: #e7dfd3;
 }
 
 .modal-recipe__paper ul,
 .modal-recipe__paper ol {
+  margin: 8px 0 0;
+  padding-left: 22px;
+}
+
+.modal-recipe__paper li + li {
   margin-top: 8px;
 }
 
@@ -457,10 +520,28 @@ button {
   .hero,
   .recipes-grid,
   .section--split,
-  .modal-recipe,
   .cta-board {
     grid-template-columns: 1fr;
     flex-direction: column;
+  }
+
+  .modal-recipe {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .modal-recipe__image {
+    min-height: 340px;
+  }
+
+  .modal-recipe__image::after {
+    top: auto;
+    right: auto;
+    bottom: -62px;
+    left: -2%;
+    width: 104%;
+    height: 140px;
+    clip-path: polygon(0 24%, 8% 34%, 16% 26%, 26% 40%, 34% 28%, 44% 42%, 52% 30%, 62% 44%, 72% 30%, 82% 40%, 90% 26%, 100% 34%, 100% 100%, 0 100%);
   }
 
   .topbar {
