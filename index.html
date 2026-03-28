@@ -16,35 +16,37 @@
       <nav class="topbar">
         <a class="brand" href="#">
           <img src="assets/images/logo.png" alt="Logo Soy Nildo" class="brand-logo" />
-          <div>
+          <div class="brand-copy">
             <div class="brand-name">Soy Nildo</div>
-            <div class="brand-note">Cocina con textura, fuego y receta</div>
+            <div class="brand-note">Recetas simples, visuales y con personalidad</div>
           </div>
         </a>
-        <a class="hero-link" href="#recetas">Ver recetas</a>
+
+        <div class="topbar-links">
+          <a class="top-link" href="#inicio">Inicio</a>
+          <a class="top-link" href="#recetas">Recetas</a>
+        </div>
       </nav>
 
-      <section class="hero-content">
-        <div class="hero-copy">
-          <p class="eyebrow">COCINA / RECETAS / POP-UP</p>
-          <h1>Una landing corta, con recetas que se abren sin recargar la página.</h1>
-          <p class="hero-text">
-            Cada plato vive en su archivo HTML y el home lo levanta con JavaScript para mostrarlo dentro de un modal.
-            Así el index queda limpio y cada receta mantiene la estética Soy Nildo.
+      <section class="hero-stage" id="inicio">
+        <div class="hero-left">
+          <p class="hero-kicker">COCINA / DULCE / AUTOR</p>
+          <h1 class="hero-title">Soy Nildo</h1>
+          <p class="hero-lead">
+            Un menú chico y directo, con recetas que se abren en popup sin salir de la landing.
           </p>
-          <a class="cta" href="#recetas">Abrir menú</a>
+          <div class="hero-actions">
+            <a class="hero-button hero-button--solid" href="#recetas">Ver recetas</a>
+          </div>
         </div>
 
-        <div class="hero-paper">
-          <div class="paper-card">
-            <span class="paper-kicker">INGREDIENTES</span>
-            <h2>Estética base</h2>
-            <ul>
-              <li>textura oscura</li>
-              <li>papel beige rasgado</li>
-              <li>foto del plato a la izquierda</li>
-              <li>paso a paso a la derecha</li>
-            </ul>
+        <div class="hero-right">
+          <div class="hero-paper">
+            <span class="hero-paper__script">Ingredientes</span>
+            <h2>La cocina como pieza visual</h2>
+            <p>
+              Fondo oscuro, papel rasgado, fotos protagonistas y cada receta cargada desde su propio HTML con fetch.
+            </p>
           </div>
         </div>
       </section>
@@ -53,7 +55,7 @@
     <main>
       <section class="recipes-section" id="recetas">
         <div class="section-head">
-          <p class="eyebrow">MENÚ</p>
+          <p class="section-script">Menú</p>
           <h2>Recetas</h2>
         </div>
         <div id="recipes-grid" class="recipes-grid"></div>
