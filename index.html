@@ -141,8 +141,8 @@
           <p class="section-script">Instagram</p>
           <h2>Reels de Nildo</h2>
           <p>
-            Recortes, momentos y clips rápidos del universo Soy Nildo. Acá podés ir viendo
-            distintos reels sin salir de la página.
+            Recortes, momentos y clips rápidos del universo Soy Nildo. Acá podés ir pasando
+            entre distintos posteos y videos públicos del canal.
           </p>
           <div class="action-row">
             <a class="hero-button hero-button--solid" target="_blank" rel="noreferrer" href="https://www.instagram.com/soynildo/">
@@ -164,30 +164,25 @@
             </div>
           </div>
 
-          <div class="reels-card" id="reelsCard">
-            <div class="reels-card__media">
-              <div class="reels-card__badge">Instagram</div>
-              <div class="reels-card__icon">▶</div>
+          <div class="reels-card">
+            <div class="reels-card__embed" id="reelsEmbed">
+              <div class="stream-placeholder">
+                <h3>Cargando reels...</h3>
+                <p>Estamos trayendo el contenido desde Instagram.</p>
+              </div>
             </div>
 
-            <div class="reels-card__body">
-              <h3 class="reels-card__title" id="reelTitle">Cargando reel...</h3>
-              <p class="reels-card__text" id="reelText">
-                Estamos preparando los recortes de Nildo.
-              </p>
-
-              <div class="reels-card__footer">
-                <span class="reels-card__count" id="reelCount">1 / 1</span>
-                <a
-                  class="text-link"
-                  id="reelLink"
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://www.instagram.com/soynildo/"
-                >
-                  Ver reel en Instagram
-                </a>
-              </div>
+            <div class="reels-card__footer">
+              <span class="reels-card__count" id="reelCount">1 / 1</span>
+              <a
+                class="text-link"
+                id="reelLink"
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.instagram.com/soynildo/"
+              >
+                Ver en Instagram
+              </a>
             </div>
           </div>
         </div>
@@ -394,6 +389,7 @@
     </div>
   </div>
 
+  <script async src="https://www.instagram.com/embed.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
