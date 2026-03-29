@@ -1,65 +1,56 @@
-<article class="sn-recipe-popup" data-recipe-slug="risotto-de-papa">
-  <style>
-    .sn-recipe-popup {
-      color: #f5efe7;
-      display: grid;
-      gap: 18px;
-      font-family: Inter, system-ui, sans-serif;
-    }
-    .sn-recipe-popup__eyebrow {
-      display: inline-flex;
-      width: fit-content;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: #f0d06b;
-      color: #17120f;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .sn-recipe-popup__header h2 {
-      margin: 0 0 8px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.02;
-    }
-    .sn-recipe-popup__header p {
-      margin: 0;
-      color: rgba(245, 239, 231, 0.82);
-      font-size: 1.05rem;
-      line-height: 1.5;
-      max-width: 760px;
-    }
-    .sn-recipe-popup__figure {
-      margin: 0;
-      border-radius: 24px;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .sn-recipe-popup__figure img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .sn-recipe-popup__note {
-      margin: 0;
-      color: rgba(245, 239, 231, 0.66);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-  </style>
+<div class="recipe-view" aria-labelledby="recipeModalTitle">
+  <aside class="recipe-view__visual">
+    <img src="assets/images/risotto_de_papa.webp" alt="Risotto de papa" />
+  </aside>
 
-  <header class="sn-recipe-popup__header">
-    <span class="sn-recipe-popup__eyebrow">Receta</span>
-    <h2>Risotto de papa</h2>
-    <p>Preparación cremosa con papa como base protagonista.</p>
-  </header>
+  <article class="recipe-view__content">
+    <h2 class="recipe-view__title" id="recipeModalTitle">Risotto de papa</h2>
 
-  <figure class="sn-recipe-popup__figure">
-    <img src="./assets/images/risotto_de_papa.webp" alt="Risotto de papa" loading="lazy" />
-  </figure>
+    <div class="ingredients-paper">
+      <span class="ingredients-paper__kicker">Ingredientes</span>
+      <div class="ingredients-paper__grid">
 
-  <p class="sn-recipe-popup__note">La receta completa se muestra en la imagen original, con ingredientes e instrucciones tal como fueron diseñados para Soy Nildo.</p>
-</article>
+        <section>
+          <h3>Caldo</h3>
+          <ul>
+            <li><span>papa blanca</span><span>2 un</span></li>
+            <li><span>boniato criollo</span><span>1 un</span></li>
+            <li><span>cebolla blanca</span><span>2 un</span></li>
+            <li><span>apio y puerro</span><span>1 rama c/u</span></li>
+            <li><span>zanahoria</span><span>2 un</span></li>
+            <li><span>zapallo cabutiá</span><span>1/4 un</span></li>
+            <li><span>sal, pimienta, tomillo</span><span>10g c/u</span></li>
+            <li><span>ajo, jengibre</span><span>10g c/u</span></li>
+            <li><span>agua</span><span>c/n</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Risotto</h3>
+          <ul>
+            <li><span>arroz carnaroli o arborio</span><span>150g o 1/2 taza</span></li>
+            <li><span>salsa de soja</span><span>10ml</span></li>
+            <li><span>hongos frescos</span><span>150g</span></li>
+            <li><span>puré de papa</span><span>100g</span></li>
+            <li><span>manteca fría</span><span>60g</span></li>
+            <li><span>queso tipo parmesano</span><span>30g</span></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="recipe-steps">
+      <ol>
+        <li>Cortar las verduras del caldo en trozos medianos y colocarlas en una olla con agua fría.</li>
+        <li>Cocinar al menos 30 minutos y mantener caliente.</li>
+        <li>En una sartén profunda, saltear los hongos con manteca, soja y condimentos.</li>
+        <li>Agregar el arroz y nacarar durante 2 minutos.</li>
+        <li>Incorporar caldo caliente de a cucharones, revolviendo constantemente hasta que el arroz esté a punto.</li>
+        <li>Agregar el puré de papa, la manteca y el queso, mezclando hasta integrar.</li>
+        <li>Servir caliente y decorar a gusto.</li>
+      </ol>
+    </div>
+
+  </article>
+</div>
