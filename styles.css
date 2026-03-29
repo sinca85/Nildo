@@ -1285,3 +1285,58 @@ a{text-decoration:none;color:inherit}
   display: block;
   background: #111;
 }
+.hero-paper__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.hero-paper__top .hero-paper__script {
+  margin: 0;
+  flex: 1;
+}
+
+.hero-paper__top .stream-tabs {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.live-embed-panel--hero {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.live-embed-panel--hero .stream-embed {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  min-height: auto;
+}
+
+.live-embed-panel--hero .stream-frame {
+  width: 100%;
+  min-height: 320px;
+  border: 0;
+  border-radius: 24px;
+  display: block;
+  background: #111;
+}
+
+@media (max-width: 720px) {
+  .hero-paper__top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-paper__top .stream-tabs {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
