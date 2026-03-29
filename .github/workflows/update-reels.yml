@@ -24,6 +24,17 @@ jobs:
       - name: Run reels updater
         run: node .github/scripts/update-reels.mjs
 
+      - name: Debug generated files
+        run: |
+          echo "Repo root:"
+          pwd
+          echo "Data folder:"
+          ls -la data || true
+          echo "Preview reels.json:"
+          cat data/reels.json || true
+          echo "Preview reels-debug.html exists?"
+          ls -la data/reels-debug.html || true
+
       - name: Commit changes if reels.json changed
         run: |
           if git diff --quiet -- data/reels.json; then

@@ -7,12 +7,13 @@ const __dirname = path.dirname(__filename);
 
 const ROOT_DIR = path.resolve(__dirname, "../..");
 const OUTPUT_PATH = path.join(ROOT_DIR, "data", "reels.json");
+const DEBUG_HTML_PATH = path.join(ROOT_DIR, "data", "reels-debug.html");
 
 const INSTAGRAM_REELS_URL = "https://www.instagram.com/soynildo/reels/";
 const SITE_BASE = "https://www.instagram.com";
 
 const MAX_ITEMS = 24;
-const MIN_VALID_ITEMS_TO_OVERWRITE = 3;
+const MIN_VALID_ITEMS_TO_OVERWRITE = 1; // temporal para debug
 const FETCH_TIMEOUT_MS = 15000;
 
 function log(...args) {
@@ -24,22 +25,14 @@ function normalizeInstagramUrl(url) {
 
   let cleaned = String(url).trim();
 
-  if (cleaned.startsWith("//")) {
-    cleaned = `https:${cleaned}`;
-  }
-
-  if (cleaned.startsWith("/")) {
-    cleaned = `${SITE_BASE}${cleaned}`;
-  }
-
-  if (!/^https?:\/\//i.test(cleaned)) {
-    return null;
-  }
+  if (cleaned.startsWith("//")) cleaned = `https:${cleaned}`;
+  if (cleaned.startsWith("/")) cleaned = `${SITE_BASE}${cleaned}`;
+  if (!/^https?:\/\//i.test(cleaned)) return null;
 
   try {
     const parsed = new URL(cleaned);
 
-    if (!/instagram\.com$/i.test(parsed.hostname) && !/www\.instagram\.com$/i.test(parsed.hostname)) {
+    if (!/(\.|^)instagram\.com$/i.test(parsed.hostname)) {
       return null;
     }
 
@@ -63,15 +56,17 @@ function extractItemsFromHtml(html) {
   const patterns = [
     /https?:\/\/(?:www\.)?instagram\.com\/(?:reel|p)\/[A-Za-z0-9_-]+\/?/gi,
     /href=(?:"|')?(\/(?:reel|p)\/[A-Za-z0-9_-]+\/?)(?:"|')?/gi,
-    /"(\/(?:reel|p)\/[A-Za-z0-9_-]+\/?)"/gi,
+    /"(\/(?:reel|p)\/[A-Za-z0-9_-]+\/?)"/gi
   ];
 
   for (const pattern of patterns) {
     let match;
     while ((match = pattern.exec(html)) !== null) {
-      const raw = match[0].startsWith("href=") ? match[1] : match[0].replace(/^"|"$/g, "");
-      const normalized = normalizeInstagramUrl(raw);
+      const raw = match[0].startsWith("href=")
+        ? match[1]
+        : match[0].replace(/^"|"$/g, "");
 
+      const normalized = normalizeInstagramUrl(raw);
       if (!normalized) continue;
 
       const parsed = new URL(normalized);
@@ -80,11 +75,7 @@ function extractItemsFromHtml(html) {
       const code = parts[1];
 
       if (!found.has(normalized)) {
-        found.set(normalized, {
-          url: normalized,
-          code,
-          type,
-        });
+        found.set(normalized, { url: normalized, code, type });
       }
     }
   }
@@ -118,8 +109,8 @@ async function fetchHtml(url) {
         "accept-language": "en-US,en;q=0.9,es;q=0.8",
         "cache-control": "no-cache",
         pragma: "no-cache",
-        referer: "https://www.instagram.com/",
-      },
+        referer: "https://www.instagram.com/"
+      }
     });
 
     if (!response.ok) {
@@ -138,7 +129,7 @@ function buildOutput(items, previousData) {
     source: INSTAGRAM_REELS_URL,
     itemCount: items.length,
     items,
-    previousUpdatedAt: previousData?.updatedAt || null,
+    previousUpdatedAt: previousData?.updatedAt || null
   };
 }
 
@@ -170,6 +161,9 @@ function hasEnoughValidItems(items) {
 async function main() {
   const previousData = await readExistingJson();
 
+  log("Script dirname:", __dirname);
+  log("Root dir:", ROOT_DIR);
+  log("Output path:", OUTPUT_PATH);
   log("Fetching Instagram public reels page:", INSTAGRAM_REELS_URL);
 
   let html;
@@ -181,9 +175,17 @@ async function main() {
     process.exit(0);
   }
 
+  log("Fetched HTML length:", html.length);
+  log("HTML preview:", html.slice(0, 500));
+
+  await ensureOutputDirectory();
+  await fs.writeFile(DEBUG_HTML_PATH, html, "utf8");
+  log("Saved debug HTML to:", DEBUG_HTML_PATH);
+
   const items = extractItemsFromHtml(html);
 
   log(`Found ${items.length} candidate items.`);
+  log("Extracted items:", JSON.stringify(items, null, 2));
 
   if (!hasEnoughValidItems(items)) {
     log(
