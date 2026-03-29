@@ -10,7 +10,7 @@ const youtubeConfig = {
 
 async function getLiveStatusConfig() {
   try {
-    const res = await fetch(`./live-status.json?v=${Date.now()}`);
+    const res = await fetch(`./data/live-status.json?v=${Date.now()}`);
     if (!res.ok) throw new Error("No se pudo cargar live-status.json");
     const data = await res.json();
 
