@@ -1,65 +1,52 @@
-<article class="sn-recipe-popup" data-recipe-slug="cookie-de-chocolate-y-gochujang">
-  <style>
-    .sn-recipe-popup {
-      color: #f5efe7;
-      display: grid;
-      gap: 18px;
-      font-family: Inter, system-ui, sans-serif;
-    }
-    .sn-recipe-popup__eyebrow {
-      display: inline-flex;
-      width: fit-content;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: #f0d06b;
-      color: #17120f;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .sn-recipe-popup__header h2 {
-      margin: 0 0 8px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.02;
-    }
-    .sn-recipe-popup__header p {
-      margin: 0;
-      color: rgba(245, 239, 231, 0.82);
-      font-size: 1.05rem;
-      line-height: 1.5;
-      max-width: 760px;
-    }
-    .sn-recipe-popup__figure {
-      margin: 0;
-      border-radius: 24px;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .sn-recipe-popup__figure img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .sn-recipe-popup__note {
-      margin: 0;
-      color: rgba(245, 239, 231, 0.66);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-  </style>
+<div class="recipe-view" aria-labelledby="recipeModalTitle">
+  <aside class="recipe-view__visual">
+    <img src="assets/images/cookie_de_chocolatete_gochujang.webp" alt="Cookie de chocolate y gochujang" />
+  </aside>
 
-  <header class="sn-recipe-popup__header">
-    <span class="sn-recipe-popup__eyebrow">Receta</span>
-    <h2>Cookie de chocolate y gochujang</h2>
-    <p>Cookie intensa con cacao y un toque distinto de picor.</p>
-  </header>
+  <article class="recipe-view__content">
+    <h2 class="recipe-view__title" id="recipeModalTitle">Cookie de chocolate y gochujang</h2>
 
-  <figure class="sn-recipe-popup__figure">
-    <img src="./assets/images/cookie_de_chocolatete_gochujang.webp" alt="Cookie de chocolate y gochujang" loading="lazy" />
-  </figure>
+    <div class="ingredients-paper">
+      <span class="ingredients-paper__kicker">Ingredientes</span>
+      <div class="ingredients-paper__grid">
+        <section>
+          <h3>Masa</h3>
+          <ul>
+            <li><span>manteca sin sal</span><span>110g</span></li>
+            <li><span>azúcar rubia</span><span>80g</span></li>
+            <li><span>azúcar común</span><span>110g</span></li>
+            <li><span>huevo</span><span>1 unidad</span></li>
+            <li><span>harina</span><span>200g</span></li>
+            <li><span>bicarbonato de sodio</span><span>1 cdta</span></li>
+            <li><span>pizca de sal</span><span>—</span></li>
+            <li><span>salsa gochujang o similar</span><span>25g a 40g</span></li>
+            <li><span>chocolate amargo 60% o superior</span><span>150g</span></li>
+            <li><span>esencia de vainilla (opcional)</span><span>1 cdta</span></li>
+          </ul>
+        </section>
+      </div>
+    </div>
 
-  <p class="sn-recipe-popup__note">La receta completa se muestra en la imagen original, con ingredientes e instrucciones tal como fueron diseñados para Soy Nildo.</p>
-</article>
+    <div class="recipe-steps">
+      <section>
+        <h3>Preparación</h3>
+        <ol>
+          <li>Derretir la manteca hasta dorarla retirando la espuma que se forma (manteca noisette).</li>
+          <li>Enfriarla en baño maría invertido hasta tener esa misma manteca pero pomada.</li>
+          <li>En un bowl disponer de los dos tipos de azúcar y blanquear batiéndola con la manteca que habíamos pomado anteriormente.</li>
+          <li>Incorporar el huevo a la mezcla y batir por al menos 5 minutos.</li>
+          <li>Una vez batido todo, incorporar todos los ingredientes secos cernidos con la ayuda de una cuchara de madera.</li>
+          <li>Agregar el chocolate picado a cuchillo para que los chips queden irregulares.</li>
+          <li>Separar una parte de la mezcla e incorporarle la salsa gochujang.</li>
+          <li>Volver a incorporar esa parte al total de la masa hasta que quede bien mezclado.</li>
+          <li>Llevar a heladera por al menos 10 minutos.</li>
+          <li>Precalentar el horno a 170 grados.</li>
+          <li>Formar bolitas de masa de aproximadamente 70g - 80g (deberían obtener unas 10 bolitas del mismo tamaño).</li>
+          <li>Colocarlas en una placa para horno con papel manteca o sobre una superficie antiadherente.</li>
+          <li>Estibarlas separadas porque expanden, no colocar más de 5 o 6 galletas por placa.</li>
+          <li>Cocinar a 170 grados por 10 minutos.</li>
+        </ol>
+      </section>
+    </div>
+  </article>
+</div>
