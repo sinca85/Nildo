@@ -100,7 +100,7 @@ export async function initReelsBlock() {
     return "Instagram";
   }
 
-  function renderReel(index) {
+    function renderReel(index) {
     const item = reels[index];
 
     const title = getFallbackTitle(item, index);
@@ -117,14 +117,30 @@ export async function initReelsBlock() {
     reelImage.alt = title;
 
     if (reelBadge) {
-      reelBadge.textContent = badge;
+        reelBadge.textContent = badge;
+    }
+
+    const visual = reelsCard.querySelector(".reels-card__visual");
+    if (visual) {
+        visual.style.cursor = "pointer";
+        visual.onclick = () => {
+        window.open(item.url, "_blank", "noopener,noreferrer");
+        };
+    }
+
+    const play = reelsCard.querySelector(".reels-card__play");
+    if (play) {
+        play.style.cursor = "pointer";
+        play.onclick = () => {
+        window.open(item.url, "_blank", "noopener,noreferrer");
+        };
     }
 
     reelsCard.classList.remove("is-empty");
     reelsCard.classList.remove("is-switching");
     void reelsCard.offsetWidth;
     reelsCard.classList.add("is-switching");
-  }
+    }
 
   function goPrev() {
     currentIndex = (currentIndex - 1 + reels.length) % reels.length;
