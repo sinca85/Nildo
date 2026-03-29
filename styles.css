@@ -933,10 +933,15 @@ a{text-decoration:none;color:inherit}
   font-weight: 700;
   cursor: pointer;
   transition: 0.2s ease;
+  background: #17130f;
+  color: #f1d26a;
+  border-color: #17130f;
 }
 
 .stream-tab:hover {
-  background: rgba(255,255,255,0.14);
+  background: #f1d26a;
+  color: #17130f;
+  border-color: #f1d26a;
 }
 
 .stream-tab.is-active {
