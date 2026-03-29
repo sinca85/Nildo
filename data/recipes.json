@@ -133,9 +133,9 @@
     "featured": false
   },
   {
-    "title": "Espejitos",
-    "subtitle": "Masa sable, cacao y jalea de frutilla y tomate.",
-    "image": "./assets/images/frola.webp",
+    "title": "Pastafrola (Halloween)",
+    "subtitle": "Pastafrola decorada con masa sable y relleno de membrillo.",
+    "image": "./assets/images/frola.jpeg",
     "file": "recipes/frola.html",
     "featured": false
   },
@@ -224,10 +224,17 @@
     "featured": false
   },
   {
+    "title": "Torta imposible",
+    "subtitle": "Postre de brownie y flan cocidos juntos, con contraste de texturas.",
+    "image": "./assets/images/chocoflan.webp",
+    "file": "recipes/torta-imposible.html",
+    "featured": false
+  },
+  {
     "title": "Rosca de chicharrón",
     "subtitle": "Masa salada con mucho sabor y corte bien uruguayo.",
     "image": "./assets/images/rosca_de_chicharon.webp",
-    "file": "recipes/rosca-de-chicharrón.html",
+    "file": "recipes/rosca-de-chicharron.html",
     "featured": false
   },
   {
