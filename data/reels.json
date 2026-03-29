@@ -6,17 +6,26 @@
     {
       "url": "https://www.instagram.com/p/DUlLCUckX-_/",
       "code": "DUlLCUckX-_",
-      "type": "p"
+      "type": "p",
+      "title": "Recorte 01",
+      "text": "Momento destacado de Soy Nildo para mostrar en la home.",
+      "image": "./assets/images/reels/DUlLCUckX-_.webp"
     },
     {
       "url": "https://www.instagram.com/p/DUgnNeTkocW/",
       "code": "DUgnNeTkocW",
-      "type": "p"
+      "type": "p",
+      "title": "Recorte 02",
+      "text": "Otro clip corto del universo Nildo para ir rotando en el bloque.",
+      "image": "./assets/images/reels/DUgnNeTkocW.webp"
     },
     {
       "url": "https://www.instagram.com/p/DUd-tNcEciJ/",
       "code": "DUd-tNcEciJ",
-      "type": "p"
+      "type": "p",
+      "title": "Recorte 03",
+      "text": "Contenido breve de cocina, comunidad y estilo de la marca.",
+      "image": "./assets/images/reels/DUd-tNcEciJ.webp"
     }
   ],
   "previousUpdatedAt": null
