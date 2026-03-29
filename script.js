@@ -181,6 +181,20 @@ async function loadLiveStatus() {
 
     const isScheduledLive = !!activeSlot;
 
+    const statusText = document.getElementById("streamStatusText");
+
+    if (statusText) {
+      if (isScheduledLive) {
+        statusText.textContent = "(● en vivo)";
+        statusText.classList.add("live");
+        statusText.classList.remove("offline");
+      } else {
+        statusText.textContent = "(● offline)";
+        statusText.classList.add("offline");
+        statusText.classList.remove("live");
+      }
+    }
+
     youtubeBadge.classList.toggle("is-live", isScheduledLive && !!platforms.youtube);
     twitchBadge.classList.toggle("is-live", isScheduledLive && !!platforms.twitch);
 
