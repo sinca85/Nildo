@@ -156,7 +156,7 @@
 
         <div class="status-panel reels-panel" id="reelsPanel">
           <div class="reels-panel__top">
-            <span class="hero-paper__script">Mirá los reels</span>
+            <span class="hero-paper__script">Reels de Nildo</span>
 
             <div class="reels-nav">
               <button type="button" class="carousel-btn reels-btn" id="reels-prev" aria-label="Reel anterior">‹</button>
@@ -164,25 +164,44 @@
             </div>
           </div>
 
-          <div class="reels-card">
-            <div class="reels-card__embed" id="reelsEmbed">
-              <div class="stream-placeholder">
-                <h3>Cargando reels...</h3>
-                <p>Estamos trayendo el contenido desde Instagram.</p>
-              </div>
+          <div class="reels-card" id="reelsCard">
+            <div class="reels-card__visual">
+              <div class="reels-card__badge">Instagram</div>
+              <div class="reels-card__play">▶</div>
+              <div class="reels-card__glow"></div>
             </div>
 
-            <div class="reels-card__footer">
-              <span class="reels-card__count" id="reelCount">1 / 1</span>
-              <a
-                class="text-link"
-                id="reelLink"
-                target="_blank"
-                rel="noreferrer"
-                href="https://www.instagram.com/soynildo/"
-              >
-                Ver en Instagram
-              </a>
+            <div class="reels-card__body">
+              <h3 class="reels-card__title" id="reelTitle">Cargando reel...</h3>
+              <p class="reels-card__text" id="reelText">
+                Estamos cargando los recortes de Nildo.
+              </p>
+
+              <div class="reels-card__meta">
+                <span class="reels-card__count" id="reelCount">1 / 1</span>
+                <span class="reels-card__code" id="reelCode">—</span>
+              </div>
+
+              <div class="reels-card__actions">
+                <a
+                  class="hero-button hero-button--solid"
+                  id="reelLink"
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.instagram.com/soynildo/"
+                >
+                  Ver reel
+                </a>
+
+                <a
+                  class="hero-button hero-button--ghost"
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.instagram.com/soynildo/reels/"
+                >
+                  Ver todos
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -1,11 +1,23 @@
 export async function initReelsBlock() {
   const prevBtn = document.getElementById("reels-prev");
   const nextBtn = document.getElementById("reels-next");
-  const reelsEmbed = document.getElementById("reelsEmbed");
+  const reelsCard = document.getElementById("reelsCard");
+  const reelTitle = document.getElementById("reelTitle");
+  const reelText = document.getElementById("reelText");
   const reelCount = document.getElementById("reelCount");
+  const reelCode = document.getElementById("reelCode");
   const reelLink = document.getElementById("reelLink");
 
-  if (!prevBtn || !nextBtn || !reelsEmbed || !reelCount || !reelLink) {
+  if (
+    !prevBtn ||
+    !nextBtn ||
+    !reelsCard ||
+    !reelTitle ||
+    !reelText ||
+    !reelCount ||
+    !reelCode ||
+    !reelLink
+  ) {
     return;
   }
 
@@ -13,7 +25,7 @@ export async function initReelsBlock() {
   let currentIndex = 0;
 
   try {
-    const response = await fetch("./data/reels.json", { cache: "no-cache" });
+    const response = await fetch("./data/reels.json?v=" + Date.now(), { cache: "no-cache" });
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
@@ -22,54 +34,47 @@ export async function initReelsBlock() {
     reels = Array.isArray(json.items) ? json.items.filter((item) => item && item.url) : [];
   } catch (error) {
     console.error("[reels] No se pudo cargar data/reels.json", error);
-    reelsEmbed.innerHTML = `
-      <div class="stream-placeholder">
-        <h3>No se pudieron cargar los reels</h3>
-        <p>Por ahora queda disponible el acceso directo a Instagram.</p>
-      </div>
-    `;
+    reelTitle.textContent = "No se pudieron cargar los reels";
+    reelText.textContent = "Por ahora queda disponible el acceso directo a Instagram.";
     reelCount.textContent = "0 / 0";
+    reelCode.textContent = "sin datos";
     reelLink.href = "https://www.instagram.com/soynildo/";
     return;
   }
 
   if (!reels.length) {
-    reelsEmbed.innerHTML = `
-      <div class="stream-placeholder">
-        <h3>No hay reels cargados</h3>
-        <p>Agregá items en data/reels.json para mostrarlos acá.</p>
-      </div>
-    `;
+    reelTitle.textContent = "No hay reels cargados";
+    reelText.textContent = "Agregá items en data/reels.json para mostrarlos acá.";
     reelCount.textContent = "0 / 0";
+    reelCode.textContent = "sin datos";
     reelLink.href = "https://www.instagram.com/soynildo/";
     return;
   }
 
   currentIndex = Math.floor(Math.random() * reels.length);
 
+  function getTitle(item, index) {
+    if (item.title) return item.title;
+    return `Recorte ${String(index + 1).padStart(2, "0")}`;
+  }
+
+  function getText(item) {
+    if (item.text) return item.text;
+    return "Momentos, cocina y clips rápidos del universo Soy Nildo para ir pasando desde la home.";
+  }
+
   function renderReel(index) {
     const item = reels[index];
-    const permalink = item.url;
 
+    reelTitle.textContent = getTitle(item, index);
+    reelText.textContent = getText(item);
     reelCount.textContent = `${index + 1} / ${reels.length}`;
-    reelLink.href = permalink;
+    reelCode.textContent = item.code ? `ID ${item.code}` : "Instagram";
+    reelLink.href = item.url;
 
-    reelsEmbed.innerHTML = `
-      <blockquote
-        class="instagram-media"
-        data-instgrm-permalink="${permalink}"
-        data-instgrm-version="14"
-        style="background:#111; border:0; border-radius:18px; margin:0 auto; max-width:540px; min-width:280px; width:100%;"
-      ></blockquote>
-    `;
-
-    if (
-      window.instgrm &&
-      window.instgrm.Embeds &&
-      typeof window.instgrm.Embeds.process === "function"
-    ) {
-      window.instgrm.Embeds.process();
-    }
+    reelsCard.classList.remove("is-switching");
+    void reelsCard.offsetWidth;
+    reelsCard.classList.add("is-switching");
   }
 
   prevBtn.addEventListener("click", () => {
