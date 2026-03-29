@@ -213,12 +213,18 @@ setInterval(loadLiveStatus, 60000);
 
 const twitchConfig = {
   channel: "soynildo",
-  latestVodId: "2734134378"
+  latestVodId: null
+};
+
+const youtubeConfig = {
+  channelId: "UCmt8wj7wz8wczYFJz6v3mzA",
+  latestVideoId: null
 };
 
 async function getLiveStatusConfig() {
   try {
     const res = await fetch("./live-status.json?v=" + Date.now());
+    if (!res.ok) throw new Error("No se pudo cargar live-status.json");
     const data = await res.json();
 
     return {
@@ -236,6 +242,17 @@ async function getLiveStatusConfig() {
   }
 }
 
+async function getLatestContent() {
+  try {
+    const res = await fetch("./latest-content.json?v=" + Date.now());
+    if (!res.ok) throw new Error("No se pudo cargar latest-content.json");
+    return await res.json();
+  } catch (error) {
+    console.error("No se pudo cargar latest-content.json", error);
+    return null;
+  }
+}
+
 (async function initLiveEmbedBlock() {
   const panel = document.getElementById("liveEmbedPanel");
   const tabs = document.getElementById("streamTabs");
@@ -244,7 +261,19 @@ async function getLiveStatusConfig() {
 
   if (!panel || !tabs || !embedContainer) return;
 
-  const streamConfig = await getLiveStatusConfig();
+  const [streamConfig, latestContent] = await Promise.all([
+    getLiveStatusConfig(),
+    getLatestContent()
+  ]);
+
+  if (latestContent?.twitch?.latestVodId) {
+    twitchConfig.latestVodId = latestContent.twitch.latestVodId;
+  }
+
+  if (latestContent?.youtube?.latestVideoId) {
+    youtubeConfig.latestVideoId = latestContent.youtube.latestVideoId;
+  }
+
   const host = window.location.hostname;
   const availablePlatforms = getAvailablePlatforms(streamConfig.platforms);
 
@@ -255,7 +284,6 @@ async function getLiveStatusConfig() {
   let currentFrame = null;
   let currentRenderedMode = null;
   let isLiveNow = false;
-  let currentSlotKey = null;
 
   buildTabs();
 
@@ -339,12 +367,6 @@ async function getLiveStatusConfig() {
     );
   }
 
-  function getSlotKey(slot) {
-    if (!slot) return null;
-    const days = Array.isArray(slot.days) ? slot.days.join(",") : "";
-    return `${days}|${slot.start}|${slot.end}|${slot.label || ""}`;
-  }
-
   function clearEmbed() {
     if (currentFrame) {
       currentFrame.remove();
@@ -372,12 +394,21 @@ async function getLiveStatusConfig() {
     return iframe;
   }
 
-  function createYouTubeEmbed() {
+  function createYouTubeLiveEmbed() {
     const iframe = document.createElement("iframe");
     iframe.className = "stream-frame";
     iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
     iframe.allowFullscreen = true;
-    iframe.src = "https://www.youtube.com/embed/live_stream?channel=UCmt8wj7wz8wczYFJz6v3mzA&autoplay=0";
+    iframe.src = `https://www.youtube.com/embed/live_stream?channel=${youtubeConfig.channelId}&autoplay=0`;
+    return iframe;
+  }
+
+  function createYouTubeVideoEmbed(videoId) {
+    const iframe = document.createElement("iframe");
+    iframe.className = "stream-frame";
+    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.allowFullscreen = true;
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=0`;
     return iframe;
   }
 
@@ -399,7 +430,7 @@ async function getLiveStatusConfig() {
       embedContainer.innerHTML = `
         <div class="stream-placeholder">
           <h3>Último stream</h3>
-          <p>No hay un VOD configurado todavía.</p>
+          <p>No hay un VOD reciente disponible.</p>
         </div>
       `;
       currentRenderedMode = "twitch-vod-empty";
@@ -412,39 +443,49 @@ async function getLiveStatusConfig() {
   }
 
   function renderYouTube(force = false) {
-    if (!force && currentRenderedMode === "youtube" && currentFrame) return;
+    if (!force && ((isLiveNow && currentRenderedMode === "youtube-live") || (!isLiveNow && currentRenderedMode === "youtube-vod")) && currentFrame) {
+      return;
+    }
+
     clearEmbed();
     setActiveTab("youtube");
-    currentFrame = createYouTubeEmbed();
+
+    if (isLiveNow) {
+      currentFrame = createYouTubeLiveEmbed();
+      embedContainer.appendChild(currentFrame);
+      currentRenderedMode = "youtube-live";
+      return;
+    }
+
+    if (!youtubeConfig.latestVideoId) {
+      embedContainer.innerHTML = `
+        <div class="stream-placeholder">
+          <h3>Último video</h3>
+          <p>No hay un video reciente disponible.</p>
+        </div>
+      `;
+      currentRenderedMode = "youtube-empty";
+      return;
+    }
+
+    currentFrame = createYouTubeVideoEmbed(youtubeConfig.latestVideoId);
     embedContainer.appendChild(currentFrame);
-    currentRenderedMode = "youtube";
+    currentRenderedMode = "youtube-vod";
   }
 
   function renderCurrentState(force = false) {
     const slot = getCurrentScheduleSlot();
-    const nextSlotKey = getSlotKey(slot);
-
-    if (slot) {
-      isLiveNow = true;
-      currentSlotKey = nextSlotKey;
-      setHeroTitle(true);
-
-      if (activePlatform === "youtube") {
-        renderYouTube(force);
-      } else {
-        renderTwitchLive(force);
-      }
-      return;
-    }
-
-    isLiveNow = false;
-    currentSlotKey = null;
-    setHeroTitle(false);
+    isLiveNow = !!slot;
+    setHeroTitle(isLiveNow);
 
     if (activePlatform === "youtube") {
       renderYouTube(force);
     } else {
-      renderTwitchVod(force);
+      if (isLiveNow) {
+        renderTwitchLive(force);
+      } else {
+        renderTwitchVod(force);
+      }
     }
   }
 
