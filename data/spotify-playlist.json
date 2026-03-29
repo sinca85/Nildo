@@ -1,0 +1,33 @@
+{
+  "updatedAt": "2026-03-29T00:00:00.000Z",
+  "source": "manual-seed-from-public-profile",
+  "owner": {
+    "name": "SOYNILDO",
+    "url": "https://open.spotify.com/user/12125089526"
+  },
+  "itemCount": 2,
+  "items": [
+    {
+      "id": "24SCjHwNUUoYGINwu6HSJ6",
+      "title": "CHATLIST",
+      "owner": "SOYNILDO",
+      "description": "playlist colaborativa @soynildo",
+      "url": "https://open.spotify.com/playlist/24SCjHwNUUoYGINwu6HSJ6",
+      "embedUrl": "https://open.spotify.com/embed/playlist/24SCjHwNUUoYGINwu6HSJ6?utm_source=generator&theme=0",
+      "image": null,
+      "tracksCount": 1121,
+      "saves": 134
+    },
+    {
+      "id": "4g3QEu9rq0qrWHqbQjfpEd",
+      "title": "POP CULTURE",
+      "owner": "SOYNILDO",
+      "description": null,
+      "url": "https://open.spotify.com/playlist/4g3QEu9rq0qrWHqbQjfpEd",
+      "embedUrl": "https://open.spotify.com/embed/playlist/4g3QEu9rq0qrWHqbQjfpEd?utm_source=generator&theme=0",
+      "image": null,
+      "tracksCount": 199,
+      "saves": 238
+    }
+  ]
+}

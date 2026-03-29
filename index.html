@@ -136,79 +136,135 @@
         </div>
       </section>
 
-      <section class="info-block info-block--stream" id="en-vivo">
-        <div class="info-block__copy">
-          <p class="section-script">Instagram</p>
-          <h2>Reels de Nildo</h2>
-          <p>
-            Recortes, momentos y clips rápidos del universo Soy Nildo. Acá podés ir pasando
-            entre distintos posteos y videos públicos del canal.
-          </p>
-          <div class="action-row">
-            <a class="hero-button hero-button--solid" target="_blank" rel="noreferrer" href="https://www.instagram.com/soynildo/">
-              Ir a Instagram
-            </a>
-            <a class="hero-button hero-button--ghost" target="_blank" rel="noreferrer" href="https://www.instagram.com/soynildo/reels/">
-              Ver todos los reels
-            </a>
-          </div>
-        </div>
-
-        <div class="status-panel reels-panel" id="reelsPanel">
-          <div class="reels-panel__top">
-            <span class="hero-paper__script">Reels de Nildo</span>
-
-            <div class="reels-nav">
-              <button type="button" class="carousel-btn reels-btn" id="reels-prev" aria-label="Reel anterior">‹</button>
-              <button type="button" class="carousel-btn reels-btn" id="reels-next" aria-label="Siguiente reel">›</button>
-            </div>
-          </div>
-
-          <div class="reels-card" id="reelsCard">
-            <div class="reels-card__visual">
-              <span class="reels-card__badge" id="reelBadge">Instagram</span>
-
-              <img
-                class="reels-card__image"
-                id="reelImage"
-                src="./assets/images/reels/placeholder.webp"
-                alt="Reel de Nildo"
-              />
-
-              <div class="reels-card__play">▶</div>
-              <div class="reels-card__glow"></div>
-            </div>
-
-            <div class="reels-card__body">
-              <h3 class="reels-card__title" id="reelTitle">Cargando reel...</h3>
-              <p class="reels-card__text" id="reelText">
-                Estamos cargando los recortes de Nildo.
-              </p>
-
-              <div class="reels-card__meta">
-                <span class="reels-card__count" id="reelCount">1 / 1</span>
-                <span class="reels-card__code" id="reelCode">—</span>
+      <section class="media-showcase" id="en-vivo">
+        <div class="media-showcase__spotify">
+          <article class="spotify-panel" id="spotifyPanel">
+            <div class="spotify-panel__head">
+              <div>
+                <p class="section-script">Spotify</p>
+                <h2>Listas para cocinar</h2>
+                <p>
+                  Música para acompañar recetas, cocina en vivo y momentos del universo Soy Nildo.
+                </p>
               </div>
 
-              <div class="reels-card__actions">
+              <div class="spotify-nav">
+                <button type="button" class="carousel-btn spotify-btn" id="spotify-prev" aria-label="Playlist anterior">‹</button>
+                <button type="button" class="carousel-btn spotify-btn" id="spotify-next" aria-label="Siguiente playlist">›</button>
+              </div>
+            </div>
+
+            <div class="spotify-card" id="spotifyCard">
+              <div class="spotify-card__meta">
+                <span class="spotify-card__badge">Spotify</span>
+                <span class="spotify-card__count" id="spotifyCount">1 / 1</span>
+              </div>
+
+              <h3 class="spotify-card__title" id="spotifyTitle">Cargando playlist...</h3>
+              <p class="spotify-card__text" id="spotifyText">
+                Estamos cargando las playlists públicas de Soy Nildo.
+              </p>
+
+              <div class="spotify-card__stats">
+                <span class="spotify-card__stat" id="spotifyTracks">— temas</span>
+                <span class="spotify-card__stat" id="spotifySaves">— guardados</span>
+              </div>
+
+              <div class="spotify-card__actions">
                 <a
                   class="hero-button hero-button--solid"
-                  id="reelLink"
+                  id="spotifyLink"
                   target="_blank"
                   rel="noreferrer"
-                  href="https://www.instagram.com/soynildo/"
+                  href="https://open.spotify.com/user/12125089526"
                 >
-                  Ver reel
+                  Abrir playlist
                 </a>
 
                 <a
                   class="hero-button hero-button--ghost"
                   target="_blank"
                   rel="noreferrer"
-                  href="https://www.instagram.com/soynildo/reels/"
+                  href="https://open.spotify.com/user/12125089526"
                 >
-                  Ver todos
+                  Ver perfil
                 </a>
+              </div>
+            </div>
+
+            <div class="spotify-panel__embed" id="spotifyEmbedWrap">
+              <iframe
+                id="spotifyEmbed"
+                style="border-radius:16px"
+                src=""
+                width="100%"
+                height="352"
+                frameborder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+              </iframe>
+            </div>
+          </article>
+        </div>
+
+        <div class="media-showcase__reels">
+          <div class="status-panel reels-panel" id="reelsPanel">
+            <div class="reels-panel__top">
+              <span class="hero-paper__script">Reels de Nildo</span>
+
+              <div class="reels-nav">
+                <button type="button" class="carousel-btn reels-btn" id="reels-prev" aria-label="Reel anterior">‹</button>
+                <button type="button" class="carousel-btn reels-btn" id="reels-next" aria-label="Siguiente reel">›</button>
+              </div>
+            </div>
+
+            <div class="reels-card" id="reelsCard">
+              <div class="reels-card__visual">
+                <span class="reels-card__badge" id="reelBadge">Instagram</span>
+
+                <img
+                  class="reels-card__image"
+                  id="reelImage"
+                  src="./assets/images/reels/placeholder.webp"
+                  alt="Reel de Nildo"
+                />
+
+                <div class="reels-card__play">▶</div>
+                <div class="reels-card__glow"></div>
+              </div>
+
+              <div class="reels-card__body">
+                <h3 class="reels-card__title" id="reelTitle">Cargando reel...</h3>
+                <p class="reels-card__text" id="reelText">
+                  Estamos cargando los recortes de Nildo.
+                </p>
+
+                <div class="reels-card__meta">
+                  <span class="reels-card__count" id="reelCount">1 / 1</span>
+                  <span class="reels-card__code" id="reelCode">—</span>
+                </div>
+
+                <div class="reels-card__actions">
+                  <a
+                    class="hero-button hero-button--solid"
+                    id="reelLink"
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://www.instagram.com/soynildo/"
+                  >
+                    Ver reel
+                  </a>
+
+                  <a
+                    class="hero-button hero-button--ghost"
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://www.instagram.com/soynildo/reels/"
+                  >
+                    Ver todos
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -416,7 +472,6 @@
     </div>
   </div>
 
-  <script async src="https://www.instagram.com/embed.js"></script>
   <script type="module" src="./js/main.js"></script>
 </body>
 </html>
