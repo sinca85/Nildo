@@ -22,7 +22,7 @@ jobs:
           node-version: 20
 
       - name: Run reels updater
-        run: node scripts/update-reels.mjs
+        run: node .github/scripts/update-reels.mjs
 
       - name: Commit changes if reels.json changed
         run: |
