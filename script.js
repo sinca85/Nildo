@@ -196,7 +196,7 @@ async function loadLiveStatus() {
       }
     } else {
       const firstLabel = schedule[0]?.label || "Miércoles a sábado · 17:00 a 21:00";
-      liveMessage.textContent = `Fuera de horario. Próxima ventana habitual: ${firstLabel} (Uruguay GMT-3).`;
+      liveMessage.textContent = `Fuera de horario. Próxima stream: ${firstLabel} (Uruguay GMT-3).`;
     }
   } catch (error) {
     liveMessage.textContent = "No se pudo verificar el horario del stream.";

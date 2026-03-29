@@ -65,11 +65,24 @@
             <p class="live-message" id="liveMessage">Chequeando transmisión...</p>
           </div>
           <div class="hero-paper">
-            <span class="hero-paper__script">Ingredientes</span>
-            <h2>Una landing con más vida</h2>
-            <p>
-              Recetas visuales, bloque de stream, agenda, sponsors, apoyo y todas las redes en un solo lugar.
-            </p>
+            <div class="status-panel live-embed-panel" id="liveEmbedPanel">
+              <div class="status-chip" id="streamStatusChip">OFFLINE</div>
+
+              <div class="stream-tabs" id="streamTabs" hidden>
+                <button class="stream-tab is-active" type="button" data-platform="twitch">Twitch</button>
+                <button class="stream-tab" type="button" data-platform="youtube">YouTube</button>
+              </div>
+
+              <div class="stream-embed" id="streamEmbed">
+                <div class="stream-placeholder" id="streamPlaceholder">
+                  <h3>Bloque pensado para stream</h3>
+                  <p id="streamPlaceholderText">
+                    Fuera del horario en vivo se muestra este bloque. Cuando entre en horario,
+                    acá aparece el player con tabs para Twitch y YouTube.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
