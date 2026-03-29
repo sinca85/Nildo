@@ -2,6 +2,7 @@ export async function initSpotifyBlock() {
   const prevBtn = document.getElementById("spotify-prev");
   const nextBtn = document.getElementById("spotify-next");
   const spotifyEmbed = document.getElementById("spotifyEmbed");
+  const spotifyCount = document.getElementById("spotifyCount");
 
   if (!prevBtn || !nextBtn || !spotifyEmbed) return;
 
@@ -9,18 +10,35 @@ export async function initSpotifyBlock() {
   let currentIndex = 0;
 
   try {
-    const res = await fetch(`./data/spotify-playlists.json?v=${Date.now()}`);
+    const res = await fetch(`./data/spotify-playlists.json?v=${Date.now()}`, {
+      cache: "no-cache"
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}`);
+    }
+
     const json = await res.json();
 
     playlists = Array.isArray(json.items)
-      ? json.items.filter(p => p && (p.embedUrl || p.id))
+      ? json.items.filter((item) => item && (item.embedUrl || item.id))
       : [];
   } catch (err) {
     console.error("[spotify] error", err);
+
+    if (spotifyCount) {
+      spotifyCount.textContent = "0 / 0";
+    }
+
     return;
   }
 
-  if (!playlists.length) return;
+  if (!playlists.length) {
+    if (spotifyCount) {
+      spotifyCount.textContent = "0 / 0";
+    }
+    return;
+  }
 
   currentIndex = Math.floor(Math.random() * playlists.length);
 
@@ -30,7 +48,11 @@ export async function initSpotifyBlock() {
     if (item.embedUrl) {
       spotifyEmbed.src = item.embedUrl;
     } else {
-      spotifyEmbed.src = `https://open.spotify.com/embed/playlist/${item.id}`;
+      spotifyEmbed.src = `https://open.spotify.com/embed/playlist/${item.id}?utm_source=generator&theme=0`;
+    }
+
+    if (spotifyCount) {
+      spotifyCount.textContent = `${index + 1} / ${playlists.length}`;
     }
   }
 
