@@ -12,10 +12,35 @@ function bindRecipeButtons(scope = document) {
   });
 }
 
+const CLOUDINARY_BASE = 'https://res.cloudinary.com/djqsip3f8/image/upload';
+
+function getFilenameFromPath(path = '') {
+  return path.split('/').pop();
+}
+
+function getCloudinaryImage(path, variant = 'compact') {
+  const filename = getFilenameFromPath(path);
+
+  const transform =
+    variant === 'featured'
+      ? 'f_auto,q_auto,c_limit,h_420'
+      : 'f_auto,q_auto,c_limit,h_360';
+
+  return `${CLOUDINARY_BASE}/${transform}/${encodeURIComponent(filename)}`;
+}
+
 function renderFeaturedCard(recipe) {
+  const imageSrc = getCloudinaryImage(recipe.image, 'featured');
+
   return `
     <article class="recipe-card recipe-card--featured">
-      <img class="recipe-card__image" src="${recipe.image}" alt="${recipe.title}" />
+      <img
+        class="recipe-card__image"
+        src="${imageSrc}"
+        alt="${recipe.title}"
+        loading="lazy"
+        decoding="async"
+      />
       <div class="recipe-card__overlay"></div>
       <div class="recipe-card__content">
         <div class="recipe-card__tag">Destacada</div>
@@ -30,9 +55,17 @@ function renderFeaturedCard(recipe) {
 }
 
 function renderCompactCard(recipe) {
+  const imageSrc = getCloudinaryImage(recipe.image, 'compact');
+
   return `
     <article class="recipe-card recipe-card--compact">
-      <img class="recipe-card__image" src="${recipe.image}" alt="${recipe.title}" />
+      <img
+        class="recipe-card__image"
+        src="${imageSrc}"
+        alt="${recipe.title}"
+        loading="lazy"
+        decoding="async"
+      />
       <div class="recipe-card__overlay"></div>
       <div class="recipe-card__content">
         <h3 class="recipe-card__title">${recipe.title}</h3>
