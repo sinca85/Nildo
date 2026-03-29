@@ -1382,3 +1382,6 @@ a{text-decoration:none;color:inherit}
 .recipe-view__visual img.recipe-card__image--type-b {
     height: 220%;
 }
+.fix_type_b{
+    height: 220%;
+}
