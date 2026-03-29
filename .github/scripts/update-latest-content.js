@@ -1,6 +1,9 @@
 const fs = require("fs");
+const path = require("path");
 const { XMLParser } = require("fast-xml-parser");
 const cheerio = require("cheerio");
+
+const OUTPUT_PATH = path.join(process.cwd(), "data", "latest-content.json");
 
 async function getLatestYouTubeVideo() {
   const channelId = "UCmt8wj7wz8wczYFJz6v3mzA";
@@ -67,8 +70,9 @@ async function main() {
     twitch
   };
 
-  fs.writeFileSync("latest-content.json", JSON.stringify(payload, null, 2));
-  console.log("latest-content.json updated");
+  fs.mkdirSync(path.dirname(OUTPUT_PATH), { recursive: true });
+  fs.writeFileSync(OUTPUT_PATH, JSON.stringify(payload, null, 2));
+  console.log(`${OUTPUT_PATH} updated`);
 }
 
 main().catch((err) => {
