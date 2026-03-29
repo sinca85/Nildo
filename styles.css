@@ -1681,6 +1681,7 @@ height: 220% !important;
     linear-gradient(180deg, rgba(23, 18, 16, 0.96), rgba(11, 10, 10, 0.98));
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  position: relative;
 }
 
 .spotify-panel__head {
@@ -1746,18 +1747,13 @@ height: 220% !important;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   line-height: 1;
+      position: absolute;
+    right: 30px;
+    margin-top: -30px;
 }
 
 .spotify-panel__embed {
   border-radius: 22px;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.25);
-}
-.spotify-count {
-  color: #f7d28a;
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  line-height: 1;
 }
