@@ -1380,8 +1380,8 @@ a{text-decoration:none;color:inherit}
   display: block;
 }
 .recipe-view__visual img.recipe-card__image--type-b {
-    height: 220%;
 }
 .fix_type_b{
-    height: 220%;
+height: 220% !important;
+    object-position: left center !important;
 }
