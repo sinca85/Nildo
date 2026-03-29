@@ -6,31 +6,24 @@ const recipesNext = document.getElementById('recipes-next');
 const recipeModal = document.getElementById('recipeModal');
 const recipeModalBody = document.getElementById('recipeModalBody');
 
+function getOptimizedImage(path = '', variant = '360') {
+  const filename = path.split('/').pop();
+
+  if (variant === '420') {
+    return `./assets/images/420/${filename}`;
+  }
+
+  return `./assets/images/360/${filename}`;
+}
+
 function bindRecipeButtons(scope = document) {
   scope.querySelectorAll('[data-recipe-file]').forEach(button => {
     button.addEventListener('click', () => openRecipe(button.dataset.recipeFile));
   });
 }
 
-const CLOUDINARY_BASE = 'https://res.cloudinary.com/djqsip3f8/image/upload';
-
-function getFilenameFromPath(path = '') {
-  return path.split('/').pop();
-}
-
-function getCloudinaryImage(path, variant = 'compact') {
-  const filename = getFilenameFromPath(path);
-
-  const transform =
-    variant === 'featured'
-      ? 'f_auto,q_auto,c_limit,h_420'
-      : 'f_auto,q_auto,c_limit,h_360';
-
-  return `${CLOUDINARY_BASE}/${transform}/${encodeURIComponent(filename)}`;
-}
-
 function renderFeaturedCard(recipe) {
-  const imageSrc = getCloudinaryImage(recipe.image, 'featured');
+  const imageSrc = getOptimizedImage(recipe.image, '420');
 
   return `
     <article class="recipe-card recipe-card--featured">
@@ -55,7 +48,7 @@ function renderFeaturedCard(recipe) {
 }
 
 function renderCompactCard(recipe) {
-  const imageSrc = getCloudinaryImage(recipe.image, 'compact');
+  const imageSrc = getOptimizedImage(recipe.image, '360');
 
   return `
     <article class="recipe-card recipe-card--compact">
