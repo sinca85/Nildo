@@ -18,7 +18,8 @@
     "subtitle": "Tarta dulce con manzanas, masa casera y terminación fresca.",
     "image": "./assets/images/A4_Recetas (1).webp",
     "file": "recipes/tarta-de-manzanas.html",
-    "featured": false
+    "featured": false,
+    "type": "b"
   },
   {
     "title": "Cookie de gochujang",
@@ -32,7 +33,8 @@
     "subtitle": "Buñuelos dorados con mezcla de quesos y masa aireada.",
     "image": "./assets/images/A4_Recetas.webp",
     "file": "recipes/bunuelos-3-quesos.html",
-    "featured": false
+    "featured": false,
+    "type": "b"
   },
   {
     "title": "Tortas fritas",
@@ -53,7 +55,8 @@
     "subtitle": "Clásico relleno, suave y bien pastelero.",
     "image": "./assets/images/alfajor_de_maicena.webp",
     "file": "recipes/alfajor-de-maicena.html",
-    "featured": false
+    "featured": false,
+    "type": "b"
   },
   {
     "title": "Baozi con kimchi",
@@ -88,14 +91,16 @@
     "subtitle": "Textura liviana y esponjosa con perfil delicado.",
     "image": "./assets/images/cheesecake_japones.webp",
     "file": "recipes/cheesecake-japones.html",
-    "featured": false
+    "featured": false,
+    "type": "b"
   },
   {
     "title": "Chocoflan",
     "subtitle": "Postre híbrido entre torta y flan con mucho contraste.",
     "image": "./assets/images/chocoflan.webp",
     "file": "recipes/chocoflan.html",
-    "featured": false
+    "featured": false,
+    "type": "b"
   },
   {
     "title": "Cookie de chocolate y gochujang",
@@ -158,7 +163,8 @@
     "subtitle": "Base crocante, crema cítrica y merengue bien alto.",
     "image": "./assets/images/lemon_pie.webp",
     "file": "recipes/lemon-pie.html",
-    "featured": false
+    "featured": false,
+    "type": "b"
   },
   {
     "title": "Lentejas",
@@ -179,7 +185,8 @@
     "subtitle": "Versión casera, aireada y bien vistosa.",
     "image": "./assets/images/marshmallows.webp",
     "file": "recipes/marshmallows.html",
-    "featured": false
+    "featured": false,
+    "type": "b"
   },
   {
     "title": "Ñoqui cuatro quesos",

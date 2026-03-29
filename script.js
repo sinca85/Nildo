@@ -26,11 +26,12 @@ function bindRecipeButtons(scope = document) {
 
 function renderFeaturedCard(recipe) {
   const imageSrc = getOptimizedImage(recipe.image, '420');
+  const extraClass = recipe.type === 'b' ? ' recipe-card__image--type-b' : '';
 
   return `
     <article class="recipe-card recipe-card--featured">
       <img
-        class="recipe-card__image"
+        class="recipe-card__image${extraClass}"
         src="${imageSrc}"
         alt="${recipe.title}"
         loading="lazy"
@@ -51,11 +52,12 @@ function renderFeaturedCard(recipe) {
 
 function renderCompactCard(recipe) {
   const imageSrc = getOptimizedImage(recipe.image, '360');
+  const extraClass = recipe.type === 'b' ? ' recipe-card__image--type-b' : '';
 
   return `
     <article class="recipe-card recipe-card--compact">
       <img
-        class="recipe-card__image"
+        class="recipe-card__image${extraClass}"
         src="${imageSrc}"
         alt="${recipe.title}"
         loading="lazy"

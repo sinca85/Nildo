@@ -1379,3 +1379,6 @@ a{text-decoration:none;color:inherit}
   height: 100%;
   display: block;
 }
+.recipe-view__visual img.recipe-card__image--type-b {
+    height: 220%;
+}
