@@ -638,7 +638,7 @@ a{text-decoration:none;color:inherit}
     linear-gradient(rgba(255,255,255,.14), rgba(255,255,255,.03)),
     url("assets/textures/beige_texture_cropped.png") center/cover no-repeat;
   box-shadow:var(--shadow);
-      background-size: 200%;
+      background-size: 110%;
 }
 .dark-panel{
   background:
