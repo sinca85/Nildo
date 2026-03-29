@@ -1,65 +1,82 @@
-<article class="sn-recipe-popup" data-recipe-slug="coxinha">
-  <style>
-    .sn-recipe-popup {
-      color: #f5efe7;
-      display: grid;
-      gap: 18px;
-      font-family: Inter, system-ui, sans-serif;
-    }
-    .sn-recipe-popup__eyebrow {
-      display: inline-flex;
-      width: fit-content;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: #f0d06b;
-      color: #17120f;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .sn-recipe-popup__header h2 {
-      margin: 0 0 8px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.02;
-    }
-    .sn-recipe-popup__header p {
-      margin: 0;
-      color: rgba(245, 239, 231, 0.82);
-      font-size: 1.05rem;
-      line-height: 1.5;
-      max-width: 760px;
-    }
-    .sn-recipe-popup__figure {
-      margin: 0;
-      border-radius: 24px;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .sn-recipe-popup__figure img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .sn-recipe-popup__note {
-      margin: 0;
-      color: rgba(245, 239, 231, 0.66);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-  </style>
+<div class="recipe-view" aria-labelledby="recipeModalTitle">
+  <aside class="recipe-view__visual">
+    <img src="assets/images/coxinha.webp" alt="Coxinha" />
+  </aside>
 
-  <header class="sn-recipe-popup__header">
-    <span class="sn-recipe-popup__eyebrow">Receta</span>
-    <h2>Coxinha</h2>
-    <p>Clásico salado relleno, crocante y bien tentador.</p>
-  </header>
+  <article class="recipe-view__content">
+    <h2 class="recipe-view__title" id="recipeModalTitle">Coxinha</h2>
 
-  <figure class="sn-recipe-popup__figure">
-    <img src="./assets/images/coxinha.webp" alt="Coxinha" loading="lazy" />
-  </figure>
+    <div class="ingredients-paper">
+      <span class="ingredients-paper__kicker">Ingredientes</span>
+      <div class="ingredients-paper__grid">
 
-  <p class="sn-recipe-popup__note">La receta completa se muestra en la imagen original, con ingredientes e instrucciones tal como fueron diseñados para Soy Nildo.</p>
-</article>
+        <section>
+          <h3>Masa</h3>
+          <ul>
+            <li><span>leche</span><span>300ml</span></li>
+            <li><span>caldo</span><span>150ml</span></li>
+            <li><span>manteca</span><span>1 cda</span></li>
+            <li><span>harina de trigo</span><span>315g</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Relleno</h3>
+          <ul>
+            <li><span>pollo</span><span>1 pechuga</span></li>
+            <li><span>cebolla</span><span>2 u.</span></li>
+            <li><span>ajo</span><span>5 dientes</span></li>
+            <li><span>jengibre</span><span>1 cdta</span></li>
+            <li><span>sal</span><span>c/n</span></li>
+            <li><span>pimienta</span><span>c/n</span></li>
+            <li><span>coriandro</span><span>1 cdta</span></li>
+            <li><span>perejil</span><span>un puñado</span></li>
+            <li><span>curcuma</span><span>1 cdta</span></li>
+            <li><span>salsa de soja</span><span>15ml</span></li>
+            <li><span>aceite de sesamo</span><span>1 cdta</span></li>
+            <li><span>caldo</span><span>c/n</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Apanado</h3>
+          <ul>
+            <li><span>huevo</span><span>2 u.</span></li>
+            <li><span>harina</span><span>c/n</span></li>
+            <li><span>pan rallado</span><span>c/n</span></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="recipe-steps">
+
+      <section>
+        <h3>Masa</h3>
+        <ol>
+          <li>En una olla hervir la leche, el caldo y la manteca.</li>
+          <li>Cuando rompa hervor, incorporar la harina de golpe mezclando muy bien con espátula de madera hasta que la masa se despegue de la olla. Llevarla a una mesada y amasarla unos minutos, dejarla reposar.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h3>Relleno</h3>
+        <ol>
+          <li>Hervir la pechuga y desmenuzarla en hebras, reservar.</li>
+          <li>Aparte saltear la cebolla y el ajo con las especias, agregar el pollo desmenuzado e incorporar la salsa de soja, el aceite de sésamo y el caldo de a poco hasta tener un relleno jugoso.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h3>Armado</h3>
+        <ol>
+          <li>Cortar la masa en reposo en trozos pequeños, estirarla con las manos, colocar una cucharada de relleno y envolver formando un cono.</li>
+          <li>Apanar pasando por harina, huevo y pan rallado cada pieza. Freír en abundante aceite a 175 grados.</li>
+          <li>Servir en caliente y acompañar con alguna salsa a gusto.</li>
+        </ol>
+      </section>
+
+    </div>
+  </article>
+</div>
