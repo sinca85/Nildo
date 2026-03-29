@@ -21,6 +21,13 @@
     "featured": false
   },
   {
+    "title": "Cookie de gochujang",
+    "subtitle": "Cookie picante con chocolate amargo y gochujang.",
+    "image": "./assets/images/cookie_de_chocolatete_gochujang.webp",
+    "file": "recipes/cookie-de-gochujang.html",
+    "featured": false
+  },
+  {
     "title": "Buñuelos 3 quesos",
     "subtitle": "Buñuelos dorados con mezcla de quesos y masa aireada.",
     "image": "./assets/images/A4_Recetas.webp",
