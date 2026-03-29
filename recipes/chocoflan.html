@@ -1,65 +1,48 @@
-<article class="sn-recipe-popup" data-recipe-slug="chocoflan">
-  <style>
-    .sn-recipe-popup {
-      color: #f5efe7;
-      display: grid;
-      gap: 18px;
-      font-family: Inter, system-ui, sans-serif;
-    }
-    .sn-recipe-popup__eyebrow {
-      display: inline-flex;
-      width: fit-content;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: #f0d06b;
-      color: #17120f;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .sn-recipe-popup__header h2 {
-      margin: 0 0 8px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.02;
-    }
-    .sn-recipe-popup__header p {
-      margin: 0;
-      color: rgba(245, 239, 231, 0.82);
-      font-size: 1.05rem;
-      line-height: 1.5;
-      max-width: 760px;
-    }
-    .sn-recipe-popup__figure {
-      margin: 0;
-      border-radius: 24px;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .sn-recipe-popup__figure img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .sn-recipe-popup__note {
-      margin: 0;
-      color: rgba(245, 239, 231, 0.66);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-  </style>
+<div class="recipe-view">
+  <aside class="recipe-view__visual">
+    <img src="assets/images/chocoflan.webp" alt="Chocoflan" />
+  </aside>
 
-  <header class="sn-recipe-popup__header">
-    <span class="sn-recipe-popup__eyebrow">Receta</span>
-    <h2>Chocoflan</h2>
-    <p>Postre híbrido entre torta y flan con mucho contraste.</p>
-  </header>
+  <article class="recipe-view__content">
+    <h2 class="recipe-view__title">Torta imposible (chocoflan)</h2>
 
-  <figure class="sn-recipe-popup__figure">
-    <img src="./assets/images/chocoflan.webp" alt="Chocoflan" loading="lazy" />
-  </figure>
+    <div class="ingredients-paper">
+      <span class="ingredients-paper__kicker">Ingredientes</span>
+      <div class="ingredients-paper__grid">
 
-  <p class="sn-recipe-popup__note">La receta completa se muestra en la imagen original, con ingredientes e instrucciones tal como fueron diseñados para Soy Nildo.</p>
-</article>
+        <section>
+          <h3>Brownie</h3>
+          <ul>
+            <li><span>cacao</span><span>75g</span></li>
+            <li><span>chocolate</span><span>245g</span></li>
+            <li><span>huevos</span><span>6 u.</span></li>
+            <li><span>azúcar</span><span>240g</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Flan</h3>
+          <ul>
+            <li><span>huevos</span><span>10 u.</span></li>
+            <li><span>leche</span><span>1 litro</span></li>
+            <li><span>azúcar</span><span>200g</span></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="recipe-steps">
+      <section>
+        <h3>Preparación</h3>
+        <ol>
+          <li>Hacer caramelo.</li>
+          <li>Preparar brownie.</li>
+          <li>Preparar flan.</li>
+          <li>Verter ambos en molde.</li>
+          <li>Cocinar a baño maría 40 min.</li>
+        </ol>
+      </section>
+    </div>
+  </article>
+</div>
