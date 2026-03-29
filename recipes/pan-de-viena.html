@@ -1,65 +1,50 @@
-<article class="sn-recipe-popup" data-recipe-slug="pan-de-viena">
-  <style>
-    .sn-recipe-popup {
-      color: #f5efe7;
-      display: grid;
-      gap: 18px;
-      font-family: Inter, system-ui, sans-serif;
-    }
-    .sn-recipe-popup__eyebrow {
-      display: inline-flex;
-      width: fit-content;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: #f0d06b;
-      color: #17120f;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .sn-recipe-popup__header h2 {
-      margin: 0 0 8px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.02;
-    }
-    .sn-recipe-popup__header p {
-      margin: 0;
-      color: rgba(245, 239, 231, 0.82);
-      font-size: 1.05rem;
-      line-height: 1.5;
-      max-width: 760px;
-    }
-    .sn-recipe-popup__figure {
-      margin: 0;
-      border-radius: 24px;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .sn-recipe-popup__figure img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .sn-recipe-popup__note {
-      margin: 0;
-      color: rgba(245, 239, 231, 0.66);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-  </style>
+<div class="recipe-view" aria-labelledby="recipeModalTitle">
+  <aside class="recipe-view__visual">
+    <img src="assets/images/pan_de_viena.webp" alt="Pan de viena" />
+  </aside>
 
-  <header class="sn-recipe-popup__header">
-    <span class="sn-recipe-popup__eyebrow">Receta</span>
-    <h2>Pan de Viena</h2>
-    <p>Pan tierno, ideal para sándwiches o mesa salada.</p>
-  </header>
+  <article class="recipe-view__content">
+    <h2 class="recipe-view__title" id="recipeModalTitle">Pan de viena</h2>
 
-  <figure class="sn-recipe-popup__figure">
-    <img src="./assets/images/pan_de_viena.webp" alt="Pan de Viena" loading="lazy" />
-  </figure>
+    <div class="ingredients-paper">
+      <span class="ingredients-paper__kicker">Ingredientes</span>
+      <div class="ingredients-paper__grid">
 
-  <p class="sn-recipe-popup__note">La receta completa se muestra en la imagen original, con ingredientes e instrucciones tal como fueron diseñados para Soy Nildo.</p>
-</article>
+        <section>
+          <h3>Masa</h3>
+          <ul>
+            <li><span>harina</span><span>800g</span></li>
+            <li><span>manteca pomada</span><span>30g</span></li>
+            <li><span>sal</span><span>12g</span></li>
+            <li><span>levadura deshidratada</span><span>10g</span></li>
+            <li><span>azúcar</span><span>30g</span></li>
+            <li><span>agua</span><span>c/n</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Doradura</h3>
+          <ul>
+            <li><span>huevo</span><span>2</span></li>
+            <li><span>azúcar</span><span>1 cdta</span></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="recipe-steps">
+      <ol>
+        <li>Formar una masa tierna con todos los ingredientes.</li>
+        <li>Amasar hasta lograr un bollo liso y dejar reposar en lugar cálido por al menos 30 minutos.</li>
+        <li>Desgasificar y porcionar en piezas de 70g a 80g.</li>
+        <li>Estirar y formar rollos bien tensos.</li>
+        <li>Presionar las puntas para cerrarlas y acomodar en placa para horno.</li>
+        <li>Dejar leudar nuevamente hasta duplicar volumen.</li>
+        <li>Pintar con doradura.</li>
+        <li>Hornear a 180°C hasta dorar.</li>
+      </ol>
+    </div>
+
+  </article>
+</div>

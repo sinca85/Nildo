@@ -1,65 +1,72 @@
-<article class="sn-recipe-popup" data-recipe-slug="noquis-de-semola">
-  <style>
-    .sn-recipe-popup {
-      color: #f5efe7;
-      display: grid;
-      gap: 18px;
-      font-family: Inter, system-ui, sans-serif;
-    }
-    .sn-recipe-popup__eyebrow {
-      display: inline-flex;
-      width: fit-content;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: #f0d06b;
-      color: #17120f;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .sn-recipe-popup__header h2 {
-      margin: 0 0 8px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.02;
-    }
-    .sn-recipe-popup__header p {
-      margin: 0;
-      color: rgba(245, 239, 231, 0.82);
-      font-size: 1.05rem;
-      line-height: 1.5;
-      max-width: 760px;
-    }
-    .sn-recipe-popup__figure {
-      margin: 0;
-      border-radius: 24px;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .sn-recipe-popup__figure img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .sn-recipe-popup__note {
-      margin: 0;
-      color: rgba(245, 239, 231, 0.66);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-  </style>
+<div class="recipe-view" aria-labelledby="recipeModalTitle">
+  <aside class="recipe-view__visual">
+    <img src="assets/images/noquis_de_semola.webp" alt="Ñoquis de sémola con estofado" />
+  </aside>
 
-  <header class="sn-recipe-popup__header">
-    <span class="sn-recipe-popup__eyebrow">Receta</span>
-    <h2>Ñoquis de sémola</h2>
-    <p>Ñoquis suaves con una base distinta y muy casera.</p>
-  </header>
+  <article class="recipe-view__content">
+    <h2 class="recipe-view__title" id="recipeModalTitle">Ñoquis de sémola</h2>
 
-  <figure class="sn-recipe-popup__figure">
-    <img src="./assets/images/noquis_de_semola.webp" alt="Ñoquis de sémola" loading="lazy" />
-  </figure>
+    <div class="ingredients-paper">
+      <span class="ingredients-paper__kicker">Ingredientes</span>
+      <div class="ingredients-paper__grid">
 
-  <p class="sn-recipe-popup__note">La receta completa se muestra en la imagen original, con ingredientes e instrucciones tal como fueron diseñados para Soy Nildo.</p>
-</article>
+        <section>
+          <h3>Masa</h3>
+          <ul>
+            <li><span>sémola de trigo</span><span>100g</span></li>
+            <li><span>leche</span><span>1 litro</span></li>
+            <li><span>caldo de verduras o pollo</span><span>700ml</span></li>
+            <li><span>manteca</span><span>70g</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Estofado de asado</h3>
+          <ul>
+            <li><span>asado</span><span>1kg</span></li>
+            <li><span>panceta</span><span>200g</span></li>
+            <li><span>cebolla</span><span>2 un</span></li>
+            <li><span>zanahoria</span><span>1 un</span></li>
+            <li><span>apio</span><span>2 ramas</span></li>
+            <li><span>ajo</span><span>3 dientes</span></li>
+            <li><span>berenjena</span><span>1 un</span></li>
+            <li><span>tomate</span><span>1kg</span></li>
+            <li><span>sal y pimienta</span><span>a gusto</span></li>
+            <li><span>ají molido</span><span>7g</span></li>
+            <li><span>orégano, tomillo y adobo</span><span>15g c/u</span></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="recipe-steps">
+
+      <section>
+        <h3>Masa</h3>
+        <ol>
+          <li>Calentar la leche junto con la manteca y el caldo en una olla.</li>
+          <li>Cuando rompa hervor, agregar la sémola en forma de lluvia.</li>
+          <li>Revolver enérgicamente hasta que se cocine la sémola y absorba el líquido.</li>
+          <li>En caliente, envolver en film formando cilindros y dejar enfriar.</li>
+          <li>Una vez fríos, cortar en discos.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h3>Salsa / Estofado</h3>
+        <ol>
+          <li>Cortar las verduras en brunoise o cubos pequeños.</li>
+          <li>Cortar la panceta en cubos y la carne en trozos.</li>
+          <li>Sellar la carne a fuego fuerte y retirarla.</li>
+          <li>En la misma olla, hacer un sofrito con panceta y verduras.</li>
+          <li>Agregar el tomate y reincorporar la carne.</li>
+          <li>Cocinar a fuego bajo al menos 30 minutos.</li>
+          <li>Servir con los ñoquis, cubrir con salsa, agregar queso y gratinar.</li>
+        </ol>
+      </section>
+
+    </div>
+
+  </article>
+</div>
