@@ -225,7 +225,7 @@ const streamConfig = {
 const twitchConfig = {
   channel: "soynildo",
   // poner acá el último VOD manualmente hasta que después lo automaticemos con API
-  latestVodId: "2395567535"
+  latestVodId: "2734134378"
 };
 
 (function initLiveEmbedBlock() {
