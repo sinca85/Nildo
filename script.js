@@ -211,30 +211,40 @@ setInterval(loadLiveStatus, 60000);
 // STREAM TABS + HORARIO JSON
 // =========================
 
-const streamConfig = {
-  timezone: "America/Montevideo",
-  schedule: [
-    { days: [3, 4, 5, 6], start: "17:00", end: "21:00", label: "Miércoles a sábado · 17:00 a 21:00" }
-  ],
-  platforms: {
-    youtube: true,
-    twitch: true
-  }
-};
-
 const twitchConfig = {
   channel: "soynildo",
-  // poner acá el último VOD manualmente hasta que después lo automaticemos con API
   latestVodId: "2734134378"
 };
 
-(function initLiveEmbedBlock() {
+async function getLiveStatusConfig() {
+  try {
+    const res = await fetch("./live-status.json?v=" + Date.now());
+    const data = await res.json();
+
+    return {
+      timezone: data.timezone || "America/Montevideo",
+      schedule: Array.isArray(data.schedule) ? data.schedule : [],
+      platforms: data.platforms || {}
+    };
+  } catch (error) {
+    console.error("No se pudo cargar live-status.json", error);
+    return {
+      timezone: "America/Montevideo",
+      schedule: [],
+      platforms: { youtube: true, twitch: true }
+    };
+  }
+}
+
+(async function initLiveEmbedBlock() {
   const panel = document.getElementById("liveEmbedPanel");
   const tabs = document.getElementById("streamTabs");
   const embedContainer = document.getElementById("streamEmbed");
+  const heroTitle = document.getElementById("heroStreamTitle");
 
   if (!panel || !tabs || !embedContainer) return;
 
+  const streamConfig = await getLiveStatusConfig();
   const host = window.location.hostname;
   const availablePlatforms = getAvailablePlatforms(streamConfig.platforms);
 
@@ -243,9 +253,9 @@ const twitchConfig = {
     : availablePlatforms[0] || null;
 
   let currentFrame = null;
+  let currentRenderedMode = null;
   let isLiveNow = false;
   let currentSlotKey = null;
-  let currentRenderedMode = null;
 
   buildTabs();
 
@@ -273,6 +283,11 @@ const twitchConfig = {
     });
 
     tabs.hidden = false;
+  }
+
+  function setHeroTitle(live) {
+    if (!heroTitle) return;
+    heroTitle.textContent = live ? "Mirá en vivo:" : "Mirá lo último:";
   }
 
   function setActiveTab(platform) {
@@ -412,6 +427,7 @@ const twitchConfig = {
     if (slot) {
       isLiveNow = true;
       currentSlotKey = nextSlotKey;
+      setHeroTitle(true);
 
       if (activePlatform === "youtube") {
         renderYouTube(force);
@@ -423,8 +439,8 @@ const twitchConfig = {
 
     isLiveNow = false;
     currentSlotKey = null;
+    setHeroTitle(false);
 
-    // fuera de horario: default al último stream de Twitch
     if (activePlatform === "youtube") {
       renderYouTube(force);
     } else {
