@@ -356,7 +356,7 @@ a{text-decoration:none;color:inherit}
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:center;
+  object-position:left;
 }
 
 .recipe-view__content{
@@ -403,6 +403,7 @@ a{text-decoration:none;color:inherit}
   padding:28px 26px;
   box-shadow:0 16px 40px rgba(0,0,0,.25);
   margin-bottom:24px;
+  background-size: 150%;
 }
 .ingredients-paper__kicker{
   display:block;
