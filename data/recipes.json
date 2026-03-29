@@ -135,7 +135,7 @@
   {
     "title": "Pastafrola (Halloween)",
     "subtitle": "Pastafrola decorada con masa sable y relleno de membrillo.",
-    "image": "./assets/images/frola.jpeg",
+    "image": "./assets/images/frola.webp",
     "file": "recipes/frola.html",
     "featured": false
   },
