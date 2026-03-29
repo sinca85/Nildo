@@ -36,7 +36,6 @@ a{text-decoration:none;color:inherit}
   inset:0;
   pointer-events:none;
   opacity:.08;
-  background:url("assets/textures/texture_clean.png") center/700px repeat;
   mix-blend-mode:screen;
 }
 
