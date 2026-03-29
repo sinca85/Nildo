@@ -1610,6 +1610,8 @@ height: 220% !important;
   gap: 1.5rem;
   align-items: stretch;
   margin: 2rem 0 0;
+  width: var(--container);
+  margin: 0 auto;
 }
 
 .media-showcase__spotify,
