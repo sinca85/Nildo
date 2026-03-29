@@ -547,3 +547,73 @@ async function getLatestContent() {
   renderCurrentState(true);
   setInterval(() => renderCurrentState(false), 30000);
 })();
+
+
+const reelsData = [
+  {
+    url: "https://www.instagram.com/p/DUlLCUckX-_/",
+    title: "Recorte 01",
+    text: "Un momento del universo Nildo para ver rápido desde la landing."
+  },
+  {
+    url: "https://www.instagram.com/p/DUgnNeTkocW/",
+    title: "Recorte 02",
+    text: "Otro clip corto de cocina, comunidad y contenido de Soy Nildo."
+  },
+  {
+    url: "https://www.instagram.com/p/DUd-tNcEciJ/",
+    title: "Recorte 03",
+    text: "Más contenido breve para ir pasando entre reels desde la home."
+  }
+];
+
+function initReelsBlock() {
+  const prevBtn = document.getElementById("reels-prev");
+  const nextBtn = document.getElementById("reels-next");
+  const reelTitle = document.getElementById("reelTitle");
+  const reelText = document.getElementById("reelText");
+  const reelCount = document.getElementById("reelCount");
+  const reelLink = document.getElementById("reelLink");
+  const reelsCard = document.getElementById("reelsCard");
+
+  if (!prevBtn || !nextBtn || !reelTitle || !reelText || !reelCount || !reelLink || !reelsCard) {
+    return;
+  }
+
+  if (!Array.isArray(reelsData) || !reelsData.length) {
+    reelTitle.textContent = "No hay reels cargados";
+    reelText.textContent = "Cuando agregues reels al JSON o al array, van a aparecer acá.";
+    reelCount.textContent = "0 / 0";
+    reelLink.href = "https://www.instagram.com/soynildo/";
+    return;
+  }
+
+  let currentIndex = Math.floor(Math.random() * reelsData.length);
+
+  const renderReel = () => {
+    const item = reelsData[currentIndex];
+
+    reelTitle.textContent = item.title || `Reel ${currentIndex + 1}`;
+    reelText.textContent = item.text || "Recorte de Nildo disponible en Instagram.";
+    reelCount.textContent = `${currentIndex + 1} / ${reelsData.length}`;
+    reelLink.href = item.url;
+
+    reelsCard.classList.remove("is-switching");
+    void reelsCard.offsetWidth;
+    reelsCard.classList.add("is-switching");
+  };
+
+  prevBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + reelsData.length) % reelsData.length;
+    renderReel();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % reelsData.length;
+    renderReel();
+  });
+
+  renderReel();
+}
+
+document.addEventListener("DOMContentLoaded", initReelsBlock);

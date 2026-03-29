@@ -138,32 +138,56 @@
 
       <section class="info-block info-block--stream" id="en-vivo">
         <div class="info-block__copy">
-          <p class="section-script">En vivo</p>
-          <h2>Donde mirar a Nildo</h2>
+          <p class="section-script">Instagram</p>
+          <h2>Reels de Nildo</h2>
           <p>
-            El canal principal de stream está en Twitch y también hay contenido en YouTube.
-            La landing ya queda lista para sumar después un estado automático de “en vivo / offline”.
+            Recortes, momentos y clips rápidos del universo Soy Nildo. Acá podés ir viendo
+            distintos reels sin salir de la página.
           </p>
           <div class="action-row">
-            <a class="hero-button hero-button--solid" target="_blank" rel="noreferrer" href="https://www.twitch.tv/soynildo">Ir a Twitch</a>
-            <a class="hero-button hero-button--ghost" target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCmt8wj7wz8wczYFJz6v3mzA?sub_confirmation=1">Ir a YouTube</a>
+            <a class="hero-button hero-button--solid" target="_blank" rel="noreferrer" href="https://www.instagram.com/soynildo/">
+              Ir a Instagram
+            </a>
+            <a class="hero-button hero-button--ghost" target="_blank" rel="noreferrer" href="https://www.instagram.com/soynildo/reels/">
+              Ver todos los reels
+            </a>
           </div>
         </div>
-        <div class="status-panel live-embed-panel" id="liveEmbedPanel">
-          <div class="status-chip" id="streamStatusChip">OFFLINE</div>
 
-          <div class="stream-tabs" id="streamTabs" hidden>
-            <button class="stream-tab is-active" type="button" data-platform="twitch">Twitch</button>
-            <button class="stream-tab" type="button" data-platform="youtube">YouTube</button>
+        <div class="status-panel reels-panel" id="reelsPanel">
+          <div class="reels-panel__top">
+            <span class="hero-paper__script">Reels de Nildo</span>
+
+            <div class="reels-nav">
+              <button type="button" class="carousel-btn reels-btn" id="reels-prev" aria-label="Reel anterior">‹</button>
+              <button type="button" class="carousel-btn reels-btn" id="reels-next" aria-label="Siguiente reel">›</button>
+            </div>
           </div>
 
-          <div class="stream-embed" id="streamEmbed">
-            <div class="stream-placeholder" id="streamPlaceholder">
-              <h3>Bloque pensado para stream</h3>
-              <p id="streamPlaceholderText">
-                Fuera del horario en vivo se muestra este bloque. Cuando entre en horario,
-                acá aparece el player con tabs para Twitch y YouTube.
+          <div class="reels-card" id="reelsCard">
+            <div class="reels-card__media">
+              <div class="reels-card__badge">Instagram</div>
+              <div class="reels-card__icon">▶</div>
+            </div>
+
+            <div class="reels-card__body">
+              <h3 class="reels-card__title" id="reelTitle">Cargando reel...</h3>
+              <p class="reels-card__text" id="reelText">
+                Estamos preparando los recortes de Nildo.
               </p>
+
+              <div class="reels-card__footer">
+                <span class="reels-card__count" id="reelCount">1 / 1</span>
+                <a
+                  class="text-link"
+                  id="reelLink"
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.instagram.com/soynildo/"
+                >
+                  Ver reel en Instagram
+                </a>
+              </div>
             </div>
           </div>
         </div>
