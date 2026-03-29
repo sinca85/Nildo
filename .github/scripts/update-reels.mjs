@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import cheerio from "cheerio";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,7 +14,7 @@ const INSTAGRAM_REELS_URL = "https://www.instagram.com/soynildo/reels/";
 const SITE_BASE = "https://www.instagram.com";
 
 const MAX_ITEMS = 24;
-const MIN_VALID_ITEMS_TO_OVERWRITE = 1; // temporal para debug
+const MIN_VALID_ITEMS_TO_OVERWRITE = 1;
 const FETCH_TIMEOUT_MS = 15000;
 
 function log(...args) {
@@ -25,9 +26,23 @@ function normalizeInstagramUrl(url) {
 
   let cleaned = String(url).trim();
 
-  if (cleaned.startsWith("//")) cleaned = `https:${cleaned}`;
-  if (cleaned.startsWith("/")) cleaned = `${SITE_BASE}${cleaned}`;
-  if (!/^https?:\/\//i.test(cleaned)) return null;
+  cleaned = cleaned
+    .replace(/\\u002F/g, "/")
+    .replace(/\\\//g, "/")
+    .replace(/^"+|"+$/g, "")
+    .replace(/^'+|'+$/g, "");
+
+  if (cleaned.startsWith("//")) {
+    cleaned = `https:${cleaned}`;
+  }
+
+  if (cleaned.startsWith("/")) {
+    cleaned = `${SITE_BASE}${cleaned}`;
+  }
+
+  if (!/^https?:\/\//i.test(cleaned)) {
+    return null;
+  }
 
   try {
     const parsed = new URL(cleaned);
@@ -44,39 +59,66 @@ function normalizeInstagramUrl(url) {
     const type = match[1].toLowerCase();
     const code = match[2];
 
-    return `https://www.instagram.com/${type}/${code}/`;
+    return {
+      url: `https://www.instagram.com/${type}/${code}/`,
+      code,
+      type,
+    };
   } catch {
     return null;
+  }
+}
+
+function addFound(found, raw) {
+  const normalized = normalizeInstagramUrl(raw);
+  if (!normalized) return;
+
+  if (!found.has(normalized.url)) {
+    found.set(normalized.url, normalized);
   }
 }
 
 function extractItemsFromHtml(html) {
   const found = new Map();
 
-  const patterns = [
+  // 1) Intentar anchors reales
+  try {
+    const $ = cheerio.load(html);
+    $("a").each((_, el) => {
+      const href = $(el).attr("href");
+      if (href) addFound(found, href);
+    });
+  } catch (error) {
+    log("Cheerio parsing failed:", String(error));
+  }
+
+  // 2) Regex para URLs normales
+  const directPatterns = [
     /https?:\/\/(?:www\.)?instagram\.com\/(?:reel|p)\/[A-Za-z0-9_-]+\/?/gi,
     /href=(?:"|')?(\/(?:reel|p)\/[A-Za-z0-9_-]+\/?)(?:"|')?/gi,
-    /"(\/(?:reel|p)\/[A-Za-z0-9_-]+\/?)"/gi
+    /"(\/(?:reel|p)\/[A-Za-z0-9_-]+\/?)"/gi,
+    /'(\/(?:reel|p)\/[A-Za-z0-9_-]+\/?)'/gi,
   ];
 
-  for (const pattern of patterns) {
+  for (const pattern of directPatterns) {
     let match;
     while ((match = pattern.exec(html)) !== null) {
-      const raw = match[0].startsWith("href=")
-        ? match[1]
-        : match[0].replace(/^"|"$/g, "");
+      const raw = match[1] || match[0].replace(/^href=(?:"|')?/, "").replace(/(?:"|')$/, "");
+      addFound(found, raw);
+    }
+  }
 
-      const normalized = normalizeInstagramUrl(raw);
-      if (!normalized) continue;
+  // 3) Regex para URLs escapadas dentro de JSON/scripts
+  const escapedPatterns = [
+    /\\\/(?:reel|p)\\\/[A-Za-z0-9_-]+\\\//gi,
+    /\/(?:reel|p)\/[A-Za-z0-9_-]+\//gi,
+    /"\\\\\/(?:reel|p)\\\\\/[A-Za-z0-9_-]+\\\\\/"/gi,
+  ];
 
-      const parsed = new URL(normalized);
-      const parts = parsed.pathname.split("/").filter(Boolean);
-      const type = parts[0];
-      const code = parts[1];
-
-      if (!found.has(normalized)) {
-        found.set(normalized, { url: normalized, code, type });
-      }
+  for (const pattern of escapedPatterns) {
+    let match;
+    while ((match = pattern.exec(html)) !== null) {
+      addFound(found, match[0]);
     }
   }
 
@@ -109,8 +151,8 @@ async function fetchHtml(url) {
         "accept-language": "en-US,en;q=0.9,es;q=0.8",
         "cache-control": "no-cache",
         pragma: "no-cache",
-        referer: "https://www.instagram.com/"
-      }
+        referer: "https://www.instagram.com/",
+      },
     });
 
     if (!response.ok) {
@@ -129,7 +171,7 @@ function buildOutput(items, previousData) {
     source: INSTAGRAM_REELS_URL,
     itemCount: items.length,
     items,
-    previousUpdatedAt: previousData?.updatedAt || null
+    previousUpdatedAt: previousData?.updatedAt || null,
   };
 }
 
