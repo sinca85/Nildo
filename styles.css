@@ -1728,3 +1728,16 @@ height: 220% !important;
     justify-content: flex-end;
   }
 }
+.spotify-nav-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.spotify-count {
+  color: #f7d28a;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
