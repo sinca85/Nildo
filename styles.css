@@ -100,18 +100,16 @@ a{text-decoration:none;color:inherit}
 }
 
 .hero-left{
-  position:relative;
-  overflow:hidden;
-  min-height:520px;
-  border-radius:34px;
-  padding:44px;
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.38)),
-    url("assets/textures/texture_clean.png") center/cover no-repeat;
-  border:1px solid rgba(255,255,255,.08);
-  box-shadow:var(--shadow);
-  isolation:isolate;
-  background-size: 200%;
+    position: relative;
+    overflow: hidden;
+    min-height: 520px;
+    border-radius: 34px;
+    padding: 44px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, .15), rgba(0, 0, 0, .38)), url(assets/textures/dark-texture3.png) center / cover no-repeat;
+    border: 1px solid rgba(255, 255, 255, .08);
+    box-shadow: var(--shadow);
+    isolation: isolate;
+    background-size: 120%;
 }
 .hero-left::before{
   content:"";
