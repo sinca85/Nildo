@@ -1357,3 +1357,27 @@ a{text-decoration:none;color:inherit}
 .stream-status-text.live {
   color: #4ade80;
 }
+.social-card__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.social-card__icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.8;
+}
+
+.social-card__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.social-card__tag {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+}
