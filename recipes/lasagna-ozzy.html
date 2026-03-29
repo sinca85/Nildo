@@ -1,65 +1,92 @@
-<article class="sn-recipe-popup" data-recipe-slug="lasagna-ozzy">
-  <style>
-    .sn-recipe-popup {
-      color: #f5efe7;
-      display: grid;
-      gap: 18px;
-      font-family: Inter, system-ui, sans-serif;
-    }
-    .sn-recipe-popup__eyebrow {
-      display: inline-flex;
-      width: fit-content;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: #f0d06b;
-      color: #17120f;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .sn-recipe-popup__header h2 {
-      margin: 0 0 8px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.02;
-    }
-    .sn-recipe-popup__header p {
-      margin: 0;
-      color: rgba(245, 239, 231, 0.82);
-      font-size: 1.05rem;
-      line-height: 1.5;
-      max-width: 760px;
-    }
-    .sn-recipe-popup__figure {
-      margin: 0;
-      border-radius: 24px;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .sn-recipe-popup__figure img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .sn-recipe-popup__note {
-      margin: 0;
-      color: rgba(245, 239, 231, 0.66);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-  </style>
+<div class="recipe-view" aria-labelledby="recipeModalTitle">
+  <aside class="recipe-view__visual">
+    <img src="assets/images/lasagna_ozzy.webp" alt="Lasaña de pollo Ozzy" />
+  </aside>
 
-  <header class="sn-recipe-popup__header">
-    <span class="sn-recipe-popup__eyebrow">Receta</span>
-    <h2>Lasagna Ozzy</h2>
-    <p>Lasagna potente, gratinada y pensada para lucirse.</p>
-  </header>
+  <article class="recipe-view__content">
+    <h2 class="recipe-view__title" id="recipeModalTitle">Lasaña de pollo (Ozzy)</h2>
 
-  <figure class="sn-recipe-popup__figure">
-    <img src="./assets/images/lasagna_ozzy.webp" alt="Lasagna Ozzy" loading="lazy" />
-  </figure>
+    <div class="ingredients-paper">
+      <span class="ingredients-paper__kicker">Ingredientes</span>
+      <div class="ingredients-paper__grid">
 
-  <p class="sn-recipe-popup__note">La receta completa se muestra en la imagen original, con ingredientes e instrucciones tal como fueron diseñados para Soy Nildo.</p>
-</article>
+        <section>
+          <h3>Masa</h3>
+          <ul>
+            <li><span>harina</span><span>400g</span></li>
+            <li><span>huevo</span><span>4 u.</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Salsa</h3>
+          <ul>
+            <li><span>manteca</span><span>40g</span></li>
+            <li><span>ajo asado</span><span>1 cabeza</span></li>
+            <li><span>harina</span><span>40g</span></li>
+            <li><span>caldo de pollo</span><span>500ml</span></li>
+            <li><span>leche</span><span>250ml</span></li>
+            <li><span>queso ricotta</span><span>200g</span></li>
+            <li><span>queso azul</span><span>70g</span></li>
+            <li><span>sal, pimienta y nuez moscada</span><span>c/n</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Pollo</h3>
+          <ul>
+            <li><span>pechuga de pollo</span><span>2 u.</span></li>
+            <li><span>aceite de oliva</span><span>10ml</span></li>
+            <li><span>romero</span><span>10g</span></li>
+            <li><span>sal y pimienta</span><span>c/n</span></li>
+            <li><span>pimentón</span><span>2 cdas</span></li>
+            <li><span>mostaza</span><span>2 cdas</span></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="recipe-steps">
+
+      <section>
+        <h3>Masa</h3>
+        <ol>
+          <li>Amasar los ingredientes hasta obtener una masa firme.</li>
+          <li>Envolver en film y dejar reposar al menos 20 minutos en heladera.</li>
+          <li>Estirar con máquina de pasta hasta que quede bien fina (a palote también se puede, pero queda más gruesa).</li>
+          <li>Cortar en láminas del tamaño de la fuente.</li>
+          <li>Cocinar en agua hirviendo por 45 segundos y cortar la cocción en agua fría.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h3>Relleno</h3>
+        <ol>
+          <li>Deshuesar las pechugas obteniendo las supremas.</li>
+          <li>Cortar en cubos de 2 a 3 cm.</li>
+          <li>Condimentar bien y cocinar en horno a 200 grados.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h3>Salsa</h3>
+        <ol>
+          <li>Hacer un roux derritiendo la manteca y agregando la harina.</li>
+          <li>Incorporar la leche y el caldo de a poco.</li>
+          <li>Cuando rompa hervor agregar los quesos y cocinar hasta lograr la consistencia deseada.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h3>Armado</h3>
+        <ol>
+          <li>Armar la lasaña intercalando capas de masa, pollo y salsa.</li>
+          <li>En la capa superior agregar queso parmesano y llevar al horno hasta gratinar (aprox. 20 minutos).</li>
+        </ol>
+      </section>
+
+    </div>
+
+  </article>
+</div>

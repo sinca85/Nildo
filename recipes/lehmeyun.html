@@ -1,65 +1,77 @@
-<article class="sn-recipe-popup" data-recipe-slug="lehmeyun">
-  <style>
-    .sn-recipe-popup {
-      color: #f5efe7;
-      display: grid;
-      gap: 18px;
-      font-family: Inter, system-ui, sans-serif;
-    }
-    .sn-recipe-popup__eyebrow {
-      display: inline-flex;
-      width: fit-content;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: #f0d06b;
-      color: #17120f;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .sn-recipe-popup__header h2 {
-      margin: 0 0 8px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.02;
-    }
-    .sn-recipe-popup__header p {
-      margin: 0;
-      color: rgba(245, 239, 231, 0.82);
-      font-size: 1.05rem;
-      line-height: 1.5;
-      max-width: 760px;
-    }
-    .sn-recipe-popup__figure {
-      margin: 0;
-      border-radius: 24px;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .sn-recipe-popup__figure img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .sn-recipe-popup__note {
-      margin: 0;
-      color: rgba(245, 239, 231, 0.66);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-  </style>
+<div class="recipe-view" aria-labelledby="recipeModalTitle">
+  <aside class="recipe-view__visual">
+    <img src="assets/images/lehmeyun.webp" alt="Lehmeyun o Lahmacun" />
+  </aside>
 
-  <header class="sn-recipe-popup__header">
-    <span class="sn-recipe-popup__eyebrow">Receta</span>
-    <h2>Lehmeyun</h2>
-    <p>Masa fina con cobertura especiada y mucha presencia.</p>
-  </header>
+  <article class="recipe-view__content">
+    <h2 class="recipe-view__title" id="recipeModalTitle">Lehmeyun o Lahmacun</h2>
 
-  <figure class="sn-recipe-popup__figure">
-    <img src="./assets/images/lehmeyun.webp" alt="Lehmeyun" loading="lazy" />
-  </figure>
+    <div class="ingredients-paper">
+      <span class="ingredients-paper__kicker">Ingredientes</span>
+      <div class="ingredients-paper__grid">
 
-  <p class="sn-recipe-popup__note">La receta completa se muestra en la imagen original, con ingredientes e instrucciones tal como fueron diseñados para Soy Nildo.</p>
-</article>
+        <section>
+          <h3>Masa</h3>
+          <ul>
+            <li><span>harina</span><span>600g</span></li>
+            <li><span>levadura seca</span><span>7g</span></li>
+            <li><span>aceite</span><span>2 cdas</span></li>
+            <li><span>agua</span><span>c/n</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Relleno</h3>
+          <ul>
+            <li><span>carne picada</span><span>1 pechuga</span></li>
+            <li><span>cebolla</span><span>1</span></li>
+            <li><span>morrón rojo</span><span>1/2</span></li>
+            <li><span>morrón verde</span><span>1/2</span></li>
+            <li><span>perejil fresco</span><span>un puñado</span></li>
+            <li><span>sal y pimienta</span><span>c/n</span></li>
+            <li><span>bereber</span><span>2 o 3 cdas</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Nota</h3>
+          <ul>
+            <li><span>bereber</span><span>mezcla de especias: fenogreco, pimienta negra, comino, coriandro, cayena, clavo de olor, pimentón, jengibre, canela y nuez moscada</span></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="recipe-steps">
+
+      <section>
+        <h3>Masa</h3>
+        <ol>
+          <li>Amasar los ingredientes hasta obtener una masa tierna y fácil de bollar.</li>
+          <li>Dejar fermentar 30 minutos, dividir en piezas de aproximadamente 160g, bollar y dejar reposar nuevamente antes de estirar.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h3>Relleno</h3>
+        <ol>
+          <li>Cortar en cubos pequeños los morrones y la cebolla.</li>
+          <li>Procesar la carne junto con las especias y el perejil.</li>
+          <li>Integrar los vegetales en crudo (o saltearlos previamente para más sabor).</li>
+        </ol>
+      </section>
+
+      <section>
+        <h3>Armado</h3>
+        <ol>
+          <li>Estirar la masa bien fina y disponerla sobre una placa.</li>
+          <li>Colocar una capa delgada de relleno y hornear fuerte por unos minutos hasta que la masa esté cocida.</li>
+          <li>Servir en caliente y acompañar con jugo de limón.</li>
+        </ol>
+      </section>
+
+    </div>
+
+  </article>
+</div>
