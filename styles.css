@@ -1228,3 +1228,60 @@ a{text-decoration:none;color:inherit}
   background: #111;
   display: block;
 }
+
+.live-embed-panel--hero {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.live-embed-panel--hero .stream-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.live-embed-panel--hero .stream-tab {
+  background: rgba(20, 18, 16, 0.82);
+  color: #f5efe2;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  padding: 12px 18px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.live-embed-panel--hero .stream-tab.is-active {
+  background: #ecd06c;
+  color: #111;
+  border-color: transparent;
+}
+
+.live-embed-panel--hero .stream-embed {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  min-height: auto;
+}
+
+.live-embed-panel--hero .stream-placeholder {
+  background: rgba(16, 14, 12, 0.92);
+  color: #f5efe2;
+  border-radius: 28px;
+  padding: 28px 24px;
+  min-height: 240px;
+}
+
+.live-embed-panel--hero iframe,
+.live-embed-panel--hero .twitch-embed-target {
+  width: 100%;
+  min-height: 320px;
+  border: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  display: block;
+  background: #111;
+}

@@ -66,21 +66,16 @@
           </div>
           <div class="hero-paper">
             <span class="hero-paper__script">Mirá en vivo:</span>
-            <div class="status-panel live-embed-panel live-embed-panel--hero">
-              <div class="status-chip" id="streamStatusChip">OFFLINE</div>
-
-              <div class="stream-tabs" id="streamTabs" hidden>
+            <div class="status-panel live-embed-panel live-embed-panel--hero" id="liveEmbedPanel">
+              <div class="stream-tabs" id="streamTabs">
                 <button class="stream-tab is-active" type="button" data-platform="twitch">Twitch</button>
                 <button class="stream-tab" type="button" data-platform="youtube">YouTube</button>
               </div>
 
               <div class="stream-embed" id="streamEmbed">
-                <div class="stream-placeholder" id="streamPlaceholder">
-                  <h3>Bloque pensado para stream</h3>
-                  <p id="streamPlaceholderText">
-                    Ahora mismo está fuera del horario definido. Cuando entre en la franja del vivo,
-                    acá se activa automáticamente el player.
-                  </p>
+                <div class="stream-placeholder">
+                  <h3>Último stream</h3>
+                  <p>Cargando contenido...</p>
                 </div>
               </div>
             </div>

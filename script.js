@@ -214,12 +214,7 @@ setInterval(loadLiveStatus, 60000);
 const streamConfig = {
   timezone: "America/Montevideo",
   schedule: [
-    {
-      days: [3, 4, 5, 6],
-      start: "17:00",
-      end: "21:00",
-      label: "Miércoles a sábado · 17:00 a 21:00"
-    }
+    { days: [3, 4, 5, 6], start: "17:00", end: "21:00", label: "Miércoles a sábado · 17:00 a 21:00" }
   ],
   platforms: {
     youtube: true,
@@ -227,13 +222,18 @@ const streamConfig = {
   }
 };
 
+const twitchConfig = {
+  channel: "soynildo",
+  // poner acá el último VOD manualmente hasta que después lo automaticemos con API
+  latestVodId: "2395567535"
+};
+
 (function initLiveEmbedBlock() {
   const panel = document.getElementById("liveEmbedPanel");
   const tabs = document.getElementById("streamTabs");
   const embedContainer = document.getElementById("streamEmbed");
-  const statusChip = document.getElementById("streamStatusChip");
 
-  if (!panel || !tabs || !embedContainer || !statusChip) return;
+  if (!panel || !tabs || !embedContainer) return;
 
   const host = window.location.hostname;
   const availablePlatforms = getAvailablePlatforms(streamConfig.platforms);
@@ -245,8 +245,7 @@ const streamConfig = {
   let currentFrame = null;
   let isLiveNow = false;
   let currentSlotKey = null;
-  let currentRenderedPlatform = null;
-  let hasOfflinePlaceholder = false;
+  let currentRenderedMode = null;
 
   buildTabs();
 
@@ -272,6 +271,15 @@ const streamConfig = {
       button.textContent = platform === "youtube" ? "YouTube" : "Twitch";
       tabs.appendChild(button);
     });
+
+    tabs.hidden = false;
+  }
+
+  function setActiveTab(platform) {
+    activePlatform = platform;
+    tabs.querySelectorAll(".stream-tab").forEach((btn) => {
+      btn.classList.toggle("is-active", btn.dataset.platform === platform);
+    });
   }
 
   function toMinutes(hhmm) {
@@ -294,15 +302,7 @@ const streamConfig = {
     const hour = Number(parts.find((p) => p.type === "hour")?.value || 0);
     const minute = Number(parts.find((p) => p.type === "minute")?.value || 0);
 
-    const weekdayMap = {
-      Sun: 0,
-      Mon: 1,
-      Tue: 2,
-      Wed: 3,
-      Thu: 4,
-      Fri: 5,
-      Sat: 6
-    };
+    const weekdayMap = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
 
     return {
       day: weekdayMap[weekday],
@@ -319,7 +319,6 @@ const streamConfig = {
         const days = Array.isArray(slot.days) ? slot.days : [];
         const start = toMinutes(slot.start);
         const end = toMinutes(slot.end);
-
         return days.includes(day) && minutes >= start && minutes < end;
       }) || null
     );
@@ -331,169 +330,119 @@ const streamConfig = {
     return `${days}|${slot.start}|${slot.end}|${slot.label || ""}`;
   }
 
-  function setActiveTab(platform) {
-    activePlatform = platform;
-
-    tabs.querySelectorAll(".stream-tab").forEach((btn) => {
-      btn.classList.toggle("is-active", btn.dataset.platform === platform);
-    });
-  }
-
   function clearEmbed() {
     if (currentFrame) {
       currentFrame.remove();
       currentFrame = null;
     }
-    currentRenderedPlatform = null;
+    embedContainer.innerHTML = "";
+    currentRenderedMode = null;
   }
 
-  function createTwitchEmbed() {
+  function createTwitchLiveEmbed() {
     const iframe = document.createElement("iframe");
     iframe.className = "stream-frame";
     iframe.allowFullscreen = true;
     iframe.scrolling = "no";
-    iframe.src = `https://player.twitch.tv/?channel=soynildo&parent=${encodeURIComponent(host)}&autoplay=false`;
+    iframe.src = `https://player.twitch.tv/?channel=${twitchConfig.channel}&parent=${encodeURIComponent(host)}&autoplay=false`;
+    return iframe;
+  }
+
+  function createTwitchVodEmbed(videoId) {
+    const iframe = document.createElement("iframe");
+    iframe.className = "stream-frame";
+    iframe.allowFullscreen = true;
+    iframe.scrolling = "no";
+    iframe.src = `https://player.twitch.tv/?video=${videoId}&parent=${encodeURIComponent(host)}&autoplay=false`;
     return iframe;
   }
 
   function createYouTubeEmbed() {
     const iframe = document.createElement("iframe");
     iframe.className = "stream-frame";
-    iframe.allow =
-      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
     iframe.allowFullscreen = true;
     iframe.src = "https://www.youtube.com/embed/live_stream?channel=UCmt8wj7wz8wczYFJz6v3mzA&autoplay=0";
     return iframe;
   }
 
-  function renderPlatform(platform, force = false) {
-    if (!platform) return;
-
-    if (!force && currentRenderedPlatform === platform && currentFrame) {
-      setActiveTab(platform);
-      return;
-    }
-
+  function renderTwitchLive(force = false) {
+    if (!force && currentRenderedMode === "twitch-live" && currentFrame) return;
     clearEmbed();
-    setActiveTab(platform);
-
-    const placeholder = embedContainer.querySelector(".stream-placeholder");
-    if (placeholder) {
-      placeholder.remove();
-    }
-
-    const frame = platform === "youtube" ? createYouTubeEmbed() : createTwitchEmbed();
-    currentFrame = frame;
-    currentRenderedPlatform = platform;
-    hasOfflinePlaceholder = false;
-    embedContainer.appendChild(frame);
+    setActiveTab("twitch");
+    currentFrame = createTwitchLiveEmbed();
+    embedContainer.appendChild(currentFrame);
+    currentRenderedMode = "twitch-live";
   }
 
-  function renderOffline(force = false) {
-    if (!force && !isLiveNow && hasOfflinePlaceholder) {
-      statusChip.textContent = "OFFLINE";
-      tabs.hidden = true;
-      return;
-    }
-
+  function renderTwitchVod(force = false) {
+    if (!force && currentRenderedMode === "twitch-vod" && currentFrame) return;
     clearEmbed();
-    tabs.hidden = true;
-    statusChip.textContent = "OFFLINE";
+    setActiveTab("twitch");
 
-    embedContainer.innerHTML = `
-      <div class="stream-placeholder">
-        <h3>Bloque pensado para stream</h3>
-        <p>
-          Ahora mismo está fuera del horario definido. Cuando entre en la franja del vivo,
-          acá se activa automáticamente el player.
-        </p>
-      </div>
-    `;
-
-    isLiveNow = false;
-    currentSlotKey = null;
-    hasOfflinePlaceholder = true;
-  }
-
-  function renderOnline(slot, force = false) {
-    if (!availablePlatforms.length) {
-      renderOffline(force);
+    if (!twitchConfig.latestVodId) {
+      embedContainer.innerHTML = `
+        <div class="stream-placeholder">
+          <h3>Último stream</h3>
+          <p>No hay un VOD configurado todavía.</p>
+        </div>
+      `;
+      currentRenderedMode = "twitch-vod-empty";
       return;
     }
 
-    const nextSlotKey = getSlotKey(slot);
-
-    tabs.hidden = false;
-    statusChip.textContent = slot?.label ? slot.label : "EN VIVO";
-
-    if (!activePlatform || !availablePlatforms.includes(activePlatform)) {
-      activePlatform = availablePlatforms.includes("twitch")
-        ? "twitch"
-        : availablePlatforms[0];
-    }
-
-    if (!force && isLiveNow && currentSlotKey === nextSlotKey && currentRenderedPlatform === activePlatform && currentFrame) {
-      setActiveTab(activePlatform);
-      hasOfflinePlaceholder = false;
-      return;
-    }
-
-    renderPlatform(activePlatform, force);
-    isLiveNow = true;
-    currentSlotKey = nextSlotKey;
-    hasOfflinePlaceholder = false;
+    currentFrame = createTwitchVodEmbed(twitchConfig.latestVodId);
+    embedContainer.appendChild(currentFrame);
+    currentRenderedMode = "twitch-vod";
   }
 
-  function evaluateSchedule() {
+  function renderYouTube(force = false) {
+    if (!force && currentRenderedMode === "youtube" && currentFrame) return;
+    clearEmbed();
+    setActiveTab("youtube");
+    currentFrame = createYouTubeEmbed();
+    embedContainer.appendChild(currentFrame);
+    currentRenderedMode = "youtube";
+  }
+
+  function renderCurrentState(force = false) {
     const slot = getCurrentScheduleSlot();
     const nextSlotKey = getSlotKey(slot);
 
-    if (!slot) {
-      if (isLiveNow || !hasOfflinePlaceholder) {
-        renderOffline(true);
+    if (slot) {
+      isLiveNow = true;
+      currentSlotKey = nextSlotKey;
+
+      if (activePlatform === "youtube") {
+        renderYouTube(force);
       } else {
-        statusChip.textContent = "OFFLINE";
-        tabs.hidden = true;
+        renderTwitchLive(force);
       }
       return;
     }
 
-    if (!isLiveNow) {
-      renderOnline(slot, true);
-      return;
-    }
+    isLiveNow = false;
+    currentSlotKey = null;
 
-    if (currentSlotKey !== nextSlotKey) {
-      renderOnline(slot, true);
-      return;
+    // fuera de horario: default al último stream de Twitch
+    if (activePlatform === "youtube") {
+      renderYouTube(force);
+    } else {
+      renderTwitchVod(force);
     }
-
-    statusChip.textContent = slot?.label ? slot.label : "EN VIVO";
-    tabs.hidden = false;
-    setActiveTab(activePlatform);
   }
 
   tabs.addEventListener("click", (event) => {
     const btn = event.target.closest(".stream-tab");
     if (!btn) return;
 
-    const slot = getCurrentScheduleSlot();
-    if (!slot) return;
-
     const nextPlatform = btn.dataset.platform;
+    if (!nextPlatform) return;
 
-    if (!nextPlatform || nextPlatform === currentRenderedPlatform) {
-      setActiveTab(activePlatform);
-      return;
-    }
-
-    renderPlatform(nextPlatform, true);
-    isLiveNow = true;
-    currentSlotKey = getSlotKey(slot);
-    statusChip.textContent = slot?.label ? slot.label : "EN VIVO";
-    tabs.hidden = false;
+    activePlatform = nextPlatform;
+    renderCurrentState(true);
   });
 
-  evaluateSchedule();
-  setInterval(evaluateSchedule, 30000);
+  renderCurrentState(true);
+  setInterval(() => renderCurrentState(false), 30000);
 })();
