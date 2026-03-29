@@ -7,13 +7,15 @@ const recipeModal = document.getElementById('recipeModal');
 const recipeModalBody = document.getElementById('recipeModalBody');
 
 function getOptimizedImage(path = '', variant = '360') {
-  const filename = path.split('/').pop();
+  const filename = path.split('/').pop() || '';
+  const baseName = filename.replace(/\.[^.]+$/, '');
+  const optimizedFilename = `${baseName}.jpg`;
 
   if (variant === '420') {
-    return `./assets/images/420/${filename}`;
+    return `./assets/images/420/${optimizedFilename}`;
   }
 
-  return `./assets/images/360/${filename}`;
+  return `./assets/images/360/${optimizedFilename}`;
 }
 
 function bindRecipeButtons(scope = document) {
