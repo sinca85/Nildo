@@ -1,0 +1,41 @@
+name: Update Instagram Reels
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-instagram-reels:
+    runs-on: ubuntu-latest
+
+    env:
+      IG_TOKEN: ${{ secrets.IG_TOKEN }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate reels.json
+        run: node .github/scripts/update-instagram-reels.mjs
+
+      - name: Commit changes if needed
+        run: |
+          if git diff --quiet -- data/reels.json; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/reels.json
+          git commit -m "chore: update Instagram reels cache"
+          git push
