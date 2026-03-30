@@ -1624,7 +1624,7 @@ height: 220% !important;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 1.6rem;
+  padding: 1.2rem;
   border-radius: 32px;
   background:
     linear-gradient(180deg, rgba(23, 18, 16, 0.96), rgba(11, 10, 10, 0.98));
