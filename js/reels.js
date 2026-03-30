@@ -10,6 +10,9 @@ export async function initReelsBlock() {
   const reelImage = document.getElementById("reelImage");
   const reelBadge = document.getElementById("reelBadge");
 
+  const videoModal = document.getElementById("videoModal");
+  const videoModalBody = document.getElementById("videoModalBody");
+
   if (
     !prevBtn ||
     !nextBtn ||
@@ -26,6 +29,62 @@ export async function initReelsBlock() {
 
   let reels = [];
   let currentIndex = 0;
+
+  function openVideoModal(item) {
+    if (!videoModal || !videoModalBody) {
+      window.open(item.url, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    if (!item.videoUrl) {
+      window.open(item.url, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    videoModalBody.innerHTML = `
+      <video
+        class="video-modal__player"
+        src="${item.videoUrl}"
+        poster="${item.image || ""}"
+        controls
+        autoplay
+        playsinline
+        preload="metadata"
+      ></video>
+    `;
+
+    videoModal.classList.add("is-open");
+    videoModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  }
+
+  function closeVideoModal() {
+    if (!videoModal || !videoModalBody) return;
+
+    const video = videoModalBody.querySelector("video");
+    if (video) {
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+    }
+
+    videoModalBody.innerHTML = "";
+    videoModal.classList.remove("is-open");
+    videoModal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  }
+
+  document.addEventListener("click", (event) => {
+    if (event.target.matches("[data-close-video-modal]")) {
+      closeVideoModal();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && videoModal?.classList.contains("is-open")) {
+      closeVideoModal();
+    }
+  });
 
   try {
     const response = await fetch(`./data/reels.json?v=${Date.now()}`, {
@@ -100,7 +159,7 @@ export async function initReelsBlock() {
     return "Instagram";
   }
 
-    function renderReel(index) {
+  function renderReel(index) {
     const item = reels[index];
 
     const title = getFallbackTitle(item, index);
@@ -117,30 +176,29 @@ export async function initReelsBlock() {
     reelImage.alt = title;
 
     if (reelBadge) {
-        reelBadge.textContent = badge;
+      reelBadge.textContent = badge;
     }
 
     const visual = reelsCard.querySelector(".reels-card__visual");
     if (visual) {
-        visual.style.cursor = "pointer";
-        visual.onclick = () => {
-        window.open(item.url, "_blank", "noopener,noreferrer");
-        };
+      visual.style.cursor = "pointer";
+      visual.onclick = () => openVideoModal(item);
     }
 
     const play = reelsCard.querySelector(".reels-card__play");
     if (play) {
-        play.style.cursor = "pointer";
-        play.onclick = () => {
-        window.open(item.url, "_blank", "noopener,noreferrer");
-        };
+      play.style.cursor = "pointer";
+      play.onclick = (e) => {
+        e.stopPropagation();
+        openVideoModal(item);
+      };
     }
 
     reelsCard.classList.remove("is-empty");
     reelsCard.classList.remove("is-switching");
     void reelsCard.offsetWidth;
     reelsCard.classList.add("is-switching");
-    }
+  }
 
   function goPrev() {
     currentIndex = (currentIndex - 1 + reels.length) % reels.length;
