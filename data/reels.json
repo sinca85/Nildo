@@ -1,32 +1,55 @@
 {
-  "updatedAt": "2026-03-29T00:00:00.000Z",
-  "source": "manual-seed",
-  "itemCount": 3,
+  "updatedAt": "2026-03-30T12:26:48.914Z",
+  "source": "instagram-graph-api",
+  "itemCount": 4,
   "items": [
     {
-      "url": "https://www.instagram.com/p/DUlLCUckX-_/",
-      "code": "DUlLCUckX-_",
-      "type": "p",
-      "title": "Recorte 01",
-      "text": "Momento destacado de Soy Nildo para mostrar en la home.",
-      "image": "./assets/images/reels/DUlLCUckX-_.webp"
+      "id": "18055358732501693",
+      "type": "reel",
+      "code": "DFRSZuIs1Ae",
+      "title": "Reel 01",
+      "text": "Recorte de Instagram de Soy Nildo.",
+      "caption": "",
+      "url": "https://www.instagram.com/reel/DFRSZuIs1Ae/",
+      "image": "https://scontent-sjc3-1.cdninstagram.com/v/t51.71878-15/503103324_9854716681315550_8714226761843024310_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=6O7qvlll764Q7kNvwEeCDI2&_nc_oc=AdpsAxnyCcxUn6YjCYr47xlNJaiNqdHS8H3YvzhXYIWEg-522ckp_-rX1r9oTqtCp0k&_nc_zt=23&_nc_ht=scontent-sjc3-1.cdninstagram.com&edm=ANo9K5cEAAAA&_nc_gid=dMem2nVhEL46twE2pd-BmQ&_nc_tpa=Q5bMBQHhETPVZZRQdYJXJFCiyZdkKiHOY9t0Fmgx9LM7JOGCSXQd-yCZrhtfxKl0tEsaIKTJg_y42bNA&oh=00_AfyroD4BnFEQbz-AgQQLUVLcIBNoabHT-BL9_15W-zBImg&oe=69D0327C",
+      "videoUrl": "https://scontent-sjc3-1.cdninstagram.com/o1/v/t2/f2/m367/AQMu0qmCnwNiATHPYQCa9hZfxbyxWRdtR4R8lu3_VUzf3L71XRKUP5-HvF9pkgf7uwtMtHHUtYiocU8-NU0bVeGHhVeluf3eg1sTYnA.mp4?_nc_cat=102&_nc_sid=5e9851&_nc_ht=scontent-sjc3-1.cdninstagram.com&_nc_ohc=37wJQGHEkFQQ7kNvwEqjrwf&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5JTlNUQUdSQU0uQ0xJUFMuQzMuNzIwLmRhc2hfYmFzZWxpbmVfMV92MSIsInhwdl9hc3NldF9pZCI6OTAwMzYwODMxMzA5MzA2MiwiYXNzZXRfYWdlX2RheXMiOjQyOCwidmlfdXNlY2FzZV9pZCI6MTAwOTksImR1cmF0aW9uX3MiOjE2LCJ1cmxnZW5fc291cmNlIjoid3d3In0%3D&ccb=17-1&vs=4c297b9f49d57823&_nc_vs=HBksFQIYQGlnX2VwaGVtZXJhbC9GNjRENjgzMzI5QjE3NUM1ODhDODAwRkI2QzNGQjlCNF92aWRlb19kYXNoaW5pdC5tcDQVAALIARIAFQIYR2lnX3hwdl9yZWVsc19wZXJtYW5lbnRfc3JfcHJvZC8zMzY5OTk5MjkzMTc4OTA1XzQwNDExOTIyMjg1Mjc1MDkwODQubXA0FQICyAESACgAGAAbAogHdXNlX29pbAExEnByb2dyZXNzaXZlX3JlY2lwZQExFQAAJozvlrP9rv4fFQIoAkMzLBdAMPfO2RaHKxgSZGFzaF9iYXNlbGluZV8xX3YxEQB1_gdl5p0BAA&_nc_gid=dMem2nVhEL46twE2pd-BmQ&edm=ANo9K5cEAAAA&_nc_zt=28&_nc_tpa=Q5bMBQF70iKdg1m0o52l9pcZMEslzqUM86nYqKnr9cpTALtOMX1-1qRQF8EME8pjVrad-pnFzosAA6uO&oh=00_AfwNMEyUf8bt6CYn0huaKvpbPoEBU-sKFMhgNPFrEk-8bg&oe=69D02B37",
+      "publishedAt": "2025-01-26T01:19:49+0000"
     },
     {
-      "url": "https://www.instagram.com/p/DUgnNeTkocW/",
-      "code": "DUgnNeTkocW",
-      "type": "p",
-      "title": "Recorte 02",
-      "text": "Otro clip corto del universo Nildo para ir rotando en el bloque.",
-      "image": "./assets/images/reels/DUgnNeTkocW.webp"
+      "id": "17878226037028395",
+      "type": "reel",
+      "code": "C4EOInCizEg",
+      "title": "Creando cositas...",
+      "text": "Creando cositas...",
+      "caption": "Creando cositas...",
+      "url": "https://www.instagram.com/reel/C4EOInCizEg/",
+      "image": "https://scontent-sjc6-1.cdninstagram.com/v/t51.71878-15/496958479_560428710049490_1622599324088257692_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=lJEv0kgFw0AQ7kNvwE9aZqa&_nc_oc=Adr29A0UAxNnBd3iXJtbgAbAtDIFQ-A2z1ozHat4DYIzuTdE1KRtE1vdfl5Wdd69T6s&_nc_zt=23&_nc_ht=scontent-sjc6-1.cdninstagram.com&edm=ANo9K5cEAAAA&_nc_gid=dMem2nVhEL46twE2pd-BmQ&_nc_tpa=Q5bMBQGKozA81G9rNJ0-7gpA4VsHmof94wN-DKyCMFnNwJToDKcbjS2YiEBMm4Nh7tpb0s7htIMsBA4R&oh=00_AfxMH5mrcQ8sj6pp-rQ2z34-Qg9P3WMe-lXLrr1zCcZU_g&oe=69D0445F",
+      "videoUrl": "https://scontent-sjc6-1.cdninstagram.com/o1/v/t2/f2/m82/AQMChTioT-cb8fi-KaNlETxRKAoMOWLJ9bBc_vyf3zi0pSdOjRjtjnNJZKRJdumOIoxBiTQohSpDd-aQCrwTSgxTTKwz6EoUs72WxEE.mp4?_nc_cat=108&_nc_sid=5e9851&_nc_ht=scontent-sjc6-1.cdninstagram.com&_nc_ohc=-1l4VPosmHoQ7kNvwFTI8TR&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5JTlNUQUdSQU0uQ0xJUFMuQzMuNzIwLmRhc2hfYmFzZWxpbmVfMV92MSIsInhwdl9hc3NldF9pZCI6MzAzNzI2NTQyMzg2Mzc2LCJhc3NldF9hZ2VfZGF5cyI6NzU2LCJ2aV91c2VjYXNlX2lkIjoxMDA5OSwiZHVyYXRpb25fcyI6NzMsInVybGdlbl9zb3VyY2UiOiJ3d3cifQ%3D%3D&ccb=17-1&vs=c6004bf21416fc03&_nc_vs=HBkcFQIYT2lnX3hwdl9yZWVsc19wZXJtYW5lbnRfcHJvZC8yRjQ1QTYzQTAxNzVBMDAwNUVFRjI5ODMyNURCOUFBNF92aWRlb19kYXNoaW5pdC5tcDQVAALIARIAKAAYABsCiAd1c2Vfb2lsATEScHJvZ3Jlc3NpdmVfcmVjaXBlATEVAAAmkNPXipuPigEVAigCQzMsF0BSd2yLQ5WBGBJkYXNoX2Jhc2VsaW5lXzFfdjERAHX-B2XmnQEA&_nc_gid=dMem2nVhEL46twE2pd-BmQ&edm=ANo9K5cEAAAA&_nc_zt=28&_nc_tpa=Q5bMBQHlCeONueaWHMOD11KQ-n2mpucj_0q10fX5GbxjwjgLb1RH0pDig1qOtFRp0qpf0bW5A26j0CbO&oh=00_AfwZbdl6kPhvU2OS9EHyqbs4uQsqFSQtXyfN7rbTIowwIg&oe=69CC5691",
+      "publishedAt": "2024-03-03T20:46:14+0000"
     },
     {
-      "url": "https://www.instagram.com/p/DUd-tNcEciJ/",
-      "code": "DUd-tNcEciJ",
-      "type": "p",
-      "title": "Recorte 03",
-      "text": "Contenido breve de cocina, comunidad y estilo de la marca.",
-      "image": "./assets/images/reels/DUd-tNcEciJ.webp"
+      "id": "18254249011175452",
+      "type": "reel",
+      "code": "C3QwdbEpjTI",
+      "title": "Reel 03",
+      "text": "Recorte de Instagram de Soy Nildo.",
+      "caption": "",
+      "url": "https://www.instagram.com/reel/C3QwdbEpjTI/",
+      "image": "https://scontent-sjc3-1.cdninstagram.com/v/t51.71878-15/501799780_1355679858820014_6996056668308768730_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=103&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=lcIUIm_wXd0Q7kNvwFxCxVG&_nc_oc=AdonKX4iiRQJ5_Ia4tJ-_7PFt29NzU9tiI-HOF01IYSz0YqLlrWbIPkM4QVGRdLsem0&_nc_zt=23&_nc_ht=scontent-sjc3-1.cdninstagram.com&edm=ANo9K5cEAAAA&_nc_gid=dMem2nVhEL46twE2pd-BmQ&_nc_tpa=Q5bMBQEOnViwBZOSetM21nHClRYsBymAE110WBXwXpJqvwEgIqJvG3xeE3MYlpBjU4Z6XetWiLZ6czlW&oh=00_AfxiVxq-GmMmpwEP0vyozV23ncZWdS_hUCQKa57tH76YzQ&oe=69D037C9",
+      "videoUrl": "https://scontent-sjc6-1.cdninstagram.com/o1/v/t2/f2/m82/AQNa3ZLOOfqzj4XBs3WpBNumAMrmdlQeEsrXfDibMduL2boSK9XbNJkyNpyBYOQ2vXXTBgEx7D6xi7fjh4K-wARbQcIWXeTYf5iislE.mp4?_nc_cat=111&_nc_sid=5e9851&_nc_ht=scontent-sjc6-1.cdninstagram.com&_nc_ohc=kviM2pguCN0Q7kNvwGNnHVH&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5JTlNUQUdSQU0uQ0xJUFMuQzMuNDgwLmRhc2hfYmFzZWxpbmVfMV92MSIsInhwdl9hc3NldF9pZCI6MTA1OTY5MjE4NTA4NTQ1MSwiYXNzZXRfYWdlX2RheXMiOjc3NiwidmlfdXNlY2FzZV9pZCI6MTAwOTksImR1cmF0aW9uX3MiOjI2LCJ1cmxnZW5fc291cmNlIjoid3d3In0%3D&ccb=17-1&vs=9949c75a3011f4f8&_nc_vs=HBksFQIYT2lnX3hwdl9yZWVsc19wZXJtYW5lbnRfcHJvZC8wQzQ4OTJEMkI0NUUxM0U4RjA4NEUzMjMyMDY2RDNCM192aWRlb19kYXNoaW5pdC5tcDQVAALIARIAFQIYR2lnX3hwdl9yZWVsc19wZXJtYW5lbnRfc3JfcHJvZC8xMTQyNzMyMjUwNTAyNzczXzgzMjA0NjMyNDU1NDAxMDQ4ODcubXA0FQICyAESACgAGAAbAogHdXNlX29pbAExEnByb2dyZXNzaXZlX3JlY2lwZQExFQAAJpaYm4Sa8uEDFQIoAkMzLBdAOpaHKwIMShgSZGFzaF9iYXNlbGluZV8xX3YxEQB1_gdl5p0BAA&_nc_gid=dMem2nVhEL46twE2pd-BmQ&edm=ANo9K5cEAAAA&_nc_zt=28&_nc_tpa=Q5bMBQFs4nayewZrAe8QkHa5yqCbhMAahBD6APg-gM8oBk0Gxw3aB7zh2vnSz9nh7Ld1XuWZxg1oDIu9&oh=00_Afx36ZtjdeSSoLhNij-9kcm9u5Y-HNL5bVnuk9NNX_Qz-g&oe=69CC3118",
+      "publishedAt": "2024-02-12T21:04:04+0000"
+    },
+    {
+      "id": "18292445665137414",
+      "type": "reel",
+      "code": "CuvGhtCpRYo",
+      "title": "Reel 04",
+      "text": "Recorte de Instagram de Soy Nildo.",
+      "caption": "",
+      "url": "https://www.instagram.com/reel/CuvGhtCpRYo/",
+      "image": "https://scontent-sjc6-1.cdninstagram.com/v/t51.71878-15/503660129_9348129645286949_8263150222621806316_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=107&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=8mVAlbW1xt0Q7kNvwFuimKB&_nc_oc=Adqf6ALHyWaauVWniY2vMaY-jagfgj7JmWt5QViRVKrGnsnf4uDO_1NuB260vO-mzmU&_nc_zt=23&_nc_ht=scontent-sjc6-1.cdninstagram.com&edm=ANo9K5cEAAAA&_nc_gid=dMem2nVhEL46twE2pd-BmQ&_nc_tpa=Q5bMBQGArNwzu_nYvjkGK-WxQNRWjxX_1KaZiAEfPt3sfuZsGMgQxrB4c4gLjmtNVfyzyX3rxZwkZAp8&oh=00_Afwbbmfdy6yxlWv2tMHJuWhWxj15lFA8w5f1_j88QdCbyg&oe=69D04561",
+      "videoUrl": "https://scontent-sjc6-1.cdninstagram.com/o1/v/t2/f2/m82/AQMvlEXAACEpy8BrKAS8T-Gfp-qCD4GlwTrCiownCxWY-kSkoyACw1i5vpMzEXfH_oiox0-p2gtKzTKcsXvLWvk02j1_ZFbeoKol4XY.mp4?_nc_cat=108&_nc_sid=5e9851&_nc_ht=scontent-sjc6-1.cdninstagram.com&_nc_ohc=_TaMmV9HBYMQ7kNvwEiPg7C&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5JTlNUQUdSQU0uQ0xJUFMuQzMuNzIwLmRhc2hfYmFzZWxpbmVfMV92MSIsInhwdl9hc3NldF9pZCI6NTg5MTM2MzIwNDI5Njk2MSwiYXNzZXRfYWdlX2RheXMiOjk4OCwidmlfdXNlY2FzZV9pZCI6MTAwOTksImR1cmF0aW9uX3MiOjcsInVybGdlbl9zb3VyY2UiOiJ3d3cifQ%3D%3D&ccb=17-1&vs=e58c2b1069316085&_nc_vs=HBksFQIYT2lnX3hwdl9yZWVsc19wZXJtYW5lbnRfcHJvZC9FMDQyMEEzNTA5NjhEQTIwQURDMTdDN0VGMDYyMDQ4RF92aWRlb19kYXNoaW5pdC5tcDQVAALIARIAFQIYR2lnX3hwdl9yZWVsc19wZXJtYW5lbnRfc3JfcHJvZC82NTEzOTcxMDU1MzEyNDExXzYwMjcwODA1NTM5NTE1OTY3OTgubXA0FQICyAESACgAGAAbAogHdXNlX29pbAExEnByb2dyZXNzaXZlX3JlY2lwZQExFQAAJoLEx7C8ivcUFQIoAkMzLBdAHxBiTdLxqhgSZGFzaF9iYXNlbGluZV8xX3YxEQB1_gdl5p0BAA&_nc_gid=dMem2nVhEL46twE2pd-BmQ&edm=ANo9K5cEAAAA&_nc_zt=28&_nc_tpa=Q5bMBQG2iQgbBC8TgGdMyjztCjuDkVsswB6DxJY9EL4W3LmrpQXNy0FnGNr4jRhRRgeUWqcyojpdtSIh&oh=00_AfzXDyIItkAYbjj70-IpK917xvKOHYjTDEppC1foKw8Cyg&oe=69CC5395",
+      "publishedAt": "2023-07-15T23:11:06+0000"
     }
-  ],
-  "previousUpdatedAt": null
+  ]
 }
