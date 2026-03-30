@@ -29,12 +29,83 @@ export async function initReelsBlock() {
 
   let reels = [];
   let currentIndex = 0;
+  let modalIndex = 0;
 
-  function openVideoModal(item) {
-    if (!videoModal || !videoModalBody) {
-      window.open(item.url, "_blank", "noopener,noreferrer");
-      return;
+  function getFallbackTitle(item, index) {
+    if (item.title && String(item.title).trim()) {
+      return String(item.title).trim();
     }
+    return `Recorte ${String(index + 1).padStart(2, "0")}`;
+  }
+
+  function getFallbackText(item) {
+    if (item.text && String(item.text).trim()) {
+      return String(item.text).trim();
+    }
+    return "Momentos, cocina y clips rápidos del universo Soy Nildo para ir pasando desde la home.";
+  }
+
+  function getFallbackImage(item) {
+    if (item.image && String(item.image).trim()) {
+      return String(item.image).trim();
+    }
+
+    if (item.code) {
+      return `./assets/images/reels/${item.code}.webp`;
+    }
+
+    return "./assets/images/reels/placeholder.webp";
+  }
+
+  function getBadgeLabel(item) {
+    if (item.type === "reel") return "Reel";
+    if (item.type === "p") return "Instagram";
+    return "Instagram";
+  }
+
+  function buildCommentsHtml(item) {
+    const comments = Array.isArray(item.comments) ? item.comments.slice(0, 5) : [];
+
+    if (!comments.length) {
+      return `
+        <div class="video-modal__comments-empty">
+          Todavía no hay comentarios cargados para este reel.
+        </div>
+      `;
+    }
+
+    return `
+      <div class="video-modal__comments-list">
+        ${comments
+          .map(
+            (comment) => `
+              <article class="video-modal__comment">
+                <div class="video-modal__comment-head">
+                  <strong>${escapeHtml(comment.username || "Usuario")}</strong>
+                </div>
+                <p>${escapeHtml(comment.text || "")}</p>
+              </article>
+            `
+          )
+          .join("")}
+      </div>
+    `;
+  }
+
+  function escapeHtml(value = "") {
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function renderModalItem(index) {
+    if (!videoModal || !videoModalBody || !reels.length) return;
+
+    const item = reels[index];
+    modalIndex = index;
 
     if (!item.videoUrl) {
       window.open(item.url, "_blank", "noopener,noreferrer");
@@ -42,17 +113,78 @@ export async function initReelsBlock() {
     }
 
     videoModalBody.innerHTML = `
-      <video
-        class="video-modal__player"
-        src="${item.videoUrl}"
-        poster="${item.image || ""}"
-        controls
-        autoplay
-        playsinline
-        preload="metadata"
-      ></video>
+      <div class="video-modal__layout">
+        <div class="video-modal__media">
+          <button type="button" class="video-modal__nav video-modal__nav--prev" id="videoModalPrev" aria-label="Reel anterior">‹</button>
+
+          <video
+            class="video-modal__player"
+            src="${item.videoUrl}"
+            poster="${item.image || ""}"
+            controls
+            autoplay
+            playsinline
+            preload="metadata"
+          ></video>
+
+          <button type="button" class="video-modal__nav video-modal__nav--next" id="videoModalNext" aria-label="Siguiente reel">›</button>
+        </div>
+
+        <aside class="video-modal__side">
+          <span class="video-modal__badge">${escapeHtml(getBadgeLabel(item))}</span>
+          <h3 class="video-modal__title">${escapeHtml(getFallbackTitle(item, index))}</h3>
+          <p class="video-modal__text">${escapeHtml(getFallbackText(item))}</p>
+
+          <div class="video-modal__meta">
+            <span>${index + 1} / ${reels.length}</span>
+            <span>${escapeHtml(item.code || "Instagram")}</span>
+          </div>
+
+          <div class="video-modal__actions">
+            <a
+              class="hero-button hero-button--solid"
+              href="${item.url}"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Ver en Instagram
+            </a>
+          </div>
+
+          <div class="video-modal__comments">
+            <h4>Últimos comentarios</h4>
+            ${buildCommentsHtml(item)}
+          </div>
+        </aside>
+      </div>
     `;
 
+    const modalPrev = document.getElementById("videoModalPrev");
+    const modalNext = document.getElementById("videoModalNext");
+
+    if (modalPrev) {
+      modalPrev.addEventListener("click", () => {
+        const nextIndex = (modalIndex - 1 + reels.length) % reels.length;
+        renderModalItem(nextIndex);
+      });
+    }
+
+    if (modalNext) {
+      modalNext.addEventListener("click", () => {
+        const nextIndex = (modalIndex + 1) % reels.length;
+        renderModalItem(nextIndex);
+      });
+    }
+  }
+
+  function openVideoModal(itemIndex) {
+    if (!videoModal || !videoModalBody) {
+      const item = reels[itemIndex];
+      window.open(item.url, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    renderModalItem(itemIndex);
     videoModal.classList.add("is-open");
     videoModal.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
@@ -83,6 +215,19 @@ export async function initReelsBlock() {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && videoModal?.classList.contains("is-open")) {
       closeVideoModal();
+      return;
+    }
+
+    if (!videoModal?.classList.contains("is-open") || !reels.length) return;
+
+    if (event.key === "ArrowLeft") {
+      const nextIndex = (modalIndex - 1 + reels.length) % reels.length;
+      renderModalItem(nextIndex);
+    }
+
+    if (event.key === "ArrowRight") {
+      const nextIndex = (modalIndex + 1) % reels.length;
+      renderModalItem(nextIndex);
     }
   });
 
@@ -127,38 +272,6 @@ export async function initReelsBlock() {
 
   currentIndex = Math.floor(Math.random() * reels.length);
 
-  function getFallbackTitle(item, index) {
-    if (item.title && String(item.title).trim()) {
-      return String(item.title).trim();
-    }
-    return `Recorte ${String(index + 1).padStart(2, "0")}`;
-  }
-
-  function getFallbackText(item) {
-    if (item.text && String(item.text).trim()) {
-      return String(item.text).trim();
-    }
-    return "Momentos, cocina y clips rápidos del universo Soy Nildo para ir pasando desde la home.";
-  }
-
-  function getFallbackImage(item) {
-    if (item.image && String(item.image).trim()) {
-      return String(item.image).trim();
-    }
-
-    if (item.code) {
-      return `./assets/images/reels/${item.code}.webp`;
-    }
-
-    return "./assets/images/reels/placeholder.webp";
-  }
-
-  function getBadgeLabel(item) {
-    if (item.type === "reel") return "Reel";
-    if (item.type === "p") return "Instagram";
-    return "Instagram";
-  }
-
   function renderReel(index) {
     const item = reels[index];
 
@@ -182,7 +295,7 @@ export async function initReelsBlock() {
     const visual = reelsCard.querySelector(".reels-card__visual");
     if (visual) {
       visual.style.cursor = "pointer";
-      visual.onclick = () => openVideoModal(item);
+      visual.onclick = () => openVideoModal(index);
     }
 
     const play = reelsCard.querySelector(".reels-card__play");
@@ -190,7 +303,7 @@ export async function initReelsBlock() {
       play.style.cursor = "pointer";
       play.onclick = (e) => {
         e.stopPropagation();
-        openVideoModal(item);
+        openVideoModal(index);
       };
     }
 

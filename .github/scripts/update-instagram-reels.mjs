@@ -9,6 +9,7 @@ const OUTPUT_PATH = path.join(ROOT_DIR, "data", "reels.json");
 
 const ACCESS_TOKEN = process.env.IG_TOKEN;
 const MIN_VALID_REELS_TO_OVERWRITE = 1;
+const COMMENTS_LIMIT = 5;
 
 if (!ACCESS_TOKEN) {
   console.error("[instagram-reels] Falta IG_TOKEN en variables de entorno.");
@@ -40,14 +41,7 @@ async function readExistingJson() {
   }
 }
 
-async function fetchInstagramMedia() {
-  const url = new URL("https://graph.instagram.com/me/media");
-  url.searchParams.set(
-    "fields",
-    "id,caption,media_type,media_url,thumbnail_url,permalink,timestamp"
-  );
-  url.searchParams.set("access_token", ACCESS_TOKEN);
-
+async function fetchJson(url) {
   const response = await fetch(url, {
     headers: {
       "user-agent": "Mozilla/5.0"
@@ -56,27 +50,74 @@ async function fetchInstagramMedia() {
 
   if (!response.ok) {
     const body = await response.text();
-    throw new Error(`Instagram API error ${response.status}: ${body}`);
+    throw new Error(`HTTP ${response.status}: ${body}`);
   }
 
   return response.json();
 }
 
-function mapReels(apiItems = []) {
-  return apiItems
-    .filter((item) => item && item.media_type === "VIDEO")
-    .map((item, index) => ({
-      id: item.id || "",
-      type: "reel",
-      code: item.permalink?.split("/").filter(Boolean).pop() || item.id || "",
-      title: buildTitle(item, index),
-      text: buildText(item),
-      caption: normalizeCaption(item.caption || ""),
-      url: item.permalink || "",
-      image: item.thumbnail_url || "",
-      videoUrl: item.media_url || "",
-      publishedAt: item.timestamp || null
-    }));
+async function fetchInstagramMedia() {
+  const url = new URL("https://graph.instagram.com/me/media");
+  url.searchParams.set(
+    "fields",
+    "id,caption,media_type,media_url,thumbnail_url,permalink,timestamp"
+  );
+  url.searchParams.set("access_token", ACCESS_TOKEN);
+
+  return fetchJson(url);
+}
+
+function normalizeComment(comment) {
+  return {
+    id: String(comment?.id || ""),
+    username: String(comment?.username || "Usuario"),
+    text: normalizeCaption(comment?.text || ""),
+    timestamp: comment?.timestamp || null
+  };
+}
+
+async function fetchCommentsForMedia(mediaId) {
+  const url = new URL(`https://graph.instagram.com/${mediaId}/comments`);
+  url.searchParams.set("fields", "id,text,username,timestamp");
+  url.searchParams.set("limit", String(COMMENTS_LIMIT));
+  url.searchParams.set("access_token", ACCESS_TOKEN);
+
+  try {
+    const json = await fetchJson(url);
+    const comments = Array.isArray(json?.data) ? json.data : [];
+    return comments.map(normalizeComment).filter((comment) => comment.id);
+  } catch (error) {
+    console.warn(`[instagram-reels] No se pudieron cargar comentarios para media ${mediaId}. Se guarda sin comentarios.`);
+    console.warn(String(error));
+    return [];
+  }
+}
+
+async function mapReels(apiItems = []) {
+  const videoItems = apiItems.filter((item) => item && item.media_type === "VIDEO");
+
+  const mapped = await Promise.all(
+    videoItems.map(async (item, index) => {
+      const comments = await fetchCommentsForMedia(item.id);
+
+      return {
+        id: item.id || "",
+        type: "reel",
+        code: item.permalink?.split("/").filter(Boolean).pop() || item.id || "",
+        title: buildTitle(item, index),
+        text: buildText(item),
+        caption: normalizeCaption(item.caption || ""),
+        url: item.permalink || "",
+        image: item.thumbnail_url || "",
+        videoUrl: item.media_url || "",
+        publishedAt: item.timestamp || null,
+        commentsCount: comments.length,
+        comments
+      };
+    })
+  );
+
+  return mapped;
 }
 
 function hasEnoughValidItems(items) {
@@ -98,7 +139,8 @@ function hasEnoughValidItems(items) {
       typeof item.image === "string" &&
       item.image.startsWith("http") &&
       typeof item.videoUrl === "string" &&
-      item.videoUrl.startsWith("http")
+      item.videoUrl.startsWith("http") &&
+      Array.isArray(item.comments)
     );
   });
 }
@@ -111,16 +153,16 @@ async function writeJson(data) {
 async function main() {
   const previousData = await readExistingJson();
 
-  let data;
+  let mediaData;
   try {
-    data = await fetchInstagramMedia();
+    mediaData = await fetchInstagramMedia();
   } catch (error) {
-    console.error("[instagram-reels] Falló la API. Se conserva el JSON actual.");
+    console.error("[instagram-reels] Falló la API principal. Se conserva el JSON actual.");
     console.error(String(error));
     process.exit(0);
   }
 
-  const items = mapReels(Array.isArray(data.data) ? data.data : []);
+  const items = await mapReels(Array.isArray(mediaData?.data) ? mediaData.data : []);
 
   if (!hasEnoughValidItems(items)) {
     console.warn(
@@ -141,7 +183,7 @@ async function main() {
   const nextSerialized = JSON.stringify(payload.items || []);
 
   if (previousSerialized === nextSerialized) {
-    console.log("[instagram-reels] No hubo cambios en los reels. No se sobrescribe el JSON.");
+    console.log("[instagram-reels] No hubo cambios reales. No se reescribe el JSON.");
     process.exit(0);
   }
 
