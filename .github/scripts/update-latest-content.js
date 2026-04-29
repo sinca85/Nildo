@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 const { XMLParser } = require("fast-xml-parser");
-const cheerio = require("cheerio");
 
 const OUTPUT_PATH = path.join(process.cwd(), "data", "latest-content.json");
 
@@ -45,60 +44,44 @@ async function getLatestYouTubeVideo() {
 }
 
 async function getLatestTwitchVod() {
-  const url = "https://www.twitch.tv/soynildo/videos?filter=archives&sort=time";
+  const { chromium } = require("playwright");
 
-  const res = await fetch(url, {
-    headers: {
-      "user-agent":
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-      "accept-language": "es-AR,es;q=0.9,en;q=0.8"
-    }
+  const browser = await chromium.launch({
+    headless: true
   });
 
-  const html = await res.text();
+  try {
+    const page = await browser.newPage({
+      userAgent:
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+    });
 
-  fs.writeFileSync(
-    path.join(process.cwd(), "data", "twitch-debug.html"),
-    html,
-    "utf8"
-  );
+    await page.goto("https://www.twitch.tv/soynildo/videos?filter=archives&sort=time", {
+      waitUntil: "networkidle",
+      timeout: 60000
+    });
 
-  console.log("[latest-content] Twitch status:", res.status);
-  console.log("[latest-content] Twitch HTML length:", html.length);
+    await page.waitForSelector('a[href*="/videos/"]', {
+      timeout: 30000
+    });
 
-  if (!res.ok) {
-    throw new Error(`Twitch page error: ${res.status}`);
-  }
+    const href = await page.$eval('a[href*="/videos/"]', (el) =>
+      el.getAttribute("href")
+    );
 
-  const $ = cheerio.load(html);
+    const match = href?.match(/\/videos\/(\d+)/);
 
-  const links = [];
-
-  $('a[href*="/videos/"]').each((_, el) => {
-    const href = $(el).attr("href") || "";
-    const match = href.match(/\/videos\/(\d+)/);
-
-    if (match) {
-      links.push({
-        href,
-        vodId: match[1]
-      });
+    if (!match) {
+      throw new Error(`No se pudo extraer VOD desde href: ${href}`);
     }
-  });
 
-  console.log("[latest-content] Twitch video links encontrados:", links);
-
-  const first = links[0];
-
-  if (!first?.vodId) {
-    throw new Error("No se encontró VOD en Twitch");
+    return {
+      latestVodId: match[1],
+      latestVodUrl: `https://www.twitch.tv/videos/${match[1]}`
+    };
+  } finally {
+    await browser.close();
   }
-
-  return {
-    latestVodId: first.vodId,
-    latestVodUrl: `https://www.twitch.tv/videos/${first.vodId}`
-  };
 }
 
 function sameData(a, b) {

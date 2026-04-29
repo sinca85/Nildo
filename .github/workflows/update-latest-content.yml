@@ -23,7 +23,9 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install fast-xml-parser cheerio
+        run: |
+          npm install fast-xml-parser playwright
+          npx playwright install --with-deps chromium
 
       - name: Generate latest-content.json
         run: node .github/scripts/update-latest-content.js
