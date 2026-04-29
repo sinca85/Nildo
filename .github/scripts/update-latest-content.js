@@ -62,20 +62,35 @@ async function getLatestTwitchVod() {
 
   let vodId = null;
 
-  $("a").each((_, el) => {
+  const content = $('[data-test-selector="content"]');
+
+  content.find('a[href*="/videos/"]').each((_, el) => {
     const href = $(el).attr("href") || "";
     const match = href.match(/\/videos\/(\d+)/);
+
     if (match && !vodId) {
       vodId = match[1];
     }
   });
 
   if (!vodId) {
+    $('a[href*="/videos/"]').each((_, el) => {
+      const href = $(el).attr("href") || "";
+      const match = href.match(/\/videos\/(\d+)/);
+
+      if (match && !vodId) {
+        vodId = match[1];
+      }
+    });
+  }
+
+  if (!vodId) {
     throw new Error("No se encontró VOD en Twitch");
   }
 
   return {
-    latestVodId: vodId
+    latestVodId: vodId,
+    latestVodUrl: `https://www.twitch.tv/videos/${vodId}`
   };
 }
 
