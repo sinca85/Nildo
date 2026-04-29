@@ -1,12 +1,13 @@
 {
-  "updatedAt": "2026-04-28T21:35:42.895Z",
+  "updatedAt": "2026-04-29T19:24:09.852Z",
   "youtube": {
     "latestVideoId": "wX78lGE7XSs",
     "latestTitle": "creo que es una cocina",
     "published": "2026-04-28T14:34:39+00:00"
   },
   "twitch": {
-    "latestVodId": "2734134378"
+    "latestVodId": "2756980411",
+    "latestVodUrl": "https://www.twitch.tv/videos/2756980411"
   },
-  "previousUpdatedAt": "2026-04-26T04:03:26.660Z"
+  "previousUpdatedAt": "2026-04-28T21:35:42.895Z"
 }
