@@ -8,8 +8,13 @@ const ROOT_DIR = path.resolve(__dirname, "../..");
 const OUTPUT_PATH = path.join(ROOT_DIR, "data", "reels.json");
 
 const ACCESS_TOKEN = process.env.IG_TOKEN;
+
 const MIN_VALID_REELS_TO_OVERWRITE = 1;
 const COMMENTS_LIMIT = 5;
+
+const LATEST_REELS_COUNT = 2;
+const TOP_REELS_COUNT = 20;
+const MEDIA_LIMIT = 100;
 
 if (!ACCESS_TOKEN) {
   console.error("[instagram-reels] Falta IG_TOKEN en variables de entorno.");
@@ -62,6 +67,7 @@ async function fetchInstagramMedia() {
     "fields",
     "id,caption,media_type,media_url,thumbnail_url,permalink,timestamp"
   );
+  url.searchParams.set("limit", String(MEDIA_LIMIT));
   url.searchParams.set("access_token", ACCESS_TOKEN);
 
   return fetchJson(url);
@@ -87,9 +93,42 @@ async function fetchCommentsForMedia(mediaId) {
     const comments = Array.isArray(json?.data) ? json.data : [];
     return comments.map(normalizeComment).filter((comment) => comment.id);
   } catch (error) {
-    console.warn(`[instagram-reels] No se pudieron cargar comentarios para media ${mediaId}. Se guarda sin comentarios.`);
+    console.warn(
+      `[instagram-reels] No se pudieron cargar comentarios para media ${mediaId}. Se guarda sin comentarios.`
+    );
     console.warn(String(error));
     return [];
+  }
+}
+
+async function fetchInsightsForMedia(mediaId) {
+  const url = new URL(`https://graph.instagram.com/${mediaId}/insights`);
+  url.searchParams.set("metric", "plays,reach");
+  url.searchParams.set("access_token", ACCESS_TOKEN);
+
+  try {
+    const json = await fetchJson(url);
+
+    const metrics = {};
+
+    (json?.data || []).forEach((metric) => {
+      metrics[metric.name] = Number(metric.values?.[0]?.value || 0);
+    });
+
+    return {
+      plays: metrics.plays || 0,
+      reach: metrics.reach || 0
+    };
+  } catch (error) {
+    console.warn(
+      `[instagram-reels] No se pudieron cargar insights para media ${mediaId}. Se usa views = 0.`
+    );
+    console.warn(String(error));
+
+    return {
+      plays: 0,
+      reach: 0
+    };
   }
 }
 
@@ -98,7 +137,10 @@ async function mapReels(apiItems = []) {
 
   const mapped = await Promise.all(
     videoItems.map(async (item, index) => {
-      const comments = await fetchCommentsForMedia(item.id);
+      const [comments, insights] = await Promise.all([
+        fetchCommentsForMedia(item.id),
+        fetchInsightsForMedia(item.id)
+      ]);
 
       return {
         id: item.id || "",
@@ -111,6 +153,8 @@ async function mapReels(apiItems = []) {
         image: item.thumbnail_url || "",
         videoUrl: item.media_url || "",
         publishedAt: item.timestamp || null,
+        views: insights.plays || 0,
+        reach: insights.reach || 0,
         commentsCount: comments.length,
         comments
       };
@@ -118,6 +162,27 @@ async function mapReels(apiItems = []) {
   );
 
   return mapped;
+}
+
+function selectReels(items = []) {
+  const sortedByDate = items
+    .slice()
+    .sort((a, b) => new Date(b.publishedAt || 0) - new Date(a.publishedAt || 0));
+
+  const latest = sortedByDate.slice(0, LATEST_REELS_COUNT);
+  const latestIds = new Set(latest.map((item) => item.id));
+
+  const topViewed = items
+    .filter((item) => !latestIds.has(item.id))
+    .sort((a, b) => {
+      const viewsDiff = (b.views || 0) - (a.views || 0);
+      if (viewsDiff !== 0) return viewsDiff;
+
+      return new Date(b.publishedAt || 0) - new Date(a.publishedAt || 0);
+    })
+    .slice(0, TOP_REELS_COUNT);
+
+  return [...latest, ...topViewed];
 }
 
 function hasEnoughValidItems(items) {
@@ -140,6 +205,8 @@ function hasEnoughValidItems(items) {
       item.image.startsWith("http") &&
       typeof item.videoUrl === "string" &&
       item.videoUrl.startsWith("http") &&
+      typeof item.views === "number" &&
+      typeof item.reach === "number" &&
       Array.isArray(item.comments)
     );
   });
@@ -154,6 +221,7 @@ async function main() {
   const previousData = await readExistingJson();
 
   let mediaData;
+
   try {
     mediaData = await fetchInstagramMedia();
   } catch (error) {
@@ -162,7 +230,8 @@ async function main() {
     process.exit(0);
   }
 
-  const items = await mapReels(Array.isArray(mediaData?.data) ? mediaData.data : []);
+  const allItems = await mapReels(Array.isArray(mediaData?.data) ? mediaData.data : []);
+  const items = selectReels(allItems);
 
   if (!hasEnoughValidItems(items)) {
     console.warn(
@@ -174,6 +243,12 @@ async function main() {
   const payload = {
     updatedAt: new Date().toISOString(),
     source: "instagram-graph-api",
+    strategy: {
+      latestReels: LATEST_REELS_COUNT,
+      topViewedReels: TOP_REELS_COUNT,
+      mediaLimit: MEDIA_LIMIT
+    },
+    totalFetched: allItems.length,
     itemCount: items.length,
     items,
     previousUpdatedAt: previousData?.updatedAt || null
@@ -188,7 +263,9 @@ async function main() {
   }
 
   await writeJson(payload);
-  console.log(`[instagram-reels] OK. Guardados ${items.length} reels en ${OUTPUT_PATH}`);
+  console.log(
+    `[instagram-reels] OK. Guardados ${items.length} reels en ${OUTPUT_PATH}. Total consultados: ${allItems.length}`
+  );
 }
 
 main().catch((error) => {
