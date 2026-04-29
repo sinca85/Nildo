@@ -49,48 +49,55 @@ async function getLatestTwitchVod() {
 
   const res = await fetch(url, {
     headers: {
-      "user-agent": "Mozilla/5.0"
+      "user-agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+      "accept-language": "es-AR,es;q=0.9,en;q=0.8"
     }
   });
+
+  const html = await res.text();
+
+  fs.writeFileSync(
+    path.join(process.cwd(), "data", "twitch-debug.html"),
+    html,
+    "utf8"
+  );
+
+  console.log("[latest-content] Twitch status:", res.status);
+  console.log("[latest-content] Twitch HTML length:", html.length);
 
   if (!res.ok) {
     throw new Error(`Twitch page error: ${res.status}`);
   }
 
-  const html = await res.text();
   const $ = cheerio.load(html);
 
-  let vodId = null;
+  const links = [];
 
-  const content = $('[data-test-selector="content"]');
-
-  content.find('a[href*="/videos/"]').each((_, el) => {
+  $('a[href*="/videos/"]').each((_, el) => {
     const href = $(el).attr("href") || "";
     const match = href.match(/\/videos\/(\d+)/);
 
-    if (match && !vodId) {
-      vodId = match[1];
+    if (match) {
+      links.push({
+        href,
+        vodId: match[1]
+      });
     }
   });
 
-  if (!vodId) {
-    $('a[href*="/videos/"]').each((_, el) => {
-      const href = $(el).attr("href") || "";
-      const match = href.match(/\/videos\/(\d+)/);
+  console.log("[latest-content] Twitch video links encontrados:", links);
 
-      if (match && !vodId) {
-        vodId = match[1];
-      }
-    });
-  }
+  const first = links[0];
 
-  if (!vodId) {
+  if (!first?.vodId) {
     throw new Error("No se encontró VOD en Twitch");
   }
 
   return {
-    latestVodId: vodId,
-    latestVodUrl: `https://www.twitch.tv/videos/${vodId}`
+    latestVodId: first.vodId,
+    latestVodUrl: `https://www.twitch.tv/videos/${first.vodId}`
   };
 }
 
