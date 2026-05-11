@@ -643,7 +643,7 @@ a{text-decoration:none;color:inherit}
   background:
     linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
     url("assets/textures/texture_clean.png") center/cover no-repeat;
-        background-size: 120%;
+        background-size: 170%;
     background-position-y: 0px;
 }
 .text-link{
