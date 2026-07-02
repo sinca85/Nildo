@@ -1440,7 +1440,7 @@ height: 220% !important;
 .donation-copy h1{
   max-width:10ch;
   margin:0;
-  font-size:clamp(2.6rem, 5.2vw, 4.9rem);
+  font-size:60px;
   line-height:.94;
   letter-spacing:-.04em;
   text-transform:uppercase;
@@ -1696,6 +1696,7 @@ height: 220% !important;
 
   .donation-copy h1{
     max-width:none;
+    font-size:clamp(2.6rem, 12vw, 3.75rem);
   }
 
   .donation-product__image-wrap{
