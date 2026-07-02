@@ -1,0 +1,24 @@
+{
+  "campaign": {
+    "eyebrow": "Meta comunitaria",
+    "headline": "Ayudame a conseguir la amasadora",
+    "summary": "Cada aporte acerca al canal a una amasadora profesional para mejorar las recetas, directos y producciones de Soy Nildo."
+  },
+  "product": {
+    "title": "Amasadora planetaria",
+    "description": "Amasadora de mesa con bowl de acero, ideal para masas, panes, batidos y preparaciones grandes en vivo.",
+    "photo": "./assets/images/donations/amasadora.png",
+    "price": 32900,
+    "currency": "UYU"
+  },
+  "funding": {
+    "collected": 12850,
+    "minimumDonation": 20,
+    "suggestedDonations": [200, 500, 1000, 2500]
+  },
+  "payment": {
+    "provider": "mercadopago",
+    "country": "UY",
+    "status": "demo"
+  }
+}

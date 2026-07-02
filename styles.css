@@ -1384,6 +1384,329 @@ a{text-decoration:none;color:inherit}
 height: 220% !important;
     object-position: left center !important;
 }
+
+.donation-shell{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(241, 210, 115, .12), transparent 28%),
+    radial-gradient(circle at 88% 18%, rgba(255, 255, 255, .05), transparent 26%);
+}
+
+.donation-topbar,
+.donation-page{
+  width:var(--container);
+  margin:0 auto;
+}
+
+.donation-topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:24px 0 20px;
+}
+
+.donation-page{
+  padding:10px 0 72px;
+}
+
+.donation-hero{
+  display:grid;
+  grid-template-columns:minmax(0, .95fr) minmax(300px, .75fr) minmax(280px, .58fr);
+  gap:22px;
+  align-items:stretch;
+}
+
+.donation-copy,
+.donation-product,
+.donation-checkout{
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:var(--shadow);
+}
+
+.donation-copy{
+  display:flex;
+  min-height:660px;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:28px;
+  border-radius:30px;
+  padding:38px;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.32)),
+    url("assets/textures/dark-texture3.png") center/cover no-repeat;
+}
+
+.donation-copy h1{
+  max-width:10ch;
+  margin:0;
+  font-size:clamp(2.6rem, 5.2vw, 4.9rem);
+  line-height:.94;
+  letter-spacing:-.04em;
+  text-transform:uppercase;
+  overflow-wrap:anywhere;
+}
+
+.donation-copy p:not(.hero-kicker){
+  max-width:40rem;
+  margin:18px 0 0;
+  color:#efe6da;
+  font-size:1.06rem;
+  line-height:1.65;
+}
+
+.donation-progress-card{
+  border-radius:22px;
+  padding:22px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(8px);
+}
+
+.donation-progress-card__top,
+.donation-stats,
+.donation-price,
+.donation-limits{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+
+.donation-progress-card__top span,
+.donation-stats span,
+.donation-price span,
+.donation-field span,
+.donation-limits{
+  color:var(--muted);
+  font-size:.82rem;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.donation-progress-card__top strong{
+  color:var(--accent);
+  font-size:1.3rem;
+}
+
+.donation-progress{
+  height:18px;
+  margin:18px 0;
+  overflow:hidden;
+  border-radius:999px;
+  background:rgba(255,255,255,.1);
+  box-shadow:inset 0 2px 8px rgba(0,0,0,.28);
+}
+
+.donation-progress__bar{
+  width:0;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg, #f1d273, #fff0a8);
+  transition:width .45s ease;
+}
+
+.donation-stats strong{
+  display:block;
+  margin-top:6px;
+  font-size:1.35rem;
+}
+
+.donation-product{
+  display:flex;
+  min-height:660px;
+  flex-direction:column;
+  overflow:hidden;
+  border-radius:30px;
+  background:#171411;
+}
+
+.donation-product__image-wrap{
+  position:relative;
+  flex:1 1 auto;
+  min-height:360px;
+  background:#211c17;
+}
+
+.donation-product__image-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.donation-product__body{
+  padding:26px;
+}
+
+.donation-product h2{
+  margin:14px 0 10px;
+  font-size:2rem;
+  line-height:1;
+  letter-spacing:-.04em;
+  text-transform:uppercase;
+}
+
+.donation-product p{
+  margin:0 0 22px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.donation-price{
+  min-height:58px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+.donation-price strong{
+  color:var(--accent);
+  font-size:1.55rem;
+}
+
+.donation-checkout{
+  align-self:start;
+  position:sticky;
+  top:18px;
+  border-radius:24px;
+  padding:26px;
+  color:var(--paper-text);
+  background:
+    linear-gradient(rgba(255,255,255,.16), rgba(255,255,255,.04)),
+    url("assets/textures/beige_texture_cropped.png") center/cover no-repeat;
+  background-size:160%;
+}
+
+.donation-checkout .hero-paper__script{
+  margin-bottom:18px;
+  font-size:2.5rem;
+}
+
+.donation-field{
+  display:grid;
+  gap:10px;
+}
+
+.donation-field span,
+.donation-limits{
+  color:rgba(30,24,19,.72);
+}
+
+.donation-field input{
+  width:100%;
+  min-height:56px;
+  border:1px solid rgba(30,24,19,.18);
+  border-radius:14px;
+  padding:0 16px;
+  background:rgba(255,255,255,.58);
+  color:var(--paper-text);
+  font:inherit;
+  font-size:1.2rem;
+  font-weight:800;
+}
+
+.donation-field input:focus{
+  outline:3px solid rgba(241,210,115,.45);
+  border-color:rgba(30,24,19,.35);
+}
+
+.donation-limits{
+  margin:12px 0 16px;
+  font-size:.72rem;
+}
+
+.donation-presets{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:10px;
+  margin-bottom:16px;
+}
+
+.donation-preset{
+  min-height:42px;
+  border:1px solid rgba(30,24,19,.16);
+  border-radius:999px;
+  background:rgba(255,255,255,.32);
+  color:var(--paper-text);
+  font:inherit;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.donation-preset:hover:not(:disabled){
+  background:#f1d273;
+}
+
+.donation-preset:disabled{
+  cursor:not-allowed;
+  opacity:.45;
+}
+
+.donation-submit{
+  width:100%;
+  border:0;
+  cursor:pointer;
+}
+
+.donation-submit:disabled{
+  cursor:not-allowed;
+  opacity:.62;
+}
+
+.donation-message{
+  min-height:24px;
+  margin:14px 0 0;
+  color:rgba(30,24,19,.72);
+  font-weight:700;
+  line-height:1.45;
+}
+
+.donation-message[data-tone="success"]{color:#167142}
+.donation-message[data-tone="error"]{color:#9d2c1f}
+
+@media (max-width: 1120px){
+  .donation-hero{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .donation-checkout{
+    position:static;
+    grid-column:1 / -1;
+  }
+}
+
+@media (max-width: 760px){
+  .donation-topbar{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .donation-hero{
+    grid-template-columns:1fr;
+  }
+
+  .donation-copy,
+  .donation-product{
+    min-height:auto;
+  }
+
+  .donation-copy{
+    padding:28px;
+  }
+
+  .donation-copy h1{
+    max-width:none;
+  }
+
+  .donation-product__image-wrap{
+    min-height:280px;
+  }
+
+  .donation-stats{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}
 .reels-panel {
   display: flex;
   flex-direction: column;

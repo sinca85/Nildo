@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donaciones | Soy Nildo</title>
+  <meta name="description" content="Meta de donaciones para equipamiento de cocina de Soy Nildo." />
+  <link rel="icon" href="./assets/images/favicon.png" sizes="32x32">
+  <link rel="icon" href="./assets/images/favicon.png" sizes="16x16">
+  <link rel="apple-touch-icon" href="./assets/images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="site-shell donation-shell">
+    <header class="donation-topbar">
+      <a class="brand" href="./index.html">
+        <img src="./assets/images/logo.png" alt="Soy Nildo" class="logo">
+        <div class="brand-copy">
+          <div class="brand-name">Soy Nildo</div>
+          <div class="brand-note">cocina, stream y comunidad</div>
+        </div>
+      </a>
+
+      <nav class="topbar-links" aria-label="Navegación">
+        <a class="top-link" href="./index.html">Inicio</a>
+        <a class="top-link" href="./index.html#apoya">Apoya</a>
+      </nav>
+    </header>
+
+    <main class="donation-page">
+      <section class="donation-hero">
+        <div class="donation-copy">
+          <p class="hero-kicker" data-donation-eyebrow>Cargando campaña</p>
+          <h1 data-donation-headline>Ayudame a conseguir la amasadora</h1>
+          <p data-donation-summary></p>
+
+          <div class="donation-progress-card">
+            <div class="donation-progress-card__top">
+              <span>Progreso</span>
+              <strong data-percent>0%</strong>
+            </div>
+            <div class="donation-progress" role="progressbar" aria-label="Progreso de recaudación" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="donation-progress__bar" data-progress></div>
+            </div>
+            <div class="donation-stats">
+              <div>
+                <span>Recaudado</span>
+                <strong data-collected>$ 0</strong>
+              </div>
+              <div>
+                <span>Faltan</span>
+                <strong data-remaining>$ 0</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <article class="donation-product">
+          <div class="donation-product__image-wrap">
+            <img data-product-image src="" alt="">
+          </div>
+          <div class="donation-product__body">
+            <span class="highlight-label">Producto objetivo</span>
+            <h2 data-product-title>Amasadora</h2>
+            <p data-product-description></p>
+            <div class="donation-price">
+              <span>Precio total</span>
+              <strong data-product-price>$ 0</strong>
+            </div>
+          </div>
+        </article>
+
+        <aside class="donation-checkout" aria-label="Donación">
+          <span class="hero-paper__script">Donar</span>
+          <form data-donation-form>
+            <label class="donation-field">
+              <span>Importe en pesos uruguayos</span>
+              <input data-donation-input type="number" inputmode="numeric" step="1" min="20" placeholder="500">
+            </label>
+
+            <div class="donation-limits">
+              <span>Mín. <strong data-minimum>$ 20</strong></span>
+              <span>Máx. <strong data-maximum>$ 0</strong></span>
+            </div>
+
+            <div class="donation-presets" data-donation-presets></div>
+
+            <button class="hero-button hero-button--solid donation-submit" type="submit">
+              Donar con Mercado Pago
+            </button>
+
+            <p class="donation-message" data-donation-message data-tone="neutral">
+              Demo visual con aprobación simulada.
+            </p>
+          </form>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./js/donations.js"></script>
+</body>
+</html>
